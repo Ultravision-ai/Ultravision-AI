@@ -1373,8 +1373,8 @@ function handleAuthCallback() {
       return sb.auth.getSessionFromUrl ? sb.auth.getSessionFromUrl({ storeSession: true }) : sb.auth.getSession();
     }).then(function(res) {
       // Clear the hash from URL
-      history.replaceState(null, '', window.location.pathname);
       var type = hash.includes('type=recovery') ? 'recovery' : 'signup';
+      history.replaceState(null, '', window.location.pathname);
       if (res.data && res.data.session) {
         CU = res.data.session.user;
         if (type === 'recovery') {
@@ -1534,6 +1534,7 @@ window.addEventListener('load', function() {
           document.getElementById('app').classList.remove('on');
           showPg('reset-pw');
         } else if (event === 'SIGNED_IN' && session) {
+          if (document.getElementById('auth-wrap').style.display !== 'none') return;
           CU = session.user; launchApp();
         } else if (event === 'SIGNED_OUT') {
           CU = null;
