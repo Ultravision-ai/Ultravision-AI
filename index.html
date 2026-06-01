@@ -1445,6 +1445,22 @@ function showSetupBanner() {
 }
 
 // ── LAUNCH APP ──
+  function saveProgress() {
+  if (!CU) return;
+  getSB().then(function(sb) {
+    var stats = JSON.parse(localStorage.getItem('uv_st_' + CU.id) || '{}');
+    return sb.from('progress').upsert({
+      user_id: CU.id,
+      sessions: stats.sessions || 0,
+      quizzes_taken: stats.quizzes || 0,
+      quiz_avg: stats.quizAvg || 0,
+      cards_done: stats.cards || 0,
+      streak: stats.streak || 1,
+      last_active: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id' });
+  }).catch(function(){});
+}
 function launchApp() {
   if (!CU) return;
   var meta = CU.user_metadata || {};
@@ -1579,6 +1595,7 @@ function logAct(id){
   if(recentActs.length>5)recentActs.pop();
   var el=document.getElementById('rec-list');
   if(el)el.innerHTML=recentActs.map(function(a){return '<div class="ri"><div class="rid" style="background:'+a.c+'"></div><div class="rit">'+a.l+'</div><div class="ritm">'+a.t+'</div></div>';}).join('');
+  saveProgress();
 }
 
 // ── ADMIN (reads all Supabase users via profiles table if set up, otherwise just shows message) ──
