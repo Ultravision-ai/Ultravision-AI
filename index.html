@@ -1499,7 +1499,13 @@ window.addEventListener('load', function() {
     }).then(function(res) {
       if (res.data && res.data.session) {
         CU = res.data.session.user;
-        launchApp();
+        if (window.location.hash.includes('type=recovery')) {
+          document.getElementById('auth-wrap').style.display = 'flex';
+          document.getElementById('app').classList.remove('on');
+          showPg('reset-pw');
+        } else {
+          launchApp();
+        }
       }
     }).catch(function(){});
     // Listen for auth state changes
