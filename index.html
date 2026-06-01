@@ -1529,8 +1529,10 @@ window.addEventListener('load', function() {
     // Listen for auth state changes
     getSB().then(function(sb) {
       sb.auth.onAuthStateChange(function(event, session) {
-        if (event === 'PASSWORD_RECOVERY') {
+       if (event === 'PASSWORD_RECOVERY') {
           document.getElementById('auth-wrap').style.display = 'flex';
+          document.getElementById('auth-wrap').style.zIndex = '9999';
+          document.getElementById('app').style.display = 'none';
           document.getElementById('app').classList.remove('on');
           showPg('reset-pw');
         } else if (event === 'SIGNED_IN' && session) {
