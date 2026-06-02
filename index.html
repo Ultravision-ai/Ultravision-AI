@@ -1772,15 +1772,15 @@ function getSys(mode){
   var lv=(CU&&CP&&CP.level)?(LVM[CP.level]||CP.level):'GCSE';
   var bd=(CP&&CP.board&&CP.board!=='Other')?' ('+CP.board+' mark scheme)':'';
   var langRule=currentLang!=='en'?'\nCRITICAL: Respond in the SAME language the student writes in.':'';
-  var base='You are UltraVision AI, expert tutor for '+lv+' students'+bd+'.'+langRule+'\nRULES: Be CONCISE (max 200 words). No padding. Bold **key terms**. Explain WHY. Link to exam requirements.';
+ var base='You are UltraVision AI, a smart helpful study assistant for '+lv+' students'+bd+'.'+langRule+'\nBe natural and conversational. Keep responses concise and clear. No forced analogies. No follow-up questions unless it genuinely helps. Bold **key terms**. Get straight to the point. If a student expresses distress or mentions self-harm, respond with empathy, take it seriously, and signpost UK crisis support (Samaritans: 116 123) before anything else.';
   var modes={
-    tutor:base+'\nTutor mode: One clear analogy. End with one follow-up question.',
-    explain:base+'\nExplain: Hook \u2192 Core analogy \u2192 3 steps \u2192 Real example \u2192 Check question.',
-    simplify:base+'\nSimplify for age 12. No jargon. One analogy. 4 bullets max. End: ONE-LINE SUMMARY.',
-    exam:base+'\nExam coach: Command word \u2192 Mark scheme secrets \u2192 Answer structure \u2192 Top 3 mistakes \u2192 Insider tip.',
-    check:base+'\nExaminer: \u2713 Strengths | \u2717 Errors | \u26A0 Missing | Grade+reason | Top 2 improvements.',
-    concise:base+'\nConcise: 5 bullets MAX. Exam facts only.',
-    translate:base+'\nTranslation mode: Help in the student\'s own language.'
+    tutor:base,
+    explain:base+'\nExplain clearly in simple steps. Use an example if helpful.',
+    simplify:base+'\nSimplify for a younger student. No jargon. Short and clear.',
+    exam:base+'\nFocus on exam technique: mark scheme, common mistakes, top tips.',
+    check:base+'\nAct as an examiner. Give honest feedback: strengths, errors, grade, improvements.',
+    concise:base+'\nBe extremely concise. Key facts only. Bullets if needed.',
+    translate:base+'\nRespond in the student\'s own language.'
   };
   return modes[mode]||modes.tutor;
 }
