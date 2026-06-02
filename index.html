@@ -765,7 +765,7 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
       <input class="vci" type="text" maxlength="1" inputmode="numeric" onkeyup="rcKeyUp(this,4)" onkeydown="rcKeyDown(this,event,4)">
       <input class="vci" type="text" maxlength="1" inputmode="numeric" onkeyup="rcKeyUp(this,5)" onkeydown="rcKeyDown(this,event,5)">
     </div>
-    <div class="fg"><label class="flbl">New password</label><input class="fi" id="new-pw-input" type="password" placeholder="Min 8 characters"></div>
+    <div class="fg"><label class="flbl">New password</label><input class="fi" id="new-pw-input" type="password" placeholder="Min 8 characters" autocomplete="new-password"></div>
     <div class="fg"><label class="flbl">Confirm new password</label><input class="fi" id="new-cpw-input" type="password" placeholder="Repeat password"></div>
     <button class="asbtn" onclick="doReset()" style="margin-bottom:0">Reset password →</button>
   </div>
@@ -1101,8 +1101,8 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
   </div>
   <div class="atit">Set your new password</div>
   <div class="asub">You clicked the reset link. Enter your new password below.</div>
-  <div class="fg"><label class="flbl">New password</label><input class="fi" id="new-pw-input" type="password" placeholder="Min 8 characters"></div>
-  <div class="fg"><label class="flbl">Confirm password</label><input class="fi" id="new-cpw-input" type="password" placeholder="Repeat new password"></div>
+  <div class="fg"><label class="flbl">New password</label><input class="fi" id="new-pw-input" type="password" placeholder="Min 8 characters" autocomplete="new-password"></div>
+  <div class="fg"><label class="flbl">Confirm password</label><input class="fi" id="new-cpw-input" type="password" placeholder="Repeat new password" autocomplete="new-password"></div>
   <button class="asbtn" onclick="doReset()">Set new password →</button>
 </div></div>
 
@@ -1394,7 +1394,6 @@ function handleAuthCallback() {
 function doReset() {
  var np=document.getElementById('new-pw-input').value||'';
   var cp=document.getElementById('new-cpw-input').value||'';
-  alert('np length: ' + np.length + ' value: ' + np);
   if (np.length<8) {toast('Password must be at least 8 characters','error');return;}
   if (np!==cp){toast('Passwords do not match','error');return;}
   getSB().then(function(sb) {
