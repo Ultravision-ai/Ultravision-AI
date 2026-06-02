@@ -58,9 +58,9 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
 .nl{font-size:13px;color:var(--t2);cursor:pointer;font-weight:500;text-decoration:none;transition:color .2s;padding-bottom:2px;border-bottom:1.5px solid transparent}.nl:hover{color:var(--txt);border-bottom-color:var(--ac)}
 .nav-btns{display:flex;gap:10px;align-items:center}
 .lang-sel{background:rgba(255,255,255,.05);border:1px solid var(--b2);color:var(--t2);padding:7px 10px;border-radius:8px;font-size:12px;font-family:'Outfit',sans-serif;outline:none;cursor:pointer;transition:all .2s}.lang-sel:hover{border-color:var(--ac)}.lang-sel option{background:var(--s2)}
-.lbg{background:transparent;border:1px solid var(--b2);color:var(--t2);padding:9px 20px;border-radius:10px;font-size:13px;font-weight:600;font-family:'Outfit',sans-serif;cursor:pointer;transition:all .2s}.lbg:hover{border-color:var(--ac);color:var(--ac);background:rgba(85,133,255,.08)}
-.lbp{background:var(--g1);border:none;color:#fff;padding:9px 22px;border-radius:10px;font-size:13px;font-weight:700;font-family:'Outfit',sans-serif;cursor:pointer;box-shadow:var(--glow);transition:all .22s}.lbp:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(85,133,255,.6)}
-@media(max-width:768px){.nav-links{display:none}.lnav{padding:0 4%;height:62px}.lt{font-size:15px}.lt-sub{display:none}}
+.lbg{background:transparent;border:1px solid var(--b2);color:var(--t2);padding:9px 20px;border-radius:10px;font-size:13px;font-weight:600;font-family:'Outfit',sans-serif;cursor:pointer;transition:all .2s;white-space:nowrap}.lbg:hover{border-color:var(--ac);color:var(--ac);background:rgba(85,133,255,.08)}
+.lbp{background:var(--g1);border:none;color:#fff;padding:9px 22px;border-radius:10px;font-size:13px;font-weight:700;font-family:'Outfit',sans-serif;cursor:pointer;box-shadow:var(--glow);transition:all .22s;white-space:nowrap}.lbp:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(85,133,255,.6)}
+@media(max-width:768px){.nav-links{display:none}.lnav{padding:0 4%;height:56px}.lt{font-size:14px}.lt-sub{display:none}.lang-sel{display:none}.lbg{display:none}.lbp{padding:8px 14px;font-size:12px}}
 
 /* HERO */
 .hero{padding:110px 6% 80px;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:center}
@@ -96,11 +96,11 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
 .fcd-ic{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
 .fcd-tt{font-size:11.5px;font-weight:700;color:var(--txt);line-height:1.25}.fcd-st{font-size:10px;margin-top:2px;font-weight:500}
 @media(max-width:1100px){.hero{grid-template-columns:1fr;padding:70px 5% 50px;gap:50px}.fcds{display:none}}
-@media(max-width:768px){.hh1{font-size:38px}.hsub{font-size:14px}.hbm,.hbg{padding:14px 26px;font-size:14px}}
+@media(max-width:768px){.hh1{font-size:26px;line-height:1.15}.hsub{font-size:14px}.hbm,.hbg{padding:14px 20px;font-size:14px;width:100%}.hbtns{flex-direction:column}.hpills{gap:8px}.hpill{font-size:11px;padding:4px 10px}.sbar{gap:20px;padding:16px 5%}.sn{font-size:26px}.fsec{padding:40px 5%}.stit{font-size:26px}.fgrid{grid-template-columns:1fr}.lgd{grid-template-columns:1fr 1fr}.test-grid{grid-template-columns:1fr}.cta-h{font-size:26px}.lsec{padding:40px 5%}.test-sec{padding:40px 5%}}
 
 /* STATS */
 .sbar{background:rgba(8,12,24,.7);border-top:1px solid rgba(85,133,255,.07);border-bottom:1px solid rgba(85,133,255,.07);padding:22px 6%;display:flex;justify-content:center;gap:70px;flex-wrap:wrap}
-.si{text-align:center}.sn{font-family:'Playfair Display',serif;font-size:36px;font-weight:800;margin-bottom:4px;line-height:1}.sl{font-size:10px;color:var(--t2);font-weight:600;letter-spacing:.07em;text-transform:uppercase}
+.si{text-align:center}.sn{font-family:'Playfair Display',serif;font-size:36px;font-weight:800;margin-bottom:4px;line-height:1;color:#F5F5F5}.sl{font-size:10px;color:var(--t2);font-weight:600;letter-spacing:.07em;text-transform:uppercase}
 
 /* FEATURES */
 .fsec{padding:90px 6%;max-width:1400px;margin:0 auto}
