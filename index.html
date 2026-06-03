@@ -1090,7 +1090,19 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
     <div class="macts" id="md-acts"></div>
   </div>
 </div>
-
+<!-- RESET PASSWORD (after clicking email link) -->
+<div class="auth-page hidden" id="pg-reset-pw" style="position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(4,6,14,.97)">
+<div class="acard" style="max-width:480px;width:100%;margin:auto">
+  <div class="alogo" onclick="showPg('land')">
+    <div class="lmark-wrap"><div class="lmark-bg"><span class="lmark-icon">⚡</span></div></div>
+    <div class="lt-wrap"><div class="lt">Ultra<span>Vision</span> AI</div></div>
+  </div>
+  <div class="atit">Set your new password</div>
+  <div class="asub">You clicked the reset link. Enter your new password below.</div>
+  <div class="fg"><label class="flbl">New password</label><input class="fi" id="new-pw-input" type="password" placeholder="Min 8 characters" autocomplete="new-password"></div>
+  <div class="fg"><label class="flbl">Confirm password</label><input class="fi" id="new-cpw-input" type="password" placeholder="Repeat new password" autocomplete="new-password"></div>
+  <button class="asbtn" onclick="doReset()">Set new password →</button>
+</div></div>
 <div id="toast"></div>
 <div id="aiol"><div class="spin"></div><div class="aimt" id="ai-msg">UltraVision AI is thinking...</div></div>
 
@@ -1342,7 +1354,7 @@ function doForgot() {
   if (!vEmail(em)){toast('Please enter a valid email','error');return;}
   getSB().then(function(sb) {
     return sb.auth.resetPasswordForEmail(em, {
-      redirectTo: window.location.href
+      redirectTo: 'https://ultravision-ai.co.uk'
     });
   }).then(function(res) {
     if (res.error) { toast(res.error.message, 'error'); return; }
