@@ -1818,8 +1818,8 @@ function genQuiz(){
   var top=(document.getElementById('q-top').value||'').trim(),board=document.getElementById('q-board').value;
   var btn=document.getElementById('q-btn');btn.disabled=true;btn.textContent='Generating...';
   showLoad('Creating '+num+' questions...');
-  var sys='You are an expert '+lvl+' '+subj+' examiner'+(board!=='Any'?' ('+board+')':'')+'. Generate exactly '+num+' multiple choice questions'+(top?' on: '+top:' on key syllabus topics')+'. Test genuine understanding. All 4 options plausible.\nReturn ONLY valid JSON array:\n[{"q":"Question?","opts":["A) opt","B) opt","C) opt","D) opt"],"ans":0,"exp":"Why correct"}]\nans=0-based index';
-  aiCall(sys,'Generate quiz. Return ONLY the JSON array.').then(function(raw){
+  var sys='You are an expert '+lvl+' '+subj+' examiner'+(board!=='Any'?' ('+board+')':'')+'. Generate exactly '+num+' multiple choice questions'+(top?' on: '+top:' on key syllabus topics')+'. Test genuine understanding. All 4 options plausible.\nReturn ONLY valid JSON array:\n[{"q":"Question?","opts":["A) opt","B) opt","C) opt","D) opt"],"ans":0,"exp":"Why correct and why others are wrong"}]\nans=0-based index — MUST be correct';
+  aiCall(sys,'Generate the quiz. Double-check every ans value is correct before returning. Return ONLY the JSON array.').then(function(raw){
     hideLoad();var s=raw.indexOf('['),e=raw.lastIndexOf(']');if(s<0||e<0)throw new Error('No JSON');
     qData=JSON.parse(raw.substring(s,e+1));if(!qData.length)throw new Error('Empty');
     qIdx=0;qScore=0;qAnswered=false;
