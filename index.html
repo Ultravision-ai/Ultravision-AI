@@ -1559,7 +1559,16 @@ function launchApp() {
   var an=document.getElementById('ni-a'),as2=document.getElementById('sb-admsec');
   if(isAdmin(email)){if(an)an.classList.remove('hidden');if(as2)as2.style.display='';}
   else{if(an)an.classList.add('hidden');if(as2)as2.style.display='none';}
-  updateUI(); toast('Welcome to UltraVision AI! \uD83D\uDE80','success');
+ updateUI();
+  if(window.location.search.includes('upgraded=true')){
+    CP.isPro=true;LOCAL.saveProfile(CU.id,CP);
+    history.replaceState(null,'',window.location.pathname);
+    toast('Welcome to Pro! \uD83C\uDF89 You now have full access!','success');
+    var pl=document.getElementById('sb-plan');
+    if(pl){pl.textContent='\u26A1 Pro Plan';pl.style.color='var(--gold)';}
+  } else {
+    toast('Welcome to UltraVision AI! \uD83D\uDE80','success');
+  }
 }
 
 function loadStripe(){
