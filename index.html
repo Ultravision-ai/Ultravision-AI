@@ -896,7 +896,7 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
         <div><label class="flbl2">Topic (optional)</label><input class="finp" id="q-top" placeholder="e.g. Algebra, WW2, Macbeth..." style="width:100%"></div>
         <div><label class="flbl2">Exam Board</label><select class="fsel" id="q-board" style="width:100%"><option>Any</option><option>AQA</option><option>Edexcel</option><option>OCR</option><option>WJEC</option><option>Cambridge</option><option>IB</option></select></div>
       </div>
-      <button class="abt" id="q-btn" onclick="genQuiz()">Generate Quiz →</button>
+      <div style="margin-bottom:15px"><label class="flbl2">Difficulty</label><div style="display:flex;gap:8px"><button class="dbtn tbtn" onclick="setDiff(this,'easy')" style="padding:8px 16px">🟢 Easy</button><button class="dbtn tbtn" style="background:rgba(85,133,255,.15);border-color:rgba(85,133,255,.4);color:var(--ac)" onclick="setDiff(this,'medium')" style="padding:8px 16px">🟡 Medium</button><button class="dbtn tbtn" onclick="setDiff(this,'hard')" style="padding:8px 16px">🔴 Hard</button></div></div> <button class="abt" id="q-btn" onclick="genQuiz()">Generate Quiz →</button>
     </div>
     <div id="quiz-area" style="display:none;flex-direction:column;gap:13px"></div>
   </div>
@@ -1165,7 +1165,7 @@ var CU = null; // current Supabase user
 var CP = {};   // current profile (extra data)
 var US = {sessions:0, scores:[], cards:0, streak:1};
 var chatH = [], tutorMode = 'tutor', chatBusy = false;
-var qData = [], qIdx = 0, qScore = 0, qAnswered = false;
+var qData = [], qIdx = 0, qScore = 0, qAnswered = false, qDiff = 'medium', qTimer = null;
 var fcCards = [], fcIdx = 0, fcKnow = 0, fcUnsure = 0;
 var recentActs = [];
 var selLevel = '', selTier = '', selBoardVal = '';
@@ -1812,7 +1812,7 @@ function sendMsg(){
     rmTyping();addMsg('ai','\u26A0\uFE0F Connection issue. Check internet and try again.');
   }).finally(function(){chatBusy=false;document.getElementById('sbtn2').disabled=false;});
 }
-function resetQuiz(){qData=[];qIdx=0;qScore=0;qAnswered=false;document.getElementById('quiz-setup').style.display='';document.getElementById('quiz-area').style.display='none';}
+function setDiff(el,d){document.querySelectorAll('.dbtn').forEach(function(b){b.style.background='';b.style.borderColor='';b.style.color='';});el.style.background='rgba(85,133,255,.15)';el.style.borderColor='rgba(85,133,255,.4)';el.style.color='var(--ac)';qDiff=d;}qData=[];qIdx=0;qScore=0;qAnswered=false;document.getElementById('quiz-setup').style.display='';document.getElementById('quiz-area').style.display='none';}
 function genQuiz(){
   var subj=document.getElementById('q-subj').value,lvl=document.getElementById('q-lvl').value,num=document.getElementById('q-num').value;
   var top=(document.getElementById('q-top').value||'').trim(),board=document.getElementById('q-board').value;
@@ -1835,11 +1835,11 @@ function renderQ(){
   document.getElementById('quiz-area').innerHTML='<div style="height:4px;background:var(--b1);border-radius:2px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:var(--g1);border-radius:2px;transition:width .4s"></div></div><div class="qqc"><div class="qqn">Question '+(qIdx+1)+' of '+qData.length+' \u00B7 Score: '+qScore+'/'+qIdx+'</div><div class="qqq">'+q.q+'</div><div class="qopts">'+opts+'</div><div id="q-fb" style="display:none;border-radius:11px;padding:12px 15px;font-size:12.5px;line-height:1.6;margin-top:11px"></div></div><div style="display:flex;justify-content:flex-end"><button class="abt" id="q-nxt" onclick="nextQ()" style="display:none;padding:10px 20px;font-size:12px">Next \u2192</button></div>';
 }
 function pickAns(i){
-  if(qAnswered)return;qAnswered=true;var q=qData[qIdx];var ok=(i===q.ans);if(ok)qScore++;
+  if(qAnswered)return;if(qTimer)clearInterval(qTimer);qAnswered=true;var q=qData[qIdx];var ok=(i===q.ans);if(ok)qScore++;
   for(var x=0;x<4;x++){var el=document.getElementById('qo'+x);if(!el)continue;if(x===q.ans)el.classList.add('ok');else if(x===i&&!ok)el.classList.add('no');}
   var fb=document.getElementById('q-fb');fb.style.display='block';fb.style.background=ok?'rgba(0,232,168,.07)':'rgba(255,79,107,.07)';fb.style.border='1px solid '+(ok?'rgba(0,232,168,.25)':'rgba(255,79,107,.2)');fb.innerHTML='<strong style="color:'+(ok?'var(--grn)':'var(--red)')+'"> '+(ok?'\u2713 Correct!':'\u2717 Incorrect')+'</strong> '+q.exp;document.getElementById('q-nxt').style.display='';
 }
-function nextQ(){qIdx++;renderQ();}
+function nextQ(){if(qTimer)clearInterval(qTimer);qIdx++;renderQ();}
 function showScore(){
   var pct=Math.round(qScore/qData.length*100),grade=pct>=90?'A*':pct>=80?'A':pct>=70?'B':pct>=60?'C':pct>=50?'D':'U',emoji=pct>=90?'\uD83C\uDFC6':pct>=70?'\uD83C\uDF1F':pct>=50?'\uD83D\uDC4D':'\uD83D\uDCDA';
   document.getElementById('quiz-area').innerHTML='<div class="qqc" style="text-align:center;padding:40px 20px"><div style="font-size:60px;margin-bottom:18px">'+emoji+'</div><div style="font-family:\'Playfair Display\',serif;font-size:26px;font-weight:800;margin-bottom:8px">'+(pct>=90?'Outstanding!':pct>=70?'Great work!':pct>=50?'Good effort!':'Keep practising!')+'</div><div style="font-size:14px;color:var(--t2);margin-bottom:8px">Score: <strong style="color:var(--ac);font-size:20px">'+qScore+'/'+qData.length+'</strong> ('+pct+'%)</div><div style="display:inline-block;background:rgba(85,133,255,.12);border:1px solid rgba(85,133,255,.3);color:var(--ac3);padding:8px 24px;border-radius:22px;font-size:14px;font-weight:700;margin-bottom:28px">Grade: '+grade+'</div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="abt" onclick="resetQuiz()">New quiz</button><button class="tbtn" onclick="genQuiz()" style="padding:11px 20px">Retry</button><button class="tbtn" onclick="goV(\'tutor\',document.getElementById(\'ni-t\'))" style="padding:11px 20px">AI Tutor</button></div></div>';
