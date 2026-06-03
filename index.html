@@ -41,7 +41,8 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
 .orb1{width:900px;height:900px;background:radial-gradient(circle,rgba(85,133,255,.13),transparent 65%);top:-320px;right:-250px}
 .orb2{width:700px;height:700px;background:radial-gradient(circle,rgba(160,123,255,.09),transparent 65%);bottom:-220px;left:-220px;animation-delay:5s}
 .orb3{width:500px;height:500px;background:radial-gradient(circle,rgba(0,232,168,.07),transparent 65%);top:40%;left:35%;animation-delay:8s}
-@keyframes orbF{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.03)}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  @keyframes orbF{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.03)}}
 
 /* GRID */
 .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(85,133,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(85,133,255,.018) 1px,transparent 1px);background-size:70px 70px;mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,black 10%,transparent 100%)}
@@ -474,12 +475,12 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
 
 <!-- LANDING -->
 <div id="pg-land" style="width:100%;position:relative;z-index:1">
+
+<!-- NAV -->
 <nav class="lnav">
   <a class="logo-w" onclick="showPg('land')" href="#">
     <div class="lmark-wrap">
-      <div class="lmark-bg">
-        <span class="lmark-icon">⚡</span>
-      </div>
+      <div class="lmark-bg"><span class="lmark-icon">⚡</span></div>
       <div class="lmark-shine"></div>
     </div>
     <div class="lt-wrap">
@@ -488,9 +489,10 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
     </div>
   </a>
   <div class="nav-links">
-    <a class="nl" id="nav-feat" href="#">Features</a>
-    <a class="nl" id="nav-boards" href="#">Exam Boards</a>
-    <a class="nl" id="nav-levels" href="#">All Levels</a>
+    <a class="nl" href="#feat-sec">Features</a>
+    <a class="nl" href="#boards-sec">Exam Boards</a>
+    <a class="nl" href="#levels-sec">All Levels</a>
+    <a class="nl" href="#pricing-sec">Pricing</a>
   </div>
   <div class="nav-btns">
     <select class="lang-sel" id="lang-sel" onchange="setLang(this.value)" title="Choose language">
@@ -510,20 +512,20 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div>
-    <div class="hero-badge"><div class="pdot"></div><span id="hero-badge">The World's Best Free AI Study Platform</span></div>
+    <div class="hero-badge"><div class="pdot"></div><span id="hero-badge">The UK's #1 Free AI Study Platform</span></div>
     <h1 class="hh1" id="hero-h1">Study <em>smarter.</em><br>Achieve <span class="hl">extraordinary</span><br>results.</h1>
-    <p class="hsub" id="hero-sub">9 powerful AI tools. Every exam board. Any language. <strong>GCSE, A-Level & University.</strong> Used in 150+ countries. <strong>Completely free, forever.</strong></p>
+    <p class="hsub" id="hero-sub">9 powerful AI tools built for <strong>GCSE, A-Level & University.</strong> Every exam board. Any language. <strong>Completely free, forever.</strong></p>
     <div class="hbtns">
-      <button class="hbm" onclick="showPg('signup')" id="hero-btn1">Get started free →</button>
+      <button class="hbm" onclick="showPg('signup')" id="hero-btn1">Start for free →</button>
       <button class="hbg" onclick="showPg('login')" id="hero-btn2">Sign in</button>
     </div>
     <div class="hpills">
-      <div class="hpill">🎓 <span>All exam levels</span></div>
+      <div class="hpill">🎓 <span>GCSE · A-Level · Uni</span></div>
       <div class="hpill">🏫 <span>All exam boards</span></div>
       <div class="hpill">🌍 <span>150+ countries</span></div>
-      <div class="hpill">⚡ <span>AI-powered</span></div>
       <div class="hpill">✅ <span>100% free</span></div>
     </div>
   </div>
@@ -532,67 +534,147 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
       <div class="hch">
         <div class="hcav">UV</div>
         <div><div style="font-size:13px;font-weight:700">UltraVision AI Tutor</div><div style="font-size:10px;color:var(--t2)">Expert GCSE, A-Level & University teaching</div></div>
-        <div style="margin-left:auto;width:8px;height:8px;border-radius:50%;background:var(--grn);box-shadow:0 0 7px var(--grn)"></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:5px"><div style="width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 7px var(--grn)"></div><span style="font-size:10px;color:var(--grn);font-weight:600">Online</span></div>
       </div>
       <div class="hcmsgs">
-        <div class="hcm ai">Hi! I'm your AI tutor. Ask me anything in any language — explain, quiz, plan essays, solve homework step by step. 📚</div>
+        <div class="hcm ai">Hi! Ask me anything — explain, quiz, plan essays, solve homework. Any subject, any language. 📚</div>
         <div class="hcm u">Explain photosynthesis for A-Level Biology?</div>
-        <div class="hcm ai"><strong>Photosynthesis</strong> converts light energy → glucose. Think of chloroplasts as solar-powered factories. Light-dependent stage produces ATP; Calvin cycle fixes CO₂ into G3P...</div>
+        <div class="hcm ai"><strong>Photosynthesis</strong> converts light → glucose. Chloroplasts act as solar factories — light-dependent stage produces ATP; Calvin cycle fixes CO₂ into G3P. Key equation: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</div>
       </div>
       <div class="hci"><span style="color:var(--t3);font-size:11px">Ask anything in any language...</span><div class="hcs"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div></div>
     </div>
     <div class="fcds">
-      <div class="fcd"><div class="fcd-ic" style="background:rgba(0,232,168,.18)">✅</div><div><div class="fcd-tt">Quiz Score</div><div class="fcd-st" style="color:var(--grn)">92% — Grade A*</div></div></div>
-      <div class="fcd"><div class="fcd-ic" style="background:rgba(245,200,66,.18)">🃏</div><div><div class="fcd-tt">Flashcards</div><div class="fcd-st" style="color:var(--gold)">24/30 mastered</div></div></div>
-      <div class="fcd"><div class="fcd-ic" style="background:rgba(85,133,255,.18)">📊</div><div><div class="fcd-tt">Essay Grade</div><div class="fcd-st" style="color:var(--ac3)">Predicted A*</div></div></div>
+      <div class="fcd"><div class="fcd-ic" style="background:rgba(0,200,150,.18)">✅</div><div><div class="fcd-tt">Quiz Score</div><div class="fcd-st" style="color:var(--grn)">92% — Grade A*</div></div></div>
+      <div class="fcd"><div class="fcd-ic" style="background:rgba(240,180,41,.18)">🃏</div><div><div class="fcd-tt">Flashcards</div><div class="fcd-st" style="color:var(--gold)">24/30 mastered</div></div></div>
+      <div class="fcd"><div class="fcd-ic" style="background:rgba(79,142,247,.18)">📊</div><div><div class="fcd-tt">Essay Grade</div><div class="fcd-st" style="color:var(--ac3)">Predicted A*</div></div></div>
     </div>
   </div>
 </div>
 
+<!-- STATS -->
 <div class="sbar">
-  <div class="si"><div class="sn" style="color:var(--ac)" id="sc-students">50,000+</div><div class="sl" id="sc-stud-lbl">Students</div></div>
+  <div class="si"><div class="sn" id="sc-students">50,000+</div><div class="sl" id="sc-stud-lbl">Students</div></div>
   <div class="si"><div class="sn" style="color:var(--grn)">Free</div><div class="sl" id="sc-free-lbl">Forever</div></div>
   <div class="si"><div class="sn" style="color:var(--gold)" id="sc-tools">9</div><div class="sl" id="sc-tools-lbl">AI Tools</div></div>
   <div class="si"><div class="sn" style="color:var(--pur)" id="sc-countries">150+</div><div class="sl" id="sc-count-lbl">Countries</div></div>
 </div>
 
-<div class="fsec">
+<!-- FOR EVERY STUDENT SECTION -->
+<div style="padding:90px 6%;max-width:1400px;margin:0 auto" id="feat-sec">
   <div class="sec-head">
-    <span class="slbl" id="feat-slbl">Everything you need</span>
-    <h2 class="stit" id="feat-title">9 AI tools that actually <em>work</em></h2>
-    <p class="ssub" id="feat-sub">Not just a chatbot — a complete study ecosystem designed to beat every competitor. For free.</p>
+    <span class="slbl">Built for every scenario</span>
+    <h2 class="stit">Everything you need, <em>all in one place</em></h2>
+    <p class="ssub">From daily homework to exam revision — UltraVision AI covers every part of your academic journey.</p>
   </div>
-  <div class="fgrid">
-    <div class="fc fb" onclick="showPg('signup')"><div class="fic" style="background:rgba(85,133,255,.18)">🎓</div><div class="fnm" id="f1-name">AI Tutor</div><div class="fds" id="f1-desc">Personalised expert teaching in any language. Explains WHY, builds real understanding, aligned to your exact exam board.</div><div class="ftag" id="f1-tag">Most Popular</div></div>
-    <div class="fc fp" onclick="showPg('signup')"><div class="fic" style="background:rgba(160,123,255,.18)">📝</div><div class="fnm" id="f2-name">Quiz Generator</div><div class="fds" id="f2-desc">Exam-style MCQ for any topic with instant marking and detailed explanations. Up to 20 questions per session.</div></div>
-    <div class="fc fo" onclick="showPg('signup')"><div class="fic" style="background:rgba(245,200,66,.18)">🃏</div><div class="fnm" id="f3-name">Smart Flashcards</div><div class="fds" id="f3-desc">AI creates 10 exam-ready revision cards with memory hooks. Tracks what you know vs what needs more work.</div></div>
-    <div class="fc fg" onclick="showPg('signup')"><div class="fic" style="background:rgba(0,232,168,.18)">✍️</div><div class="fnm" id="f4-name">Essay Helper</div><div class="fds" id="f4-desc">Senior examiner feedback, essay plans, grade predictions, intro rewrites and key content for any question.</div></div>
-    <div class="fc fw" onclick="showPg('signup')"><div class="fic" style="background:rgba(255,176,48,.18)">✅</div><div class="fnm" id="f5-name">Homework Solver</div><div class="fds" id="f5-desc">Full step-by-step solutions for any subject — shows all working, explains the WHY, provides practice questions.</div></div>
-    <div class="fc fr" onclick="showPg('signup')"><div class="fic" style="background:rgba(255,79,107,.18)">📚</div><div class="fnm" id="f6-name">Past Papers</div><div class="fds" id="f6-desc">GCSE & A-Level papers from AQA, Edexcel, OCR, WJEC and more. Click any paper for instant AI exam prep.</div></div>
-    <div class="fc fc2" onclick="showPg('signup')"><div class="fic" style="background:rgba(0,212,240,.18)">▶️</div><div class="fnm" id="f7-name">YouTube Summariser</div><div class="fds" id="f7-desc">Paste any YouTube URL — get comprehensive revision notes, terminology, timelines and exam practice questions.</div><div class="ftag ng" id="f7-tag">New</div></div>
-    <div class="fc fpk" onclick="showPg('signup')"><div class="fic" style="background:rgba(255,107,170,.18)">📓</div><div class="fnm" id="f8-name">Smart Notes</div><div class="fds" id="f8-desc">Write notes and let AI summarise them, create flashcards, find knowledge gaps, generate quizzes or mind maps.</div><div class="ftag ng" id="f8-tag">New</div></div>
-    <div class="fc fg" onclick="showPg('signup')"><div class="fic" style="background:rgba(0,232,168,.18)">🎙️</div><div class="fnm" id="f9-name">Voice Notes</div><div class="fds" id="f9-desc">Record your voice in any language — AI transcribes and converts your spoken notes into structured revision material.</div><div class="ftag ng" id="f9-tag">New</div></div>
-  </div>
-</div>
 
-<div class="bsec">
-  <div class="binn">
-    <div class="btit" id="boards-title">Supporting all major exam boards and international curricula worldwide</div>
-    <div class="bgd">
-      <div class="bp">AQA</div><div class="bp">Edexcel (Pearson)</div><div class="bp">OCR</div><div class="bp">WJEC / Eduqas</div>
-      <div class="bp">Cambridge International</div><div class="bp">CCEA</div><div class="bp">SQA (Scotland)</div>
-      <div class="bp">IB Diploma</div><div class="bp">BTEC / T-Levels</div>
-      <div class="bp">AP (USA)</div><div class="bp">VCE (Australia)</div><div class="bp">CBSE (India)</div>
-      <div class="bp">Foundation Tier</div><div class="bp">Higher Tier</div>
+  <!-- FOR EXAM -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+    <div style="background:linear-gradient(145deg,rgba(10,16,32,.95),rgba(7,11,22,.98));border:1px solid rgba(79,142,247,.15);border-radius:22px;padding:36px;position:relative;overflow:hidden;cursor:pointer" onclick="showPg('signup')">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac3);margin-bottom:16px">FOR EXAM</div>
+      <div style="font-size:22px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em">Quiz Generator</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.65;margin-bottom:20px">AI generates exam-style questions for any subject and board. Instant marking, detailed explanations, difficulty levels.</div>
+      <div style="background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.18);border-radius:14px;padding:16px">
+        <div style="font-size:11px;color:var(--ac3);font-weight:600;margin-bottom:10px">QUESTION 1 OF 10 · GCSE Biology · AQA</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:12px">What is the role of mitochondria in a cell?</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.3);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--grn);font-weight:600">✓ A) Site of aerobic respiration</div>
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--t2)">B) Site of protein synthesis</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(10,16,32,.95),rgba(7,11,22,.98));border:1px solid rgba(240,180,41,.15);border-radius:22px;padding:36px;cursor:pointer" onclick="showPg('signup')">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">FOR EXAM</div>
+      <div style="font-size:22px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em">Smart Flashcards</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.65;margin-bottom:20px">AI creates exam-ready revision cards for any topic. Tap to flip, track what you know, master your weaknesses.</div>
+      <div style="background:rgba(240,180,41,.08);border:1px solid rgba(240,180,41,.18);border-radius:14px;padding:20px;text-align:center">
+        <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Question</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:16px">What is the powerhouse of the cell?</div>
+        <div style="display:flex;gap:8px;justify-content:center">
+          <div style="background:rgba(255,68,85,.1);border:1px solid rgba(255,68,85,.3);border-radius:8px;padding:6px 14px;font-size:11px;color:var(--red);font-weight:600">Still learning</div>
+          <div style="background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.3);border-radius:8px;padding:6px 14px;font-size:11px;color:var(--grn);font-weight:600">Got it!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOR STUDY -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:18px">
+    <div style="background:linear-gradient(145deg,rgba(10,16,32,.95),rgba(7,11,22,.98));border:1px solid rgba(0,200,150,.15);border-radius:22px;padding:30px;cursor:pointer" onclick="showPg('signup')">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grn);margin-bottom:14px">FOR STUDY</div>
+      <div style="font-size:18px;font-weight:800;margin-bottom:8px">Essay Helper</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:16px">Senior examiner feedback, grade predictions, essay plans and key content.</div>
+      <div style="background:rgba(0,200,150,.07);border:1px solid rgba(0,200,150,.15);border-radius:10px;padding:12px;font-size:11px;color:var(--t2);line-height:1.65">
+        <span style="color:var(--grn);font-weight:700">Grade: A</span> · Strong thesis, excellent use of quotes. Add more analysis of context for A*.
+      </div>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(10,16,32,.95),rgba(7,11,22,.98));border:1px solid rgba(255,170,32,.15);border-radius:22px;padding:30px;cursor:pointer" onclick="showPg('signup')">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--warn);margin-bottom:14px">FOR HOMEWORK</div>
+      <div style="font-size:18px;font-weight:800;margin-bottom:8px">Homework Solver</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:16px">Step-by-step solutions for any subject. Shows all working and explains the WHY.</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="background:rgba(255,170,32,.07);border:1px solid rgba(255,170,32,.15);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--warn);font-weight:600">Step 1: Identify variables</div>
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--t2)">Step 2: Apply formula</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(10,16,32,.95),rgba(7,11,22,.98));border:1px solid rgba(0,196,224,.15);border-radius:22px;padding:30px;cursor:pointer" onclick="showPg('signup')">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px">FOR CLASS</div>
+      <div style="font-size:18px;font-weight:800;margin-bottom:8px">YouTube Summariser</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:16px">Paste any YouTube URL — get full revision notes, key terms and exam questions.</div>
+      <div style="background:rgba(0,196,224,.07);border:1px solid rgba(0,196,224,.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--cyan);font-weight:600">▶ Biology — Photosynthesis Explained → Notes ready ✓</div>
+    </div>
+  </div>
+
+  <!-- FOR AI TUTOR -->
+  <div style="background:linear-gradient(145deg,rgba(10,16,32,.95),rgba(7,11,22,.98));border:1px solid rgba(79,142,247,.2);border-radius:22px;padding:40px;cursor:pointer;position:relative;overflow:hidden" onclick="showPg('signup')">
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(79,142,247,.6),rgba(107,107,247,.4),transparent)"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac3);margin-bottom:16px">AI TUTOR · MOST POPULAR</div>
+        <div style="font-size:26px;font-weight:800;margin-bottom:12px;letter-spacing:-.02em">Expert teaching in <em style="font-style:italic;color:var(--ac)">any language</em></div>
+        <div style="font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:20px">Personalised tutoring for GCSE, A-Level and University. Explains WHY things work, not just what the answer is. Aligned to your exact exam board.</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <div style="background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.22);border-radius:8px;padding:5px 12px;font-size:11px;color:var(--ac3);font-weight:600">AQA · Edexcel · OCR</div>
+          <div style="background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.22);border-radius:8px;padding:5px 12px;font-size:11px;color:var(--ac3);font-weight:600">10 languages</div>
+          <div style="background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.22);border-radius:8px;padding:5px 12px;font-size:11px;color:var(--grn);font-weight:600">Free forever</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(79,142,247,.12);border-radius:16px;padding:20px">
+        <div style="display:flex;gap:9px;margin-bottom:12px">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--g1);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0">UV</div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.1);border-radius:12px;padding:10px 14px;font-size:12px;line-height:1.6;color:var(--t2)">What topic shall we tackle today?</div>
+        </div>
+        <div style="display:flex;gap:9px;flex-direction:row-reverse;margin-bottom:12px">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">AB</div>
+          <div style="background:var(--g1);border-radius:12px;padding:10px 14px;font-size:12px;line-height:1.6;color:#fff">Explain Newton's 3rd law with real examples</div>
+        </div>
+        <div style="display:flex;gap:9px">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--g1);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0">UV</div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.1);border-radius:12px;padding:10px 14px;font-size:12px;line-height:1.6;color:var(--t2)"><strong style="color:var(--gold)">Newton's 3rd law:</strong> every action has an equal and opposite reaction. Push a wall — it pushes back. Rocket exhaust pushes down, rocket goes up.</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="lsec">
+<!-- EXAM BOARDS -->
+<div class="bsec" id="boards-sec">
+  <div class="binn">
+    <div class="btit" id="boards-title">Supporting all major exam boards and international curricula</div>
+    <div style="overflow:hidden;position:relative">
+      <div style="display:flex;gap:12px;animation:marquee 30s linear infinite;width:max-content">
+        <div class="bp">AQA</div><div class="bp">Edexcel</div><div class="bp">OCR</div><div class="bp">WJEC / Eduqas</div><div class="bp">Cambridge International</div><div class="bp">CCEA</div><div class="bp">SQA Scotland</div><div class="bp">IB Diploma</div><div class="bp">BTEC</div><div class="bp">T-Levels</div><div class="bp">AP USA</div><div class="bp">VCE Australia</div><div class="bp">CBSE India</div><div class="bp">Foundation Tier</div><div class="bp">Higher Tier</div>
+        <div class="bp">AQA</div><div class="bp">Edexcel</div><div class="bp">OCR</div><div class="bp">WJEC / Eduqas</div><div class="bp">Cambridge International</div><div class="bp">CCEA</div><div class="bp">SQA Scotland</div><div class="bp">IB Diploma</div><div class="bp">BTEC</div><div class="bp">T-Levels</div><div class="bp">AP USA</div><div class="bp">VCE Australia</div><div class="bp">CBSE India</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEVELS -->
+<div class="lsec" id="levels-sec">
   <div class="sec-head">
     <span class="slbl" id="lev-slbl">Every student, every level</span>
     <h2 class="stit" id="lev-title">Built for <em>all</em> stages of learning</h2>
-    <p class="ssub" id="lev-sub">AI adapts explanations, vocabulary and difficulty to your exact level — in any language.</p>
+    <p class="ssub" id="lev-sub">AI adapts to your exact level — vocabulary, difficulty and exam style.</p>
   </div>
   <div class="lgd" style="margin-top:44px">
     <div class="lc"><span class="le">📗</span><div class="ln" id="lv1-name">Secondary School</div><div class="ls2" id="lv1-sub">Year 7–9 · KS3 · Ages 11–14<br>Foundation concepts and key stage skills</div></div>
@@ -602,35 +684,76 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
   </div>
 </div>
 
+<!-- TESTIMONIALS -->
 <div class="test-sec">
   <div class="sec-head" style="margin-bottom:50px">
     <span class="slbl">What students say</span>
-    <h2 class="stit">Loved by students <em>worldwide</em></h2>
+    <h2 class="stit">Trusted by students <em>worldwide</em></h2>
   </div>
   <div class="test-grid">
-    <div class="tcard"><div class="tstars">★★★★★</div><div class="ttext">"UltraVision AI is <strong>incredible</strong>. I went from a C to an A* in Maths in 3 months. The AI tutor actually explains WHY, not just the answer."</div><div class="tauthor"><div class="tav" style="background:var(--g1)">JS</div><div><div class="taname">Jamie S.</div><div class="talevel">A-Level Maths · AQA</div></div></div></div>
-    <div class="tcard"><div class="tstars">★★★★★</div><div class="ttext">"The essay helper gave me <strong>better feedback than my teacher</strong>. It told me exactly what the examiner wants to see. Grade A in English Lit now."</div><div class="tauthor"><div class="tav" style="background:linear-gradient(135deg,#FF6BAA,#A07BFF)">AK</div><div><div class="taname">Aisha K.</div><div class="talevel">GCSE English · Edexcel</div></div></div></div>
+    <div class="tcard"><div class="tstars">★★★★★</div><div class="ttext">"UltraVision AI is <strong>incredible</strong>. I went from a C to an A* in Maths in 3 months. The AI tutor explains WHY, not just the answer."</div><div class="tauthor"><div class="tav" style="background:var(--g1)">JS</div><div><div class="taname">Jamie S.</div><div class="talevel">A-Level Maths · AQA</div></div></div></div>
+    <div class="tcard"><div class="tstars">★★★★★</div><div class="ttext">"The essay helper gave me <strong>better feedback than my teacher</strong>. It told me exactly what the examiner wants to see. Grade A in English Lit."</div><div class="tauthor"><div class="tav" style="background:linear-gradient(135deg,#FF6BAA,#A07BFF)">AK</div><div><div class="taname">Aisha K.</div><div class="talevel">GCSE English · Edexcel</div></div></div></div>
     <div class="tcard"><div class="tstars">★★★★★</div><div class="ttext">"أداة رائعة جداً! أستخدمها باللغة العربية وتشرح لي كل شيء بوضوح. <strong>ساعدتني في اجتياز IB</strong>."</div><div class="tauthor"><div class="tav" style="background:linear-gradient(135deg,#00E8A8,#00D4F0)">MR</div><div><div class="taname">Mohammed R.</div><div class="talevel">IB Diploma · Cairo</div></div></div></div>
   </div>
 </div>
 
+<!-- PRICING -->
+<div style="padding:90px 6%;max-width:1100px;margin:0 auto;text-align:center" id="pricing-sec">
+  <div class="sec-head">
+    <span class="slbl">Simple pricing</span>
+    <h2 class="stit">Start free. <em>Upgrade anytime.</em></h2>
+    <p class="ssub">Everything you need is free. Pro unlocks the full power of UltraVision AI.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px;max-width:800px;margin-left:auto;margin-right:auto">
+    <div style="background:linear-gradient(145deg,rgba(10,16,32,.95),rgba(7,11,22,.98));border:1px solid var(--b2);border-radius:22px;padding:36px;text-align:left">
+      <div style="font-size:13px;font-weight:700;color:var(--t2);margin-bottom:16px">FREE</div>
+      <div style="font-size:42px;font-weight:800;margin-bottom:4px">£0</div>
+      <div style="font-size:12px;color:var(--t2);margin-bottom:24px">Forever free · No card needed</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+        <div style="font-size:13px;color:var(--t2);display:flex;gap:8px;align-items:center"><span style="color:var(--grn)">✓</span> All 9 AI study tools</div>
+        <div style="font-size:13px;color:var(--t2);display:flex;gap:8px;align-items:center"><span style="color:var(--grn)">✓</span> All exam boards</div>
+        <div style="font-size:13px;color:var(--t2);display:flex;gap:8px;align-items:center"><span style="color:var(--grn)">✓</span> 10 languages</div>
+        <div style="font-size:13px;color:var(--t2);display:flex;gap:8px;align-items:center"><span style="color:var(--grn)">✓</span> Progress tracking</div>
+      </div>
+      <button class="hbg" onclick="showPg('signup')" style="width:100%;padding:14px;border-radius:12px;font-size:13px">Get started free</button>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(20,16,8,.98),rgba(15,12,4,.99));border:1px solid rgba(240,180,41,.35);border-radius:22px;padding:36px;text-align:left;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+      <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:16px">⚡ PRO</div>
+      <div style="font-size:42px;font-weight:800;margin-bottom:4px;color:var(--gold)">£7.99<span style="font-size:16px;color:var(--t2);font-weight:400">/mo</span></div>
+      <div style="font-size:12px;color:var(--t2);margin-bottom:24px">Cancel anytime · Secure via Stripe</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+        <div style="font-size:13px;color:var(--txt);display:flex;gap:8px;align-items:center"><span style="color:var(--gold)">⚡</span> Everything in Free</div>
+        <div style="font-size:13px;color:var(--txt);display:flex;gap:8px;align-items:center"><span style="color:var(--gold)">⚡</span> Unlimited AI messages</div>
+        <div style="font-size:13px;color:var(--txt);display:flex;gap:8px;align-items:center"><span style="color:var(--gold)">⚡</span> Photo homework solver</div>
+        <div style="font-size:13px;color:var(--txt);display:flex;gap:8px;align-items:center"><span style="color:var(--gold)">⚡</span> Mock exams & grade predictor</div>
+        <div style="font-size:13px;color:var(--txt);display:flex;gap:8px;align-items:center"><span style="color:var(--gold)">⚡</span> PDF downloads</div>
+        <div style="font-size:13px;color:var(--txt);display:flex;gap:8px;align-items:center"><span style="color:var(--gold)">⚡</span> Spaced repetition</div>
+      </div>
+      <button onclick="upgradePro()" style="width:100%;background:linear-gradient(135deg,var(--gold),var(--gwarm));color:#040610;padding:14px;border-radius:12px;font-size:13px;font-weight:800;border:none;cursor:pointer;box-shadow:0 4px 24px rgba(240,180,41,.4)">Upgrade to Pro ⚡</button>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
 <div class="cta-sec">
   <h2 class="cta-h" id="cta-title">Ready to <em style="font-style:italic;color:var(--ac)">transform</em><br>your results?</h2>
-  <p style="font-size:17px;color:var(--t2);max-width:440px;margin:0 auto 36px;line-height:1.68;position:relative;z-index:1" id="cta-sub">Join 50,000+ students across 150+ countries using UltraVision AI to study smarter and achieve better grades.</p>
+  <p style="font-size:17px;color:var(--t2);max-width:440px;margin:0 auto 36px;line-height:1.68;position:relative;z-index:1" id="cta-sub">Join 50,000+ students across 150+ countries studying smarter with UltraVision AI.</p>
   <button class="hbm" onclick="showPg('signup')" id="cta-btn" style="position:relative;z-index:1">Create your free account →</button>
   <p style="font-size:11px;color:var(--t3);margin-top:18px;position:relative;z-index:1">No credit card · Free forever · Available in any language</p>
 </div>
 
+<!-- FOOTER -->
 <div class="lfoot">
   <div class="logo-w" style="cursor:pointer" onclick="showPg('land')">
     <div class="lmark-wrap"><div class="lmark-bg" style="width:30px;height:30px;border-radius:9px"><span style="font-size:14px">⚡</span></div></div>
     <div class="lt-wrap"><div class="lt" style="font-size:14px">Ultra<span>Vision</span> AI</div></div>
   </div>
-  <div class="fcopy">© 2025 UltraVision AI — The World's Best Free Study Platform</div>
-  <div class="flinks"><a class="flnk2" href="/privacy.html">Privacy</a><a class="flnk2" href="/terms.html">Terms</a><span class="flnk2">Contact</span></div>
+  <div class="fcopy">© 2026 UltraVision AI — The World's Best Free Study Platform</div>
+  <div class="flinks"><a class="flnk2" href="/privacy.html">Privacy</a><a class="flnk2" href="/terms.html">Terms</a><span class="flnk2" onclick="showPg('signup')" style="cursor:pointer">Get started</span></div>
 </div>
-</div><!-- /pg-land -->
 
+</div><!-- /pg-land -->
 <!-- SIGNUP -->
 <div class="auth-page hidden" id="pg-signup" style="max-width:530px">
 <div class="acard">
@@ -1551,7 +1674,7 @@ function launchApp() {
   var init = (CP.firstName||'UV').substring(0,2).toUpperCase();
   var av=document.getElementById('sb-av'); if(av){av.textContent=init;av.className=isAdmin(email)?'sbav adm':'sbav';}
   var nm=document.getElementById('sb-name'); if(nm) nm.textContent=CP.firstName||CP.name;
-  var pl=document.getElementById('sb-plan'); if(pl){pl.textContent=isAdmin(email)?'\u26A1 Super Admin':'\u2736 Free Plan';pl.className=isAdmin(email)?'sbpl adm':'sbpl';}
+  var pl=document.getElementById('sb-plan'); if(pl){pl.textContent=isAdmin(email)?'\u26A1 Super Admin':CP.isPro?'\u26A1 Pro Plan':'\u2736 Free Plan';pl.style.color=CP.isPro?'var(--gold)':'';pl.className=isAdmin(email)?'sbpl adm':'sbpl';}
   var dn=document.getElementById('dash-name'); if(dn) dn.textContent=CP.firstName||CP.name;
   var dd=document.getElementById('dash-date'); if(dd) dd.textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   var di=document.getElementById('dash-info');
