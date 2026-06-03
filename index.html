@@ -1367,8 +1367,9 @@ function doForgot() {
 // Supabase puts tokens in the URL hash after the user clicks email links
 function handleAuthCallback() {
   var hash = window.location.hash;
-  if (!hash) return;
-  if (hash.includes('access_token') || hash.includes('type=signup') || hash.includes('type=recovery')) {
+  var search = window.location.search;
+  if (!hash && !search.includes('type=recovery') && !search.includes('access_token')) return;
+  if (hash.includes('access_token') || hash.includes('type=signup') || hash.includes('type=recovery') || window.location.search.includes('type=recovery')) {
     getSB().then(function(sb) {
       return sb.auth.getSessionFromUrl ? sb.auth.getSessionFromUrl({ storeSession: true }) : sb.auth.getSession();
     }).then(function(res) {
