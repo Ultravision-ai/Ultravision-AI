@@ -1812,7 +1812,7 @@ function sendMsg(){
     rmTyping();addMsg('ai','\u26A0\uFE0F Connection issue. Check internet and try again.');
   }).finally(function(){chatBusy=false;document.getElementById('sbtn2').disabled=false;});
 }
-function setDiff(el,d){document.querySelectorAll('.dbtn').forEach(function(b){b.style.background='';b.style.borderColor='';b.style.color='';});el.style.background='rgba(85,133,255,.15)';el.style.borderColor='rgba(85,133,255,.4)';el.style.color='var(--ac)';qDiff=d;}qData=[];qIdx=0;qScore=0;qAnswered=false;document.getElementById('quiz-setup').style.display='';document.getElementById('quiz-area').style.display='none';}
+function setDiff(el,d){document.querySelectorAll('.dbtn').forEach(function(b){b.style.background='';b.style.borderColor='';b.style.color='';});el.style.background='rgba(85,133,255,.15)';el.style.borderColor='rgba(85,133,255,.4)';el.style.color='var(--ac)';qDiff=d;} function resetQuiz(){qData=[];qIdx=0;qScore=0;qAnswered=false;if(qTimer)clearInterval(qTimer);document.getElementById('quiz-setup').style.display='';document.getElementById('quiz-area').style.display='none';}
 function genQuiz(){
   var subj=document.getElementById('q-subj').value,lvl=document.getElementById('q-lvl').value,num=document.getElementById('q-num').value;
   var top=(document.getElementById('q-top').value||'').trim(),board=document.getElementById('q-board').value;
