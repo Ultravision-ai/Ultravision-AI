@@ -823,6 +823,10 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
     <div class="ni" id="ni-v" onclick="goV('voice',this)"><svg class="nic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg><span class="nlb">Voice Notes</span><span class="nbdg new">New</span></div>
     <div class="sbsec" id="sb-admsec" style="display:none">Admin</div>
     <div class="ni adni hidden" id="ni-a" onclick="goV('admin',this)"><svg class="nic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nlb">Admin Dashboard</span><span class="nbdg gold">ADMIN</span></div>
+    <div class="ni" onclick="document.getElementById('pro-mol').classList.add('show')" style="background:linear-gradient(135deg,rgba(245,200,66,.12),rgba(255,185,64,.06));border:1px solid rgba(245,200,66,.25);margin-bottom:6px">
+  <svg class="nic" style="color:var(--gold)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+  <span class="nlb" style="color:var(--gold);font-weight:700">Upgrade to Pro ⚡</span>
+</div>
     <div class="sbsec">Account</div>
     <div class="ni" onclick="doLogout()"><svg class="nic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="nlb">Sign out</span></div>
   </div>
@@ -841,7 +845,7 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
       <div class="sc"><div class="scl">Cards done</div><div class="scv" style="color:var(--gold)" id="st-c">0</div><div class="scs">Flashcards</div></div>
       <div class="sc"><div class="scl">Day streak</div><div class="scv" style="color:var(--warn)" id="st-r">🔥 1</div><div class="scs">Keep going!</div></div>
     </div>
-    <div class="upc"><div class="upt"><strong>✦ UltraVision Pro — coming soon</strong> · Unlimited AI, all boards, priority support for £7.99/month</div><button class="upb" onclick="toast('Join the waitlist — launching soon!','info')">Join waitlist</button></div>
+    <div class="upc"><div class="upt"><strong>✦ UltraVision Pro — coming soon</strong> · Unlimited AI, all boards, priority support for £7.99/month</div><button class="upb" onclick="upgradePro()">Upgrade to Pro →</button></div>
     <div><div class="sect">All 9 Study Tools</div><div class="tgrid">
       <div class="tc c1" onclick="goV('tutor',document.getElementById('ni-t'))"><div class="tcic" style="background:rgba(85,133,255,.16);border:1px solid rgba(85,133,255,.3)">🎓</div><div class="tcnm">AI Tutor</div><div class="tcds">Expert teaching, any subject, any language</div></div>
       <div class="tc c2" onclick="goV('quiz',document.getElementById('ni-q'))"><div class="tcic" style="background:rgba(160,123,255,.16);border:1px solid rgba(160,123,255,.3)">📝</div><div class="tcnm">Quiz Generator</div><div class="tcds">Instant AI questions and marking</div></div>
@@ -1076,6 +1080,54 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
 </div><!-- /app -->
 
 <!-- USER MODAL -->
+  <!-- PRO UPGRADE PAGE -->
+<div class="mol" id="pro-mol">
+  <div class="mbox" style="max-width:600px">
+    <button class="mclose" onclick="document.getElementById('pro-mol').classList.remove('show')">✕</button>
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="font-size:40px;margin-bottom:12px">⚡</div>
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:800;margin-bottom:8px">UltraVision <span style="color:var(--gold)">Pro</span></div>
+      <div style="font-size:14px;color:var(--t2)">The ultimate AI study platform</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px">
+      <div style="background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.2);border-radius:12px;padding:14px">
+        <div style="font-size:18px;margin-bottom:6px">♾️</div>
+        <div style="font-size:12px;font-weight:700;color:var(--txt)">Unlimited AI</div>
+        <div style="font-size:11px;color:var(--t2)">No daily limits</div>
+      </div>
+      <div style="background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.2);border-radius:12px;padding:14px">
+        <div style="font-size:18px;margin-bottom:6px">📸</div>
+        <div style="font-size:12px;font-weight:700;color:var(--txt)">Photo Solver</div>
+        <div style="font-size:11px;color:var(--t2)">Snap your homework</div>
+      </div>
+      <div style="background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.2);border-radius:12px;padding:14px">
+        <div style="font-size:18px;margin-bottom:6px">🎯</div>
+        <div style="font-size:12px;font-weight:700;color:var(--txt)">Grade Predictor</div>
+        <div style="font-size:11px;color:var(--t2)">Know your grade</div>
+      </div>
+      <div style="background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.2);border-radius:12px;padding:14px">
+        <div style="font-size:18px;margin-bottom:6px">⏱️</div>
+        <div style="font-size:12px;font-weight:700;color:var(--txt)">Mock Exams</div>
+        <div style="font-size:11px;color:var(--t2)">Full timed papers</div>
+      </div>
+      <div style="background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.2);border-radius:12px;padding:14px">
+        <div style="font-size:18px;margin-bottom:6px">📥</div>
+        <div style="font-size:12px;font-weight:700;color:var(--txt)">PDF Downloads</div>
+        <div style="font-size:11px;color:var(--t2)">Save everything</div>
+      </div>
+      <div style="background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.2);border-radius:12px;padding:14px">
+        <div style="font-size:18px;margin-bottom:6px">🔄</div>
+        <div style="font-size:12px;font-weight:700;color:var(--txt)">Spaced Repetition</div>
+        <div style="font-size:11px;color:var(--t2)">Smart flashcards</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-size:36px;font-weight:800;color:var(--gold)">£7.99<span style="font-size:16px;color:var(--t2)">/month</span></div>
+      <div style="font-size:12px;color:var(--t2);margin-top:4px">Cancel anytime · Secure payment via Stripe</div>
+    </div>
+    <button class="asbtn" onclick="upgradePro()" style="background:linear-gradient(135deg,var(--gold),var(--gwarm));box-shadow:0 4px 26px rgba(245,200,66,.45)">⚡ Upgrade to Pro now →</button>
+  </div>
+</div>
 <div class="mol" id="user-mol">
   <div class="mbox">
     <button class="mclose" onclick="closeMol()">✕</button>
@@ -1121,6 +1173,8 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
 const SUPABASE_URL = 'https://lnwbkatupefgufiksyzi.supabase.co';       // e.g. https://abcdefgh.supabase.co
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxud2JrYXR1cGVmZ3VmaWtzeXppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyNDkxMTUsImV4cCI6MjA5NTgyNTExNX0.6kjJZ6qvrBfXjfr81RKG4kx0II4o24dzqJc73PFbmVA'; // your anon/public key
 const ADMIN_EMAIL = 'admin-ultravisionai@proton.me';
+  const STRIPE_KEY = 'pk_test_51TeI4c2MvsDz9s3yHl6s8zJb1pFs0wximmOHClfZdW3NpezMtj2h42ynb3Co9VswnnKvOjCYvgkSFdQWWS5SSKgv00LVbaGyy5';
+const STRIPE_PRICE = 'price_1TeI7z2MvsDz9s3y3ovtUXH5';
 
 // Load Supabase SDK
 let _sb = null;
@@ -1502,7 +1556,31 @@ function launchApp() {
   updateUI(); toast('Welcome to UltraVision AI! \uD83D\uDE80','success');
 }
 
-function doLogout() {
+function loadStripe(){
+  return new Promise(function(res,rej){
+    if(window.Stripe){res(window.Stripe(STRIPE_KEY));return;}
+    var s=document.createElement('script');s.src='https://js.stripe.com/v3/';
+    s.onload=function(){res(window.Stripe(STRIPE_KEY));};
+    s.onerror=function(){rej(new Error('Stripe failed'));};
+    document.head.appendChild(s);
+  });
+}
+function upgradePro(){
+  if(!CU){toast('Sign in first','error');return;}
+  toast('Opening secure checkout...','info');
+  loadStripe().then(function(stripe){
+    return stripe.redirectToCheckout({
+      lineItems:[{price:STRIPE_PRICE,quantity:1}],
+      mode:'subscription',
+      successUrl:'https://ultravision-ai.co.uk?upgraded=true',
+      cancelUrl:'https://ultravision-ai.co.uk',
+      customerEmail:CU.email
+    });
+  }).then(function(result){
+    if(result.error)toast(result.error.message,'error');
+  }).catch(function(){toast('Checkout failed. Try again.','error');});
+}
+function doLogout(){
   getSB().then(function(sb){return sb.auth.signOut();}).finally(function() {
     CU=null; CP={}; chatH=[];
     document.getElementById('app').classList.remove('on');
