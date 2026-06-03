@@ -845,7 +845,13 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
       <div class="sc"><div class="scl">Cards done</div><div class="scv" style="color:var(--gold)" id="st-c">0</div><div class="scs">Flashcards</div></div>
       <div class="sc"><div class="scl">Day streak</div><div class="scv" style="color:var(--warn)" id="st-r">🔥 1</div><div class="scs">Keep going!</div></div>
     </div>
-    <div class="upc"><div class="upt"><strong>✦ UltraVision Pro — coming soon</strong> · Unlimited AI, all boards, priority support for £7.99/month</div><button class="upb" onclick="upgradePro()">Upgrade to Pro →</button></div>
+    <div class="upc" style="background:linear-gradient(135deg,rgba(245,200,66,.12),rgba(79,142,247,.08));border:1px solid rgba(245,200,66,.3);border-radius:18px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+  <div>
+    <div style="font-size:15px;font-weight:800;color:var(--gold);margin-bottom:4px">⚡ UltraVision Pro</div>
+    <div style="font-size:12px;color:var(--t2);line-height:1.55">Unlimited AI · Photo solver · Mock exams · Grade predictor · PDF downloads · and much more</div>
+  </div>
+  <button class="upb" onclick="document.getElementById('pro-mol').classList.add('show')" style="background:linear-gradient(135deg,var(--gold),var(--gwarm));color:#040610;padding:11px 22px;border-radius:11px;font-size:12px;font-weight:800;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0">View Pro Plan ⚡</button>
+</div>
     <div><div class="sect">All 9 Study Tools</div><div class="tgrid">
       <div class="tc c1" onclick="goV('tutor',document.getElementById('ni-t'))"><div class="tcic" style="background:rgba(85,133,255,.16);border:1px solid rgba(85,133,255,.3)">🎓</div><div class="tcnm">AI Tutor</div><div class="tcds">Expert teaching, any subject, any language</div></div>
       <div class="tc c2" onclick="goV('quiz',document.getElementById('ni-q'))"><div class="tcic" style="background:rgba(160,123,255,.16);border:1px solid rgba(160,123,255,.3)">📝</div><div class="tcnm">Quiz Generator</div><div class="tcds">Instant AI questions and marking</div></div>
