@@ -1752,19 +1752,29 @@ window.addEventListener('load', function() {
     // Listen for auth state changes
     getSB().then(function(sb) {
       sb.auth.onAuthStateChange(function(event, session) {
-       if (event === 'PASSWORD_RECOVERY') {
-          document.getElementById('auth-wrap').style.display = 'flex';
-          document.getElementById('auth-wrap').style.zIndex = '9999';
-          document.getElementById('app').style.display = 'none';
-          document.getElementById('app').classList.remove('on');
-          showPg('reset-pw');
-        } else if (event === 'SIGNED_IN' && session) {
-          if (document.getElementById('auth-wrap').style.display !== 'none') return;
-          CU = session.user; launchApp();
-        } else if (event === 'SIGNED_OUT') {
-          CU = null;
-        }
-      });
+  var isRecovery = window.location.hash.indexOf('type=recovery') > -1 || 
+                    window.location.search.indexOf('type=recovery') > -1;
+  
+  if (event === 'PASSWORD_RECOVERY' || isRecovery) {
+    document.getElementById('auth-wrap').style.display = 'flex';
+    document.getElementById('auth-wrap').style.zIndex = '9999';
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('app').classList.remove('on');
+    showPg('reset-pw');
+    return;
+  }
+  
+  if (event === 'SIGNED_IN' && session) {
+    if (isRecovery) return;
+    if (document.getElementById('auth-wrap').style.display !== 'none' && 
+        document.getElementById('pg-reset-pw') && 
+        !document.getElementById('pg-reset-pw').classList.contains('hidden')) return;
+    CU = session.user; 
+    launchApp();
+  } else if (event === 'SIGNED_OUT') {
+    CU = null;
+  }
+});
     });
   }
   // If not configured, show demo mode notice
