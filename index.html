@@ -892,24 +892,10 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
   </div>
   <button class="bbtn" onclick="showPg('login')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Back to sign in</button>
   <div class="atit">Reset your password</div>
-  <div class="asub">Enter your email and we'll send a 6-digit reset code.</div>
-  <div class="sbox" id="fg-ok">✓ Reset code sent! Check your inbox and spam folder. Enter the code below.</div>
+  <div class="asub">Enter your email and we'll send you a password reset link.</div>
+  <div class="sbox" id="fg-ok">✓ Reset link sent! Check your inbox and spam folder, then click the link to set a new password.</div>
   <div class="fg"><label class="flbl">Email address</label><input class="fi" id="fg-em" type="email" placeholder="alex@email.com"></div>
-  <button class="asbtn" onclick="doForgot()" id="fg-btn">Send reset code</button>
-  <div id="reset-section" class="hidden">
-    <div class="reset-info">Enter the 6-digit code sent to your email, then choose a new password.</div>
-    <div class="vcode-wrap" id="reset-code-wrap" onpaste="rcPaste(event)">
-      <input class="vci" type="text" maxlength="1" inputmode="numeric" onkeyup="rcKeyUp(this,0)" onkeydown="rcKeyDown(this,event,0)">
-      <input class="vci" type="text" maxlength="1" inputmode="numeric" onkeyup="rcKeyUp(this,1)" onkeydown="rcKeyDown(this,event,1)">
-      <input class="vci" type="text" maxlength="1" inputmode="numeric" onkeyup="rcKeyUp(this,2)" onkeydown="rcKeyDown(this,event,2)">
-      <input class="vci" type="text" maxlength="1" inputmode="numeric" onkeyup="rcKeyUp(this,3)" onkeydown="rcKeyDown(this,event,3)">
-      <input class="vci" type="text" maxlength="1" inputmode="numeric" onkeyup="rcKeyUp(this,4)" onkeydown="rcKeyDown(this,event,4)">
-      <input class="vci" type="text" maxlength="1" inputmode="numeric" onkeyup="rcKeyUp(this,5)" onkeydown="rcKeyDown(this,event,5)">
-    </div>
-    <div class="fg"><label class="flbl">New password</label><input class="fi" id="new-pw-input" type="password" placeholder="Min 8 characters" autocomplete="new-password"></div>
-    <div class="fg"><label class="flbl">Confirm new password</label><input class="fi" id="new-cpw-input" type="password" placeholder="Repeat password"></div>
-    <button class="asbtn" onclick="doReset()" style="margin-bottom:0">Reset password →</button>
-  </div>
+  <button class="asbtn" onclick="doForgot()" id="fg-btn">Send reset link</button>
   <div class="asw" style="margin-top:16px">Remember it? <a onclick="showPg('login')">Sign in →</a></div>
 </div></div>
 
