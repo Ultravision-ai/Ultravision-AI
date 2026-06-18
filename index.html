@@ -480,6 +480,140 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .lfoot-bottom{max-width:1300px;margin:0 auto;border-top:1px solid rgba(255,255,255,.05);padding-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 /* CURSOR GLOW */
 #glow-cursor{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0}
+
+/* ═══ PREMIUM v3 ═══ */
+
+/* GRADIENT MESH BLOBS */
+.mesh-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.mesh-blob{position:absolute;border-radius:50%;filter:blur(130px);opacity:.11;will-change:transform}
+.mesh-b1{width:700px;height:700px;background:radial-gradient(circle,#4F8EF7,transparent 70%);top:-200px;left:-100px;animation:bd1 22s ease-in-out infinite}
+.mesh-b2{width:600px;height:600px;background:radial-gradient(circle,#9D5CFF,transparent 70%);top:50px;right:-150px;animation:bd2 28s ease-in-out infinite}
+.mesh-b3{width:450px;height:450px;background:radial-gradient(circle,#00D4AA,transparent 70%);bottom:80px;left:28%;animation:bd3 19s ease-in-out infinite}
+@keyframes bd1{0%,100%{transform:translate3d(0,0,0) scale(1)}33%{transform:translate3d(60px,40px,0) scale(1.08)}66%{transform:translate3d(-40px,70px,0) scale(.95)}}
+@keyframes bd2{0%,100%{transform:translate3d(0,0,0) scale(1)}40%{transform:translate3d(-80px,30px,0) scale(1.12)}70%{transform:translate3d(50px,-40px,0) scale(.9)}}
+@keyframes bd3{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(40px,-60px,0) scale(1.16)}}
+@media(prefers-reduced-motion:reduce){.mesh-blob{animation:none!important}}
+
+/* FLOAT ANIMATIONS */
+@keyframes float-a{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(1.2deg)}}
+@keyframes float-b{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(-1.8deg)}}
+@keyframes float-c{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(2.5deg)}}
+.flt-a{animation:float-a 5s ease-in-out infinite}
+.flt-b{animation:float-b 6.5s ease-in-out infinite 1.2s}
+.flt-c{animation:float-c 4.5s ease-in-out infinite .6s}
+@media(prefers-reduced-motion:reduce){.flt-a,.flt-b,.flt-c{animation:none!important}}
+
+/* GRADIENT TEXT */
+.grad-text{background:linear-gradient(135deg,#4F8EF7,#9D5CFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-text-warm{background:linear-gradient(135deg,#FFB800,#FF8C00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* H1 CHAR REVEAL */
+.char-s{display:inline-block;opacity:0;transform:translateY(20px);animation:ch-in .5s cubic-bezier(.22,1,.36,1) forwards}
+.char-sp{display:inline-block;width:.28em}
+@keyframes ch-in{to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.char-s{opacity:1!important;transform:none!important;animation:none!important}}
+
+/* TRUST BAR */
+.trust-bar{padding:30px 6%;text-align:center;border-top:1px solid rgba(79,142,247,.07);border-bottom:1px solid rgba(79,142,247,.07);background:rgba(6,9,20,.55)}
+.trust-lbl{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px}
+.trust-logos{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap}
+.trust-logo-item{display:flex;align-items:center;gap:8px;opacity:.32;transition:opacity .2s}.trust-logo-item:hover{opacity:.55}
+.trust-logo-name{font-size:12px;font-weight:800;color:var(--txt);letter-spacing:-.01em}
+
+/* HOW IT WORKS */
+.hiw-sec{padding:100px 6%;max-width:1200px;margin:0 auto;text-align:center}
+.hiw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:60px;position:relative}
+.hiw-conn{position:absolute;top:36px;left:calc(16.67% + 24px);right:calc(16.67% + 24px);height:1px;background:linear-gradient(90deg,rgba(79,142,247,0),rgba(79,142,247,.35) 30%,rgba(157,92,255,.35) 70%,rgba(157,92,255,0));pointer-events:none}
+@media(max-width:768px){.hiw-grid{grid-template-columns:1fr;gap:36px}.hiw-conn{display:none}}
+.hiw-step{text-align:center}
+.hiw-icon-ring{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,rgba(79,142,247,.12),rgba(157,92,255,.12));border:1px solid rgba(79,142,247,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;position:relative}
+.hiw-icon-ring::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(79,142,247,.12);animation:hiw-pr 4s ease-in-out infinite}
+@keyframes hiw-pr{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.25);opacity:0}}
+@media(prefers-reduced-motion:reduce){.hiw-icon-ring::after{animation:none}}
+.hiw-step-num{font-size:11px;font-weight:700;color:var(--ac);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.hiw-step-title{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-.01em}
+.hiw-step-desc{font-size:15px;color:var(--t2);line-height:1.7;max-width:260px;margin:0 auto}
+
+/* PHONE MOCKUP */
+.phone-outer{position:relative;display:flex;justify-content:center;align-items:flex-start;padding-top:10px}
+.iphone-frame{width:240px;min-height:490px;background:linear-gradient(145deg,rgba(14,14,28,.99),rgba(9,9,20,.99));border:5px solid rgba(50,55,80,.85);border-radius:40px;box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.06),inset 0 0 0 1px rgba(255,255,255,.03);position:relative;overflow:hidden;flex-shrink:0}
+.iphone-notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:72px;height:20px;background:rgba(6,6,14,.95);border-radius:16px;z-index:10}
+.iphone-status{padding:14px 16px 6px;display:flex;justify-content:space-between;align-items:center;font-size:8px;font-weight:700;color:rgba(255,255,255,.45);position:relative;z-index:1}
+.iphone-bar{height:2px;background:linear-gradient(90deg,#4F8EF7,#9D5CFF);margin:0 16px 10px;border-radius:2px}
+.iphone-body{padding:0 14px 18px;display:flex;flex-direction:column;gap:7px;position:relative;z-index:1}
+.iphone-header{display:flex;align-items:center;gap:7px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:2px}
+.iphone-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#4F8EF7,#9D5CFF);display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:800;color:#fff;flex-shrink:0}
+.iphone-title{font-size:9px;font-weight:700;color:var(--txt)}
+.iphone-sub{font-size:7.5px;color:rgba(255,255,255,.4);margin-top:1px}
+.iphone-online{display:flex;align-items:center;gap:3px;margin-left:auto}
+.iphone-dot{width:5px;height:5px;border-radius:50%;background:#00D4AA;box-shadow:0 0 5px #00D4AA}
+.iphone-dot-lbl{font-size:7.5px;color:#00D4AA;font-weight:600}
+.iphone-msgs{display:flex;flex-direction:column;gap:7px;margin-bottom:8px}
+.iphone-msg{border-radius:10px;padding:8px 10px;font-size:10px;line-height:1.5;max-width:92%}
+.iphone-msg.ai{background:rgba(255,255,255,.05);border:1px solid rgba(79,142,247,.12);color:rgba(255,255,255,.75)}
+.iphone-msg.user{background:linear-gradient(135deg,#4F8EF7,#9D5CFF);color:#fff;align-self:flex-end}
+.iphone-typed{background:rgba(255,255,255,.05);border:1px solid rgba(79,142,247,.12);border-radius:10px;padding:8px 10px;font-size:10px;line-height:1.5;color:rgba(255,255,255,.75);min-height:26px}
+.iphone-cursor{display:inline-block;width:1.5px;height:9px;background:#4F8EF7;vertical-align:middle;margin-left:1px;animation:curblink .65s step-end infinite}
+@keyframes curblink{0%,100%{opacity:1}50%{opacity:0}}
+.iphone-input-row{background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.14);border-radius:18px;padding:6px 10px;font-size:9px;color:rgba(255,255,255,.3);display:flex;justify-content:space-between;align-items:center}
+.iphone-send{width:16px;height:16px;background:linear-gradient(135deg,#4F8EF7,#9D5CFF);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* FLOAT HERO CARDS */
+.fcd{animation:float-a 5s ease-in-out infinite}
+.fcd:nth-child(1){animation-name:float-a;animation-delay:0s}
+.fcd:nth-child(2){animation-name:float-b;animation-delay:1.2s}
+.fcd:nth-child(3){animation-name:float-c;animation-delay:.6s}
+
+/* TESTIMONIAL SVG AVATARS */
+.tav-ring{border:2px solid rgba(79,142,247,.3)}
+
+/* PRO CARD GRADIENT BORDER */
+.price-card-pro-v2{border:2px solid transparent!important;background:linear-gradient(rgba(18,14,6,.99),rgba(12,10,4,.99)) padding-box,linear-gradient(135deg,rgba(240,180,41,.75),rgba(255,90,0,.45),rgba(240,180,41,.4)) border-box!important}
+.pro-ribbon{position:absolute;top:18px;right:18px;background:linear-gradient(135deg,#FFB800,#FF7700);color:#040610;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:18px;box-shadow:0 4px 18px rgba(240,180,41,.5);white-space:nowrap}
+
+/* CTA SECTION GRADIENT */
+.cta-sec{text-align:center;padding:120px 6%;position:relative;overflow:hidden;background:linear-gradient(180deg,transparent 0%,rgba(79,142,247,.03) 20%,rgba(157,92,255,.04) 60%,transparent 100%)}
+.cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(79,142,247,.09) 0%,rgba(157,92,255,.06) 40%,transparent 65%);pointer-events:none}
+.cta-sec::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(79,142,247,.015),rgba(157,92,255,.015));pointer-events:none}
+
+/* SOCIAL ICONS */
+.social-icons{display:flex;gap:12px;margin-top:20px}
+.soc-ic{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .22s;text-decoration:none;color:var(--t2)}.soc-ic:hover{border-color:rgba(79,142,247,.42);background:rgba(79,142,247,.1);color:var(--ac)}
+
+/* MAGNETIC BUTTON */
+.mag-btn{display:inline-block;transition:transform .2s cubic-bezier(.22,1,.36,1)}
+
+/* PAGE FADE */
+@keyframes pg-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.pg-enter{animation:pg-fade .22s cubic-bezier(.22,1,.36,1)}
+@media(prefers-reduced-motion:reduce){.pg-enter{animation:none}}
+
+/* AUTH SPLIT SCREEN */
+.auth-split{max-width:none!important;padding:0!important;margin:0!important;display:none;width:100%;min-height:100vh}
+.auth-split:not(.hidden){display:flex!important}
+.auth-lp{flex:0 0 50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 44px;overflow-y:auto;min-height:100vh;position:relative;z-index:1}
+.auth-rp{flex:1;position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(7,9,22,.99),rgba(5,6,16,.99))}
+@media(max-width:860px){.auth-split:not(.hidden){display:block!important}.auth-lp{flex:none;width:100%;min-height:100vh;padding:32px 20px}.auth-rp{display:none}}
+.auth-card-inner{width:100%;max-width:420px}
+.auth-rp-mesh{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.auth-rp-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;z-index:1}
+.auth-rp-quote{font-size:clamp(24px,3vw,40px);font-weight:800;line-height:1.1;letter-spacing:-.03em;text-align:center;color:var(--txt);margin-bottom:24px}
+.auth-rp-quote em{font-style:italic;background:linear-gradient(135deg,#4F8EF7,#9D5CFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.auth-rp-proof{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(79,142,247,.22);border-radius:28px;padding:9px 18px;font-size:12px;color:var(--t2);font-weight:600}
+.auth-rp-fcards{position:relative;width:100%;max-width:280px;height:200px;margin:28px auto 0}
+.auth-rfc{position:absolute;background:rgba(10,12,28,.95);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(20px);box-shadow:0 14px 36px rgba(0,0,0,.5);white-space:nowrap}
+.auth-rfc-ic{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.auth-rfc-t{font-size:11px;font-weight:700;color:var(--txt)}
+.auth-rfc-s{font-size:10px;font-weight:500}
+.auth-sp-note{font-size:11px;color:var(--t3);text-align:center;margin-top:18px}
+
+/* NAV UPGRADE */
+.lnav{background:rgba(6,8,18,.82);backdrop-filter:blur(32px) saturate(180%);border-bottom:1px solid rgba(79,142,247,.09)}
+.lbp{background:linear-gradient(135deg,#4F8EF7,#7B5BF5);border:none;color:#fff;padding:10px 24px;border-radius:11px;font-size:13px;font-weight:700;font-family:var(--font);cursor:pointer;box-shadow:0 4px 20px rgba(79,142,247,.5);transition:all .22s;white-space:nowrap}.lbp:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,142,247,.65)}
+
+/* HERO BG overlay */
+.hero{position:relative;overflow:visible}
+.hh1 em{background:linear-gradient(135deg,#4F8EF7,#9D5CFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic}
 </style>
 </head>
 <body>
@@ -495,12 +629,17 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 <!-- LANDING -->
 <div id="pg-land" style="width:100%;position:relative;z-index:1">
 <div id="glow-cursor" aria-hidden="true"></div>
+<div class="mesh-bg" aria-hidden="true">
+  <div class="mesh-blob mesh-b1"></div>
+  <div class="mesh-blob mesh-b2"></div>
+  <div class="mesh-blob mesh-b3"></div>
+</div>
 
 <!-- NAV -->
 <nav class="lnav">
   <a class="logo-w" onclick="showPg('land')" href="#">
     <div class="lmark-wrap">
-      <div class="lmark-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="lmark-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="13.5" y2="1" stroke="#fff" stroke-width="2"/><line x1="14" y1="2" x2="15" y2="0.5" stroke="#fff" stroke-width="1.5"/></svg></div>
       <div class="lmark-shine"></div>
     </div>
     <div class="lt-wrap">
@@ -548,8 +687,8 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 <div class="hero">
   <div>
     <div class="hero-badge"><div class="pdot"></div><span id="hero-badge">The UK's #1 Free AI Study Platform</span></div>
-    <h1 class="hh1" id="hero-h1">Study <em>smarter.</em><br>Achieve <span class="hl">extraordinary</span><br>results.</h1>
-    <p class="hsub" id="hero-sub">9 powerful AI tools built for <strong>GCSE, A-Level & University.</strong> Every exam board. Any language. <strong>Completely free, forever.</strong></p>
+    <h1 class="hh1" id="hero-h1">Homework done<br>in <em>seconds.</em></h1>
+    <p class="hsub" id="hero-sub">9 powerful AI tools for <strong>GCSE, A-Level & University.</strong> Every exam board. Any language. <strong>Completely free, forever.</strong></p>
     <div class="hbtns">
       <button class="hbm" onclick="showPg('signup')" id="hero-btn1">Start for free →</button>
       <button class="hbg" onclick="showPg('login')" id="hero-btn2">Sign in</button>
@@ -561,24 +700,81 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       <div class="hpill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>100% free</span></div>
     </div>
   </div>
-  <div class="hv">
-    <div class="hcard">
-      <div class="hch">
-        <div class="hcav">UV</div>
-        <div><div style="font-size:13px;font-weight:700">UltraVision AI Tutor</div><div style="font-size:10px;color:var(--t2)">Expert GCSE, A-Level & University teaching</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:5px"><div style="width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 7px var(--grn)"></div><span style="font-size:10px;color:var(--grn);font-weight:600">Online</span></div>
+  <div class="hv" style="position:relative">
+    <!-- PHONE MOCKUP -->
+    <div class="phone-outer">
+      <div class="iphone-frame" id="hero-phone">
+        <div class="iphone-notch"></div>
+        <div class="iphone-status">
+          <span>09:41</span>
+          <span style="display:flex;align-items:center;gap:4px">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="6" width="5" height="18" rx="1"/><rect x="8" y="3" width="5" height="21" rx="1" opacity=".7"/><rect x="15" y="0" width="5" height="24" rx="1" opacity=".4"/></svg>
+            <svg width="12" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="7" width="20" height="11" rx="2"/><path d="M22 11V13" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".6"/></svg>
+          </span>
+        </div>
+        <div class="iphone-bar"></div>
+        <div class="iphone-body">
+          <div class="iphone-header">
+            <div class="iphone-av">UV</div>
+            <div>
+              <div class="iphone-title">UltraVision AI</div>
+              <div class="iphone-sub">AI Study Assistant</div>
+            </div>
+            <div class="iphone-online">
+              <div class="iphone-dot"></div>
+              <span class="iphone-dot-lbl">Online</span>
+            </div>
+          </div>
+          <div class="iphone-msgs">
+            <div class="iphone-msg ai">Hi! Snap a photo of your homework or type any question — I'll solve it step by step 🎯</div>
+            <div class="iphone-msg user">Solve 3x² + 5x − 2 = 0</div>
+          </div>
+          <div class="iphone-typed" id="phone-typed-text">Using quadratic formula...<span class="iphone-cursor"></span></div>
+          <div style="margin-top:8px">
+            <div class="iphone-input-row">
+              <span>Ask anything...</span>
+              <div class="iphone-send"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hcmsgs">
-        <div class="hcm ai">Hi! Ask me anything — explain, quiz, plan essays, solve homework. Any subject, any language.</div>
-        <div class="hcm u">Explain photosynthesis for A-Level Biology?</div>
-        <div class="hcm ai"><strong>Photosynthesis</strong> converts light → glucose. Chloroplasts act as solar factories — light-dependent stage produces ATP; Calvin cycle fixes CO₂ into G3P. Key equation: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</div>
-      </div>
-      <div class="hci"><span style="color:var(--t3);font-size:11px">Ask anything in any language...</span><div class="hcs"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div></div>
     </div>
+    <!-- FLOATING BADGE CARDS -->
     <div class="fcds">
-      <div class="fcd"><div class="fcd-ic" style="background:rgba(0,200,150,.18)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00C896" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="fcd-tt">Quiz Score</div><div class="fcd-st" style="color:var(--grn)">92% — Grade A*</div></div></div>
-      <div class="fcd"><div class="fcd-ic" style="background:rgba(240,180,41,.18)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><div><div class="fcd-tt">Flashcards</div><div class="fcd-st" style="color:var(--gold)">24/30 mastered</div></div></div>
-      <div class="fcd"><div class="fcd-ic" style="background:rgba(79,142,247,.18)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="fcd-tt">Essay Grade</div><div class="fcd-st" style="color:var(--ac3)">Predicted A*</div></div></div>
+      <div class="fcd"><div class="fcd-ic" style="background:rgba(0,212,170,.18)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00D4AA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="fcd-tt">Quiz Score</div><div class="fcd-st" style="color:#00D4AA">92% — Grade A*</div></div></div>
+      <div class="fcd"><div class="fcd-ic" style="background:rgba(240,180,41,.18)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><div><div class="fcd-tt">Flashcards</div><div class="fcd-st" style="color:#FFB800">24/30 mastered</div></div></div>
+      <div class="fcd"><div class="fcd-ic" style="background:rgba(79,142,247,.18)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="fcd-tt">Essay Grade</div><div class="fcd-st" style="color:#4F8EF7">Predicted A*</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-lbl">Trusted by students at schools &amp; universities worldwide</div>
+  <div class="trust-logos">
+    <div class="trust-logo-item">
+      <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><path d="M20 4L4 14v12c0 8 8 14 16 16 8-2 16-8 16-16V14L20 4z" fill="rgba(79,142,247,.4)" stroke="rgba(79,142,247,.6)" stroke-width="1.5"/><path d="M14 20l4 4 8-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="trust-logo-name">AQA Schools</span>
+    </div>
+    <div class="trust-logo-item">
+      <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="rgba(157,92,255,.3)" stroke="rgba(157,92,255,.6)" stroke-width="1.5"/><path d="M13 20c0-4 3-7 7-7s7 3 7 7-3 7-7 7-7-3-7-7z" fill="rgba(157,92,255,.5)"/></svg>
+      <span class="trust-logo-name">Oxbridge</span>
+    </div>
+    <div class="trust-logo-item">
+      <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><rect x="4" y="4" width="32" height="32" rx="4" fill="rgba(0,212,170,.25)" stroke="rgba(0,212,170,.5)" stroke-width="1.5"/><path d="M12 20h16M20 12v16" stroke="#00D4AA" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="trust-logo-name">Russell Group</span>
+    </div>
+    <div class="trust-logo-item">
+      <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><polygon points="20,4 36,14 36,26 20,36 4,26 4,14" fill="rgba(79,142,247,.25)" stroke="rgba(79,142,247,.5)" stroke-width="1.5"/></svg>
+      <span class="trust-logo-name">Edexcel Students</span>
+    </div>
+    <div class="trust-logo-item">
+      <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><path d="M20 4L8 10v8c0 9 6 16 12 18 6-2 12-9 12-18V10L20 4z" fill="rgba(255,184,0,.25)" stroke="rgba(255,184,0,.5)" stroke-width="1.5"/></svg>
+      <span class="trust-logo-name">IB Diploma</span>
+    </div>
+    <div class="trust-logo-item">
+      <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="14" r="8" fill="rgba(157,92,255,.3)" stroke="rgba(157,92,255,.5)" stroke-width="1.5"/><path d="M8 36c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="rgba(157,92,255,.5)" stroke-width="1.5"/></svg>
+      <span class="trust-logo-name">50k+ Students</span>
     </div>
   </div>
 </div>
@@ -693,6 +889,54 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
   </div>
 </div>
 
+<!-- HOW IT WORKS -->
+<div class="hiw-sec fade-up" id="hiw-sec">
+  <div class="sec-head">
+    <span class="slbl">How it works</span>
+    <h2 class="stit">Three steps to <em>better grades</em></h2>
+    <p class="ssub">From question to understanding in under 10 seconds.</p>
+  </div>
+  <div class="hiw-grid">
+    <div class="hiw-conn"></div>
+    <div class="hiw-step fade-up">
+      <div class="hiw-icon-ring">
+        <div style="position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(79,142,247,.12);animation:hiw-pr 4s ease-in-out infinite"></div>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#g-hiw1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="g-hiw1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F8EF7"/><stop offset="100%" stop-color="#9D5CFF"/></linearGradient></defs>
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </div>
+      <div class="hiw-step-num">Step 01</div>
+      <div class="hiw-step-title">Snap or type</div>
+      <div class="hiw-step-desc">Take a photo of your homework question, or type it in any language — maths, science, English, history.</div>
+    </div>
+    <div class="hiw-step fade-up">
+      <div class="hiw-icon-ring">
+        <div style="position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(157,92,255,.12);animation:hiw-pr 4s ease-in-out infinite 1.3s"></div>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#g-hiw2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="g-hiw2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F8EF7"/><stop offset="100%" stop-color="#9D5CFF"/></linearGradient></defs>
+          <path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="18" cy="6" r="3" fill="url(#g-hiw2)" stroke="none"/>
+        </svg>
+      </div>
+      <div class="hiw-step-num">Step 02</div>
+      <div class="hiw-step-title">AI solves it</div>
+      <div class="hiw-step-desc">Our AI analyses your question against your exact exam board and generates a step-by-step solution in seconds.</div>
+    </div>
+    <div class="hiw-step fade-up">
+      <div class="hiw-icon-ring">
+        <div style="position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(0,212,170,.12);animation:hiw-pr 4s ease-in-out infinite 2.6s"></div>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#g-hiw3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="g-hiw3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00D4AA"/><stop offset="100%" stop-color="#4F8EF7"/></linearGradient></defs>
+          <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div class="hiw-step-num">Step 03</div>
+      <div class="hiw-step-title">You learn it</div>
+      <div class="hiw-step-desc">Every answer explains the WHY — so you actually understand it and can ace it in your real exam.</div>
+    </div>
+  </div>
+</div>
+
 <!-- EXAM BOARDS -->
 <div class="bsec" id="boards-sec">
   <div class="binn">
@@ -732,9 +976,48 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     </div>
   </div>
   <div class="test-grid">
-    <div class="tcard fade-up"><div class="tstars">★★★★★</div><div class="ttext">"UltraVision AI is <strong>incredible</strong>. I went from a C to an A* in Maths in 3 months. The AI tutor explains WHY, not just the answer."</div><div class="tauthor"><div class="tav" style="background:var(--g1)">JS</div><div><div class="taname">Jamie S.</div><div class="talevel">A-Level Maths · AQA</div></div></div></div>
-    <div class="tcard fade-up"><div class="tstars">★★★★★</div><div class="ttext">"The essay helper gave me <strong>better feedback than my teacher</strong>. It told me exactly what the examiner wants to see. Grade A in English Lit."</div><div class="tauthor"><div class="tav" style="background:linear-gradient(135deg,#FF6BAA,#A07BFF)">AK</div><div><div class="taname">Aisha K.</div><div class="talevel">GCSE English · Edexcel</div></div></div></div>
-    <div class="tcard fade-up"><div class="tstars">★★★★★</div><div class="ttext">"أداة رائعة جداً! أستخدمها باللغة العربية وتشرح لي كل شيء بوضوح. <strong>ساعدتني في اجتياز IB</strong>."</div><div class="tauthor"><div class="tav" style="background:linear-gradient(135deg,#00E8A8,#00D4F0)">MR</div><div><div class="taname">Mohammed R.</div><div class="talevel">IB Diploma · Cairo</div></div></div></div>
+    <div class="tcard fade-up">
+      <div class="tstars">★★★★★</div>
+      <div class="ttext">"UltraVision AI is <strong>incredible</strong>. I went from a C to an A* in Maths in 3 months. The AI tutor explains WHY, not just the answer."</div>
+      <div class="tauthor">
+        <svg class="tav tav-ring" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="22" fill="url(#av1bg)"/>
+          <defs><linearGradient id="av1bg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4F8EF7"/><stop offset="100%" stop-color="#7B5BF5"/></linearGradient></defs>
+          <circle cx="22" cy="17" r="7" fill="rgba(255,255,255,.9)"/>
+          <path d="M6 40c0-9 6-14 16-14s16 5 16 14" fill="rgba(255,255,255,.9)"/>
+          <text x="22" y="20" text-anchor="middle" fill="#4F8EF7" font-size="8" font-weight="800" font-family="Inter,sans-serif">JS</text>
+        </svg>
+        <div><div class="taname">Jamie S.</div><div class="talevel">A-Level Maths · AQA · Year 13</div></div>
+      </div>
+    </div>
+    <div class="tcard fade-up">
+      <div class="tstars">★★★★★</div>
+      <div class="ttext">"The essay helper gave me <strong>better feedback than my teacher</strong>. It told me exactly what the examiner wants to see. Grade A in English Lit."</div>
+      <div class="tauthor">
+        <svg class="tav tav-ring" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="22" fill="url(#av2bg)"/>
+          <defs><linearGradient id="av2bg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FF6BAA"/><stop offset="100%" stop-color="#9D5CFF"/></linearGradient></defs>
+          <circle cx="22" cy="17" r="7" fill="rgba(255,255,255,.9)"/>
+          <path d="M6 40c0-9 6-14 16-14s16 5 16 14" fill="rgba(255,255,255,.9)"/>
+          <text x="22" y="20" text-anchor="middle" fill="#9D5CFF" font-size="8" font-weight="800" font-family="Inter,sans-serif">AK</text>
+        </svg>
+        <div><div class="taname">Aisha K.</div><div class="talevel">GCSE English · Edexcel · Year 11</div></div>
+      </div>
+    </div>
+    <div class="tcard fade-up">
+      <div class="tstars">★★★★★</div>
+      <div class="ttext">"أداة رائعة جداً! أستخدمها باللغة العربية وتشرح لي كل شيء بوضوح. <strong>ساعدتني في اجتياز IB</strong>."</div>
+      <div class="tauthor">
+        <svg class="tav tav-ring" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="22" fill="url(#av3bg)"/>
+          <defs><linearGradient id="av3bg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00D4AA"/><stop offset="100%" stop-color="#4F8EF7"/></linearGradient></defs>
+          <circle cx="22" cy="17" r="7" fill="rgba(255,255,255,.9)"/>
+          <path d="M6 40c0-9 6-14 16-14s16 5 16 14" fill="rgba(255,255,255,.9)"/>
+          <text x="22" y="20" text-anchor="middle" fill="#00D4AA" font-size="8" font-weight="800" font-family="Inter,sans-serif">MR</text>
+        </svg>
+        <div><div class="taname">Mohammed R.</div><div class="talevel">IB Diploma · Cairo, Egypt</div></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -759,7 +1042,8 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       </div>
       <button class="hbg" onclick="showPg('signup')" style="width:100%;padding:14px;border-radius:12px;font-size:13px">Get started free</button>
     </div>
-    <div class="price-card price-card-pro fade-up" style="background:linear-gradient(145deg,rgba(20,16,8,.98),rgba(15,12,4,.99));border:1px solid rgba(240,180,41,.35);border-radius:22px;padding:36px;text-align:left;position:relative;overflow:hidden">
+    <div class="price-card price-card-pro price-card-gradient-border fade-up" style="background:linear-gradient(rgba(18,14,6,.99),rgba(12,10,4,.99)) padding-box,linear-gradient(135deg,rgba(240,180,41,.75),rgba(255,90,0,.45),rgba(240,180,41,.4)) border-box;border:2px solid transparent;border-radius:22px;padding:36px;text-align:left;position:relative;overflow:hidden">
+      <div class="pro-ribbon">Most Popular</div>
       <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
       <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:5px"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--gold)" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>PRO</div>
       <div style="font-size:42px;font-weight:800;margin-bottom:4px;color:var(--gold)">£7.99<span style="font-size:16px;color:var(--t2);font-weight:400">/mo</span></div>
@@ -779,10 +1063,10 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 
 <!-- FINAL CTA -->
 <div class="cta-sec">
-  <h2 class="cta-h fade-up" id="cta-title">Ready to <em style="font-style:italic;color:var(--ac)">transform</em><br>your results?</h2>
+  <h2 class="cta-h fade-up" id="cta-title">Start solving homework <em style="background:linear-gradient(135deg,#4F8EF7,#9D5CFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal">now.</em></h2>
   <p class="fade-up" style="font-size:17px;color:var(--t2);max-width:440px;margin:0 auto 36px;line-height:1.68;position:relative;z-index:1" id="cta-sub">Join 50,000+ students across 150+ countries studying smarter with UltraVision AI.</p>
-  <button class="hbm" onclick="showPg('signup')" id="cta-btn" style="position:relative;z-index:1">Create your free account →</button>
-  <p style="font-size:11px;color:var(--t3);margin-top:18px;position:relative;z-index:1">No credit card · Free forever · Available in any language</p>
+  <button class="hbm fade-up" onclick="showPg('signup')" id="cta-btn" style="position:relative;z-index:1;font-size:16px;padding:18px 44px;background:linear-gradient(135deg,#4F8EF7,#9D5CFF);box-shadow:0 8px 40px rgba(79,142,247,.55)">Create your free account →</button>
+  <p class="fade-up" style="font-size:12px;color:var(--t3);margin-top:20px;position:relative;z-index:1">No credit card required · Free forever · Available in 10 languages</p>
 </div>
 
 <!-- FOOTER -->
@@ -790,11 +1074,17 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
   <div class="lfoot-grid">
     <div>
       <div class="logo-w" style="cursor:pointer;display:inline-flex;margin-bottom:18px" onclick="showPg('land')">
-        <div class="lmark-wrap"><div class="lmark-bg" style="width:30px;height:30px;border-radius:9px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div></div>
+        <div class="lmark-wrap"><div class="lmark-bg" style="width:30px;height:30px;border-radius:9px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="4" x2="13" y2="2" stroke="#fff" stroke-width="2"/></svg></div></div>
         <div class="lt-wrap"><div class="lt" style="font-size:14px">Ultra<span>Vision</span> AI</div></div>
       </div>
       <p style="font-size:13px;color:var(--t2);line-height:1.7;max-width:230px;margin-bottom:18px">The world's best free AI study platform. Built for GCSE, A-Level and University students.</p>
-      <div style="font-size:11px;color:var(--t3)">50,000+ students · 150+ countries · Free forever</div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:4px">50,000+ students · 150+ countries · Free forever</div>
+      <div class="social-icons">
+        <a class="soc-ic" href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34v-7.3a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.43z"/></svg></a>
+        <a class="soc-ic" href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a class="soc-ic" href="#" aria-label="Twitter/X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a class="soc-ic" href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+      </div>
     </div>
     <div>
       <div class="lfoot-col-title">Study Tools</div>
@@ -832,10 +1122,11 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 
 </div><!-- /pg-land -->
 <!-- SIGNUP -->
-<div class="auth-page hidden" id="pg-signup" style="max-width:530px">
-<div class="acard">
-  <div class="alogo" onclick="showPg('land')">
-    <div class="lmark-wrap"><div class="lmark-bg"><span class="lmark-icon">⚡</span></div></div>
+<div class="auth-page hidden auth-split" id="pg-signup">
+  <div class="auth-lp">
+   <div class="auth-card-inner">
+  <div class="alogo" onclick="showPg('land')" style="justify-content:flex-start;margin-bottom:28px">
+    <div class="lmark-wrap"><div class="lmark-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="13.5" y2="1" stroke="#fff" stroke-width="2"/><line x1="14" y1="2" x2="15" y2="0.5" stroke="#fff" stroke-width="1.5"/></svg></div></div>
     <div class="lt-wrap"><div class="lt">Ultra<span>Vision</span> AI</div></div>
   </div>
   <div id="step1">
@@ -896,15 +1187,33 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       <div class="fg" style="margin-bottom:0"><label class="flbl">Country (optional)</label><input class="fi" id="su-country" type="text" placeholder="United Kingdom"></div>
     </div>
     <div class="trow"><input type="checkbox" id="su-tc"><label for="su-tc">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label></div>
-    <div style="display:flex;gap:10px"><button class="tbtn" onclick="goStep(2)" style="padding:13px 20px">← Back</button><button class="asbtn" style="margin-bottom:0;flex:1" id="su-btn" onclick="doSignup()">Create free account 🚀</button></div>
+    <div style="display:flex;gap:10px"><button class="tbtn" onclick="goStep(2)" style="padding:13px 20px">← Back</button><button class="asbtn" style="margin-bottom:0;flex:1;background:linear-gradient(135deg,#4F8EF7,#9D5CFF);box-shadow:0 6px 28px rgba(79,142,247,.5)" id="su-btn" onclick="doSignup()">Create free account →</button></div>
   </div>
-</div></div>
+   </div><!-- /auth-card-inner -->
+  </div><!-- /auth-lp -->
+  <div class="auth-rp">
+    <div class="auth-rp-mesh">
+      <div class="mesh-blob" style="width:500px;height:500px;background:radial-gradient(circle,#9D5CFF,transparent 70%);top:-120px;right:-100px;animation:bd2 24s ease-in-out infinite"></div>
+      <div class="mesh-blob" style="width:380px;height:380px;background:radial-gradient(circle,#4F8EF7,transparent 70%);bottom:-60px;left:-60px;animation:bd1 20s ease-in-out infinite"></div>
+      <div class="mesh-blob" style="width:300px;height:300px;background:radial-gradient(circle,#00D4AA,transparent 70%);top:40%;left:20%;animation:bd3 17s ease-in-out infinite"></div>
+    </div>
+    <div class="auth-rp-content">
+      <div class="auth-rp-quote">Free forever.<br><em>Smarter every day.</em></div>
+      <div class="auth-rp-proof"><div class="pdot"></div> Join 50,000+ students — no card needed</div>
+      <div class="auth-rp-fcards">
+        <div class="auth-rfc flt-a" style="top:0;left:0"><div class="auth-rfc-ic" style="background:rgba(157,92,255,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9D5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><div><div class="auth-rfc-t">Essay Helper</div><div class="auth-rfc-s" style="color:#9D5CFF">Grade A feedback</div></div></div>
+        <div class="auth-rfc flt-b" style="top:90px;right:0"><div class="auth-rfc-ic" style="background:rgba(0,212,170,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00D4AA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="auth-rfc-t">Quiz Score</div><div class="auth-rfc-s" style="color:#00D4AA">92% — A*</div></div></div>
+        <div class="auth-rfc flt-c" style="bottom:0;left:30px"><div class="auth-rfc-ic" style="background:rgba(255,184,0,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div><div class="auth-rfc-t">AI Tutor</div><div class="auth-rfc-s" style="color:#FFB800">Free forever</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- EMAIL VERIFY -->
 <div class="auth-page hidden" id="pg-verify" style="max-width:480px">
 <div class="acard">
   <div class="alogo" onclick="showPg('land')">
-    <div class="lmark-wrap"><div class="lmark-bg"><span class="lmark-icon">⚡</span></div></div>
+    <div class="lmark-wrap"><div class="lmark-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="13.5" y2="1" stroke="#fff" stroke-width="2"/><line x1="14" y1="2" x2="15" y2="0.5" stroke="#fff" stroke-width="1.5"/></svg></div></div>
     <div class="lt-wrap"><div class="lt">Ultra<span>Vision</span> AI</div></div>
   </div>
   <div class="cw">
@@ -931,38 +1240,70 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 </div></div>
 
 <!-- LOGIN -->
-<div class="auth-page hidden" id="pg-login">
-<div class="acard">
-  <div class="alogo" onclick="showPg('land')">
-    <div class="lmark-wrap"><div class="lmark-bg"><span class="lmark-icon">⚡</span></div></div>
-    <div class="lt-wrap"><div class="lt">Ultra<span>Vision</span> AI</div></div>
+<div class="auth-page hidden auth-split" id="pg-login">
+  <div class="auth-lp">
+    <div class="auth-card-inner">
+      <div class="alogo" onclick="showPg('land')" style="justify-content:flex-start;margin-bottom:36px">
+        <div class="lmark-wrap"><div class="lmark-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="13.5" y2="1" stroke="#fff" stroke-width="2"/><line x1="14" y1="2" x2="15" y2="0.5" stroke="#fff" stroke-width="1.5"/></svg></div></div>
+        <div class="lt-wrap"><div class="lt">Ultra<span>Vision</span> AI</div></div>
+      </div>
+      <div class="atit" id="login-title">Welcome back</div>
+      <div class="asub" id="login-sub">Sign in to continue your learning journey.</div>
+      <div class="fg"><label class="flbl" id="li-em-lbl">Email address</label><input class="fi" id="li-em" type="email" placeholder="alex@email.com" autocomplete="email"></div>
+      <div class="fg"><label class="flbl" id="li-pw-lbl">Password</label><div class="pww"><input class="fi" id="li-pw" type="password" placeholder="Your password" autocomplete="current-password"><button class="pweye" onclick="togglePw('li-pw')" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div><div class="ferr" id="li-err">Incorrect email or password. Please try again.</div></div>
+      <span class="flnk" onclick="showPg('forgot')" id="forgot-lnk">Forgot your password?</span>
+      <button class="asbtn" id="li-btn" onclick="doLogin()" style="background:linear-gradient(135deg,#4F8EF7,#9D5CFF);box-shadow:0 6px 28px rgba(79,142,247,.5)">Sign in to UltraVision AI</button>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;font-size:12px;color:var(--t3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Join 50,000+ students already studying smarter</div>
+      <div class="adiv"><div class="adivl"></div><div class="adivt">or</div><div class="adivl"></div></div>
+      <button class="gbtn" onclick="getSB().then(function(sb){sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:'https://ultravision-ai.co.uk'}});})"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="#5585FF" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#A07BFF" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#7D90BF" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#7D90BF" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Continue with Google</button>
+      <div class="asw">No account? <a onclick="showPg('signup')">Create one free →</a></div>
+    </div>
   </div>
-  <div class="atit" id="login-title">Welcome back 👋</div>
-  <div class="asub" id="login-sub">Sign in to continue your learning journey.</div>
-  <div class="fg"><label class="flbl" id="li-em-lbl">Email address</label><input class="fi" id="li-em" type="email" placeholder="alex@email.com" autocomplete="email"></div>
-  <div class="fg"><label class="flbl" id="li-pw-lbl">Password</label><div class="pww"><input class="fi" id="li-pw" type="password" placeholder="Your password" autocomplete="current-password"><button class="pweye" onclick="togglePw('li-pw')" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div><div class="ferr" id="li-err">Incorrect email or password. Please try again.</div></div>
-  <span class="flnk" onclick="showPg('forgot')" id="forgot-lnk">Forgot your password?</span>
-  <button class="asbtn" id="li-btn" onclick="doLogin()">Sign in to UltraVision AI</button>
-  <div class="adiv"><div class="adivl"></div><div class="adivt">or</div><div class="adivl"></div></div>
-  <button class="gbtn" onclick="getSB().then(function(sb){sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:'https://ultravision-ai.co.uk'}});})"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="#5585FF" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#A07BFF" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#7D90BF" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#7D90BF" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Continue with Google</button>
-  <div class="asw">No account? <a onclick="showPg('signup')">Create one free →</a></div>
-</div></div>
+  <div class="auth-rp">
+    <div class="auth-rp-mesh">
+      <div class="mesh-blob" style="width:500px;height:500px;background:radial-gradient(circle,#4F8EF7,transparent 70%);top:-100px;left:-100px;animation:bd1 22s ease-in-out infinite"></div>
+      <div class="mesh-blob" style="width:400px;height:400px;background:radial-gradient(circle,#9D5CFF,transparent 70%);bottom:-50px;right:-80px;animation:bd2 28s ease-in-out infinite"></div>
+    </div>
+    <div class="auth-rp-content">
+      <div class="auth-rp-quote">"AI that actually<br><em>teaches you</em>"</div>
+      <div class="auth-rp-proof"><div class="pdot"></div> Trusted by 50,000+ students worldwide</div>
+      <div class="auth-rp-fcards">
+        <div class="auth-rfc flt-a" style="top:0;left:0"><div class="auth-rfc-ic" style="background:rgba(0,212,170,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00D4AA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="auth-rfc-t">Quiz Score</div><div class="auth-rfc-s" style="color:#00D4AA">92% — Grade A*</div></div></div>
+        <div class="auth-rfc flt-b" style="top:80px;right:0"><div class="auth-rfc-ic" style="background:rgba(240,180,41,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg></div><div><div class="auth-rfc-t">Flashcards</div><div class="auth-rfc-s" style="color:#FFB800">24/30 mastered</div></div></div>
+        <div class="auth-rfc flt-c" style="bottom:0;left:20px"><div class="auth-rfc-ic" style="background:rgba(79,142,247,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="auth-rfc-t">Essay Grade</div><div class="auth-rfc-s" style="color:#4F8EF7">Predicted A*</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- FORGOT PASSWORD -->
-<div class="auth-page hidden" id="pg-forgot">
-<div class="acard">
-  <div class="alogo" onclick="showPg('land')">
-    <div class="lmark-wrap"><div class="lmark-bg"><span class="lmark-icon">⚡</span></div></div>
-    <div class="lt-wrap"><div class="lt">Ultra<span>Vision</span> AI</div></div>
+<div class="auth-page hidden auth-split" id="pg-forgot">
+  <div class="auth-lp">
+    <div class="auth-card-inner">
+      <div class="alogo" onclick="showPg('land')" style="justify-content:flex-start;margin-bottom:32px">
+        <div class="lmark-wrap"><div class="lmark-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="13.5" y2="1" stroke="#fff" stroke-width="2"/><line x1="14" y1="2" x2="15" y2="0.5" stroke="#fff" stroke-width="1.5"/></svg></div></div>
+        <div class="lt-wrap"><div class="lt">Ultra<span>Vision</span> AI</div></div>
+      </div>
+      <button class="bbtn" onclick="showPg('login')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Back to sign in</button>
+      <div class="atit">Reset your password</div>
+      <div class="asub">Enter your email and we'll send you a password reset link.</div>
+      <div class="sbox" id="fg-ok">✓ Reset link sent! Check your inbox and spam folder, then click the link to set a new password.</div>
+      <div class="fg"><label class="flbl">Email address</label><input class="fi" id="fg-em" type="email" placeholder="alex@email.com"></div>
+      <button class="asbtn" onclick="doForgot()" id="fg-btn" style="background:linear-gradient(135deg,#4F8EF7,#9D5CFF);box-shadow:0 6px 28px rgba(79,142,247,.5)">Send reset link</button>
+      <div class="asw" style="margin-top:16px">Remember it? <a onclick="showPg('login')">Sign in →</a></div>
+    </div>
   </div>
-  <button class="bbtn" onclick="showPg('login')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Back to sign in</button>
-  <div class="atit">Reset your password</div>
-  <div class="asub">Enter your email and we'll send you a password reset link.</div>
-  <div class="sbox" id="fg-ok">✓ Reset link sent! Check your inbox and spam folder, then click the link to set a new password.</div>
-  <div class="fg"><label class="flbl">Email address</label><input class="fi" id="fg-em" type="email" placeholder="alex@email.com"></div>
-  <button class="asbtn" onclick="doForgot()" id="fg-btn">Send reset link</button>
-  <div class="asw" style="margin-top:16px">Remember it? <a onclick="showPg('login')">Sign in →</a></div>
-</div></div>
+  <div class="auth-rp">
+    <div class="auth-rp-mesh">
+      <div class="mesh-blob" style="width:450px;height:450px;background:radial-gradient(circle,#4F8EF7,transparent 70%);top:-80px;left:-80px;animation:bd1 20s ease-in-out infinite"></div>
+      <div class="mesh-blob" style="width:350px;height:350px;background:radial-gradient(circle,#9D5CFF,transparent 70%);bottom:-40px;right:-60px;animation:bd2 26s ease-in-out infinite"></div>
+    </div>
+    <div class="auth-rp-content">
+      <div class="auth-rp-quote">"Back on track<br>in <em>seconds.</em>"</div>
+      <div class="auth-rp-proof"><div class="pdot"></div> 50,000+ students trust UltraVision AI</div>
+    </div>
+  </div>
+</div>
 
 <!-- BANNED -->
 <div class="auth-page hidden" id="pg-banned">
@@ -1343,7 +1684,7 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 <div class="auth-page hidden" id="pg-reset-pw" style="position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(4,6,14,.97)">
 <div class="acard" style="max-width:480px;width:100%;margin:auto">
   <div class="alogo" onclick="showPg('land')">
-    <div class="lmark-wrap"><div class="lmark-bg"><span class="lmark-icon">⚡</span></div></div>
+    <div class="lmark-wrap"><div class="lmark-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="13.5" y2="1" stroke="#fff" stroke-width="2"/><line x1="14" y1="2" x2="15" y2="0.5" stroke="#fff" stroke-width="1.5"/></svg></div></div>
     <div class="lt-wrap"><div class="lt">Ultra<span>Vision</span> AI</div></div>
   </div>
   <div class="atit">Set your new password</div>
@@ -2214,8 +2555,10 @@ function clearVoice(){voiceTxt='';var t=document.getElementById('v-trans'),rw=do
 
 </script>
 <script>
-/* UltraVision AI — Premium interactions */
+/* UltraVision AI — Premium interactions v3 */
 (function(){
+  var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
   /* SCROLL FADE-UP */
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
@@ -2228,14 +2571,60 @@ function clearVoice(){voiceTxt='';var t=document.getElementById('v-trans'),rw=do
     document.querySelectorAll('.fade-up').forEach(function(el){el.classList.add('in-view');});
   }
 
+  /* HERO H1 CHAR REVEAL */
+  var h1=document.getElementById('hero-h1');
+  if(h1&&!rm){
+    var html=h1.innerHTML;
+    var out='';var delay=0;var inTag=false;
+    for(var i=0;i<html.length;i++){
+      var c=html[i];
+      if(c==='<'){inTag=true;out+=c;continue;}
+      if(inTag){out+=c;if(c==='>'){inTag=false;}continue;}
+      if(c===' '){out+='<span class="char-sp"> </span>';delay+=20;continue;}
+      out+='<span class="char-s" style="animation-delay:'+(delay)+'ms">'+c+'</span>';
+      delay+=38;
+    }
+    h1.innerHTML=out;
+  }
+
+  /* PHONE TYPEWRITER LOOP */
+  var phoneEl=document.getElementById('phone-typed-text');
+  if(phoneEl&&!rm){
+    var msgs=[
+      'Using the quadratic formula...\nx = (−5 ± √(25+24)) / 6\nx = (−5 ± 7) / 6\n\n✓ x = ⅓ or x = −2',
+      'Photosynthesis: 6CO₂ + 6H₂O\n→ C₆H₁₂O₆ + 6O₂\n\nLight-dependent: ATP produced ⚡\nCalvin cycle: CO₂ fixed ✓',
+      'Essay plan for Macbeth:\n1. Power & ambition\n2. Guilt & consequence\n3. Supernatural influence\n\n→ Grade A structure ✓'
+    ];
+    var mi=0;var ci=0;var typing=true;var cursor='<span class="iphone-cursor"></span>';
+    function nextTick(){
+      var m=msgs[mi];
+      if(typing){
+        ci++;
+        phoneEl.innerHTML=m.slice(0,ci).replace(/\n/g,'<br>')+cursor;
+        if(ci>=m.length){typing=false;setTimeout(nextTick,2200);return;}
+        setTimeout(nextTick,28);
+      } else {
+        ci=0;typing=true;mi=(mi+1)%msgs.length;
+        phoneEl.innerHTML=cursor;
+        setTimeout(nextTick,600);
+      }
+    }
+    setTimeout(nextTick,1200);
+  }
+
   /* CURSOR AMBIENT GLOW */
   var gc=document.getElementById('glow-cursor');
   var land=document.getElementById('pg-land');
-  if(gc){
-    document.addEventListener('mousemove',function(e){
-      if(land&&land.style.display==='none')return;
-      gc.style.background='radial-gradient(600px circle at '+e.clientX+'px '+e.clientY+'px,rgba(79,142,247,.05),transparent 40%)';
-    },{passive:true});
+  if(gc&&!rm){
+    var tx=0,ty=0,cx=0,cy=0;
+    document.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;},{passive:true});
+    (function lerp(){
+      cx+=(tx-cx)*.1;cy+=(ty-cy)*.1;
+      if(land&&!land.classList.contains('hidden')){
+        gc.style.background='radial-gradient(650px circle at '+Math.round(cx)+'px '+Math.round(cy)+'px,rgba(79,142,247,.06),rgba(157,92,255,.03) 40%,transparent 65%)';
+      }
+      requestAnimationFrame(lerp);
+    })();
   }
 
   /* STATS COUNTER ANIMATION */
@@ -2249,7 +2638,7 @@ function clearVoice(){voiceTxt='';var t=document.getElementById('v-trans'),rw=do
         countUp('sc-tools',9,'',1200);
         countUp('sc-countries',150,'+',1400);
       }
-    },{threshold:.6});
+    },{threshold:.5});
     sio.observe(sbar);
   }
   function countUp(id,target,suffix,dur){
@@ -2266,11 +2655,45 @@ function clearVoice(){voiceTxt='';var t=document.getElementById('v-trans'),rw=do
     })(t0);
   }
 
-  /* MARQUEE PAUSE ON HOVER — TOUCH DEVICE SKIP */
+  /* MARQUEE PAUSE ON HOVER */
   var mt=document.querySelector('.marquee-track');
   if(mt){
     mt.addEventListener('mouseenter',function(){mt.style.animationPlayState='paused';});
     mt.addEventListener('mouseleave',function(){mt.style.animationPlayState='running';});
+  }
+
+  /* MAGNETIC BUTTONS */
+  if(!rm){
+    document.querySelectorAll('.hbm,.lbp').forEach(function(btn){
+      btn.addEventListener('mousemove',function(e){
+        var r=btn.getBoundingClientRect();
+        var dx=e.clientX-r.left-r.width/2;
+        var dy=e.clientY-r.top-r.height/2;
+        btn.style.transform='translate('+dx*.18+'px,'+dy*.18+'px)';
+      });
+      btn.addEventListener('mouseleave',function(){
+        btn.style.transform='';
+      });
+    });
+  }
+
+  /* PAGE FADE TRANSITIONS — patch showPg */
+  if(!rm&&typeof showPg==='function'){
+    var _orig=showPg;
+    window.showPg=function(id){
+      var cur=document.querySelector('#auth-wrap>div:not(.hidden)');
+      if(cur){
+        cur.style.opacity='0';cur.style.transition='opacity .15s ease';
+        setTimeout(function(){
+          cur.style.opacity='';cur.style.transition='';
+          _orig(id);
+          var nxt=document.getElementById('pg-'+id)||document.getElementById(id);
+          if(nxt){nxt.style.opacity='0';nxt.style.transition='opacity .15s ease';setTimeout(function(){nxt.style.opacity='1';setTimeout(function(){nxt.style.opacity='';nxt.style.transition='';},160);},20);}
+        },160);
+      } else {
+        _orig(id);
+      }
+    };
   }
 })();
 </script>
