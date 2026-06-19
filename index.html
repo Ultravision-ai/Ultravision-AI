@@ -614,6 +614,279 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 /* HERO BG overlay */
 .hero{position:relative;overflow:visible}
 .hh1 em{background:linear-gradient(135deg,#4F8EF7,#9D5CFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic}
+
+/* ═══════════════════════════════════
+   DASHBOARD PREMIUM v4
+═══════════════════════════════════ */
+
+/* ── SKELETON SHIMMER ── */
+@keyframes sk-sh{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.skel{background:linear-gradient(90deg,rgba(255,255,255,.03) 25%,rgba(255,255,255,.07) 50%,rgba(255,255,255,.03) 75%);background-size:800px 100%;animation:sk-sh 1.5s infinite;border-radius:8px}
+
+/* ── TOAST (right-side glass + progress) ── */
+#toast{position:fixed;bottom:24px;right:24px;left:auto;transform:translateY(20px);background:rgba(9,14,30,.97);border:1px solid rgba(79,142,247,.28);color:var(--txt);padding:14px 20px 18px;border-radius:14px;font-size:13px;font-weight:600;opacity:0;transition:all .3s cubic-bezier(.34,1.2,.64,1);z-index:9999;pointer-events:none;max-width:320px;text-align:left;backdrop-filter:blur(24px);box-shadow:0 16px 48px rgba(0,0,0,.5);white-space:normal}
+#toast.show{opacity:1;transform:translateY(0)}
+#toast-bar{position:absolute;bottom:0;left:0;height:3px;background:linear-gradient(90deg,#4F8EF7,#9D5CFF);border-radius:0 0 14px 14px;width:100%;transform-origin:left;transition:width linear}
+@media(max-width:500px){#toast{right:12px;left:12px;max-width:none}}
+
+/* ── MOBILE BOTTOM NAV ── */
+.bnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(7,9,18,.97);border-top:1px solid rgba(79,142,247,.1);backdrop-filter:blur(24px);padding:8px 0 env(safe-area-inset-bottom,8px);justify-content:space-around}
+@media(max-width:767px){.bnav{display:flex}.sidebar{display:none!important}.shell{padding-bottom:64px}}
+.bni{display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 12px;border-radius:12px;cursor:pointer;transition:all .18s;border:none;background:none;color:var(--t3);font-family:var(--font)}
+.bni.active{color:var(--ac)}.bni svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.bni-lbl{font-size:9px;font-weight:600;letter-spacing:.04em}
+.bni-dot{width:4px;height:4px;border-radius:50%;background:var(--ac);display:none}.bni.active .bni-dot{display:block}
+
+/* ── SIDEBAR ACTIVE BAR ── */
+.ni{position:relative;overflow:hidden}
+.ni.active::before{content:'';position:absolute;left:0;top:25%;bottom:25%;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(180deg,#4F8EF7,#9D5CFF)}
+.ni:hover{background:rgba(79,142,247,.05);border-color:rgba(79,142,247,.12);transform:translateX(2px)}
+.ni.active{background:rgba(79,142,247,.09)!important;border-color:rgba(79,142,247,.22)!important}
+
+/* ── SIDEBAR STREAK RING ── */
+.streak-ring-wrap{display:flex;align-items:center;gap:10px}
+.streak-svg{transform:rotate(-90deg)}
+.streak-track{fill:none;stroke:rgba(245,200,66,.12);stroke-width:3}
+.streak-fill{fill:none;stroke:url(#streak-grad);stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.22,1,.36,1)}
+
+/* ── TOPBAR SEARCH ── */
+.tb-search{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.1);border-radius:9px;padding:6px 12px;cursor:pointer;transition:all .2s;color:var(--t3);font-size:11px;font-weight:600}
+.tb-search:hover{border-color:rgba(79,142,247,.32);color:var(--t2);background:rgba(79,142,247,.05)}
+.tb-search kbd{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:5px;padding:1px 5px;font-size:9px;font-family:var(--font);color:var(--t3)}
+.tb-icon-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:9px;border:1px solid rgba(79,142,247,.1);background:rgba(255,255,255,.03);cursor:pointer;transition:all .18s;color:var(--t3)}
+.tb-icon-btn:hover{border-color:rgba(79,142,247,.3);color:var(--txt);background:rgba(79,142,247,.07)}
+.tb-icon-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tb-right-cluster{display:flex;align-items:center;gap:6px}
+
+/* ── DASHBOARD WELCOME CARD ── */
+.wb-v2{background:linear-gradient(145deg,rgba(10,16,35,.97),rgba(7,11,24,.99));border:1px solid rgba(79,142,247,.18);border-radius:20px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;overflow:hidden}
+.wb-v2::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(79,142,247,.55),rgba(157,92,255,.4),transparent)}
+.wb-v2::after{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(79,142,247,.08),transparent 70%);pointer-events:none}
+.wb-streak-ring{width:58px;height:58px;flex-shrink:0}
+.wb-left{display:flex;align-items:center;gap:16px}
+.wb-text .wbg{font-size:20px;font-weight:800;margin-bottom:3px}
+.wb-text .wbs{font-size:12px;color:var(--t2);margin-top:2px}
+.wb-text .wbe{font-size:10px;color:var(--t3);margin-top:1px}
+.wb-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;flex-wrap:wrap}
+.wb-resume{background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.25);color:var(--ac3);padding:9px 16px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .2s}.wb-resume:hover{background:rgba(79,142,247,.18);border-color:rgba(79,142,247,.45)}
+@media(max-width:600px){.wb-v2{flex-direction:column;align-items:flex-start}.wb-actions{width:100%}.wb-actions button,.wb-actions .wbbtn{flex:1;text-align:center}}
+
+/* ── STAT CARD SPARKLINE ── */
+.sc-v2{background:linear-gradient(145deg,rgba(10,16,32,.92),rgba(7,11,22,.97));border:1px solid var(--b1);border-radius:16px;padding:16px 18px;transition:all .22s;position:relative;overflow:hidden;cursor:default}
+.sc-v2:hover{border-color:rgba(79,142,247,.22);transform:translateY(-2px);box-shadow:0 10px 28px rgba(79,142,247,.09)}
+.sc-v2-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
+.sc-v2-lbl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;font-weight:700}
+.sc-v2-trend{font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px}
+.sc-v2-trend.up{color:var(--grn);background:rgba(0,200,150,.1)}
+.sc-v2-trend.neu{color:var(--t3);background:rgba(255,255,255,.04)}
+.sc-v2-val{font-size:28px;font-weight:800;line-height:1;margin-bottom:10px}
+.sc-v2-spark{width:100%;height:28px}
+.sc-v2-sub{font-size:10px;color:var(--t3);margin-top:6px}
+
+/* ── PRO BANNER SHIMMER ── */
+@keyframes gold-shimmer{0%{background-position:-300px 0}100%{background-position:300px 0}}
+.pro-banner-v2{background:linear-gradient(135deg,rgba(240,180,41,.1),rgba(255,140,0,.06),rgba(240,180,41,.08));border:1px solid rgba(240,180,41,.3);border-radius:18px;padding:18px 22px;position:relative;overflow:hidden}
+.pro-banner-v2::before{content:'';position:absolute;top:0;left:-100%;right:-100%;height:1px;background:linear-gradient(90deg,transparent,rgba(240,180,41,.6),transparent);animation:gold-shimmer 3.5s infinite linear}
+.pro-banner-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.pro-banner-icon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,rgba(240,180,41,.2),rgba(255,140,0,.1));border:1px solid rgba(240,180,41,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pro-banner-text-grp{flex:1}
+.pro-banner-title{font-size:14px;font-weight:800;color:var(--gold);margin-bottom:4px}
+.pro-banner-features{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.pro-feat{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(245,200,66,.7);font-weight:600}
+.pro-feat svg{width:11px;height:11px;stroke:var(--gold);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* ── TOOL GRID ICON UPGRADE ── */
+.tcic-svg{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:11px;position:relative;z-index:1}
+.tcic-svg svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tc:hover .tcic-svg svg{transform:scale(1.15);transition:transform .2s cubic-bezier(.34,1.56,.64,1)}
+.tc:hover .tcnm{color:var(--txt)}
+.tc{transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s,border-color .2s}
+
+/* ── TOOL CARD STAGGER ── */
+.tgrid .tc:nth-child(1){animation-delay:.04s}
+.tgrid .tc:nth-child(2){animation-delay:.08s}
+.tgrid .tc:nth-child(3){animation-delay:.12s}
+.tgrid .tc:nth-child(4){animation-delay:.16s}
+.tgrid .tc:nth-child(5){animation-delay:.20s}
+.tgrid .tc:nth-child(6){animation-delay:.24s}
+.tgrid .tc:nth-child(7){animation-delay:.28s}
+.tgrid .tc:nth-child(8){animation-delay:.32s}
+.tgrid .tc:nth-child(9){animation-delay:.36s}
+.tc.tc-anim{animation:tc-in .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes tc-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── ACTIVITY TIMELINE ── */
+.act-timeline{display:flex;flex-direction:column;gap:0}
+.act-item{display:flex;gap:12px;padding:11px 0;position:relative;cursor:default}
+.act-item:not(:last-child)::before{content:'';position:absolute;left:17px;top:44px;bottom:-11px;width:1px;background:rgba(79,142,247,.08)}
+.act-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(255,255,255,.06)}
+.act-icon svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.act-body{flex:1;min-width:0}
+.act-title{font-size:12.5px;font-weight:600;line-height:1.3}
+.act-meta{font-size:10px;color:var(--t3);margin-top:2px}
+.act-empty{text-align:center;padding:28px 16px;color:var(--t3)}
+.act-empty svg{width:36px;height:36px;stroke:var(--t4);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 12px;display:block}
+.act-empty-t{font-size:13px;font-weight:700;color:var(--t3);margin-bottom:4px}
+.act-empty-s{font-size:11px;color:var(--t4)}
+
+/* ── AI TUTOR UPGRADES ── */
+.mchip-v2{border:1px solid rgba(79,142,247,.14);background:rgba(255,255,255,.03);color:var(--t2);border-radius:22px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .18s;display:flex;align-items:center;gap:5px}
+.mchip-v2 svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.mchip-v2.active{background:linear-gradient(135deg,rgba(79,142,247,.2),rgba(157,92,255,.15));border-color:rgba(79,142,247,.5);color:var(--ac)}
+.mchip-v2:hover:not(.active){border-color:rgba(79,142,247,.3);color:var(--txt);background:rgba(79,142,247,.05)}
+.follow-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.follow-chip{border:1px solid rgba(79,142,247,.18);background:rgba(79,142,247,.06);color:var(--ac3);border-radius:16px;padding:5px 12px;font-size:10.5px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .18s}.follow-chip:hover{background:rgba(79,142,247,.14);border-color:rgba(79,142,247,.4)}
+.msg-copy-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:7px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;opacity:0;color:var(--t2);flex-shrink:0;align-self:flex-start;margin-top:6px}
+.mr:hover .msg-copy-btn{opacity:1}.msg-copy-btn:hover{background:rgba(79,142,247,.14);border-color:rgba(79,142,247,.3);color:var(--ac)}
+.msg-copy-btn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.voice-btn{width:44px;height:44px;background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.14);border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .22s;color:var(--t2)}
+.voice-btn:hover{border-color:rgba(79,142,247,.38);color:var(--ac);background:rgba(79,142,247,.07)}
+.voice-btn.rec{border-color:var(--red);color:var(--red);background:rgba(255,68,85,.07);animation:vp 1.5s ease-in-out infinite}
+.voice-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── QUIZ UPGRADES ── */
+.quiz-prog-wrap{padding:0 0 16px}
+.quiz-prog-bar{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-bottom:6px}
+.quiz-prog-fill{height:100%;background:linear-gradient(90deg,#4F8EF7,#9D5CFF);border-radius:2px;transition:width .4s cubic-bezier(.22,1,.36,1)}
+.quiz-prog-text{display:flex;justify-content:space-between;font-size:10px;color:var(--t3);font-weight:600}
+.quiz-streak{display:flex;align-items:center;gap:5px;background:rgba(255,176,48,.08);border:1px solid rgba(255,176,48,.22);border-radius:20px;padding:4px 11px;font-size:11px;font-weight:700;color:var(--warn)}
+.quiz-streak.hidden-v{display:none}
+.quiz-timer{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.12);border-radius:10px;padding:5px 12px;font-size:12px;font-weight:700;color:var(--txt);font-variant-numeric:tabular-nums}
+.quiz-timer svg{width:12px;height:12px;stroke:var(--ac);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.quiz-timer.warn{color:var(--red);border-color:rgba(255,68,85,.3)}
+.qopt{transition:all .18s;cursor:pointer}
+.qopt.ok{animation:q-ok .3s ease}
+.qopt.no{animation:q-no .35s ease}
+@keyframes q-ok{0%{transform:scale(1)}40%{transform:scale(1.02)}100%{transform:scale(1)}}
+@keyframes q-no{0%,20%,40%,60%{transform:translateX(-5px)}10%,30%,50%{transform:translateX(5px)}70%,100%{transform:translateX(0)}}
+.qopt:nth-child(1){animation:qopt-in .25s .05s both cubic-bezier(.22,1,.36,1)}
+.qopt:nth-child(2){animation:qopt-in .25s .1s both cubic-bezier(.22,1,.36,1)}
+.qopt:nth-child(3){animation:qopt-in .25s .15s both cubic-bezier(.22,1,.36,1)}
+.qopt:nth-child(4){animation:qopt-in .25s .2s both cubic-bezier(.22,1,.36,1)}
+@keyframes qopt-in{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.quiz-results{background:linear-gradient(145deg,rgba(10,16,32,.95),rgba(7,11,22,.99));border:1px solid rgba(79,142,247,.15);border-radius:20px;padding:36px 28px;text-align:center;display:none;flex-direction:column;align-items:center;gap:20px}
+.qr-score-ring{width:110px;height:110px;margin:0 auto;position:relative}
+.qr-score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.qr-score-pct{font-size:28px;font-weight:800}
+.qr-grade{display:inline-block;padding:6px 20px;border-radius:22px;font-size:14px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.qr-grade.a-star{background:linear-gradient(135deg,rgba(240,180,41,.2),rgba(255,140,0,.12));border:1px solid rgba(240,180,41,.4);color:var(--gold)}
+.qr-grade.a{background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.3);color:var(--grn)}
+.qr-grade.b{background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.28);color:var(--ac)}
+.qr-grade.c{background:rgba(157,92,255,.1);border:1px solid rgba(157,92,255,.28);color:#c084fc}
+.qr-grade.d{background:rgba(255,68,85,.08);border:1px solid rgba(255,68,85,.22);color:var(--red)}
+.qr-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+.qr-retry-wrong{background:rgba(255,176,48,.08);border:1px solid rgba(255,176,48,.25);color:var(--warn);padding:10px 18px;border-radius:11px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .2s}.qr-retry-wrong:hover{background:rgba(255,176,48,.16)}
+
+/* ── FLASHCARD UPGRADES ── */
+.fc-streak-bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.fc-streak{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--warn)}
+.fc-streak svg{width:13px;height:13px;stroke:var(--warn);fill:rgba(255,176,48,.4);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fc-tts-btn{background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.12);color:var(--t2);width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s}
+.fc-tts-btn:hover{border-color:rgba(79,142,247,.35);color:var(--ac)}
+.fc-tts-btn.active{border-color:rgba(0,212,170,.4);color:var(--grn);background:rgba(0,212,170,.08)}
+.fc-tts-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fcpb-dual{height:5px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;display:flex;gap:1px}
+.fcpb-know{height:100%;background:var(--grn);border-radius:3px;transition:width .4s cubic-bezier(.22,1,.36,1)}
+.fcpb-review{height:100%;background:var(--warn);border-radius:3px;transition:width .4s cubic-bezier(.22,1,.36,1)}
+.fc-completion{position:fixed;inset:0;z-index:999;background:rgba(4,6,14,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:20px;backdrop-filter:blur(12px)}
+.fc-completion.show{display:flex}
+.fc-comp-card{background:linear-gradient(145deg,rgba(10,16,32,.98),rgba(7,11,22,.99));border:1px solid rgba(79,142,247,.22);border-radius:24px;padding:44px 40px;text-align:center;max-width:380px;position:relative;overflow:hidden}
+.fc-comp-score{font-size:52px;font-weight:800;background:linear-gradient(135deg,#4F8EF7,#9D5CFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+.confetti-burst{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4F8EF7,#9D5CFF,#00D4AA,#FFB800);animation:conf-sh 0.6s ease forwards}
+@keyframes conf-sh{0%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1.5)}}
+.fc-swipe-hint{text-align:center;font-size:10px;color:var(--t4);font-weight:600;letter-spacing:.06em;margin-top:2px;display:flex;align-items:center;justify-content:center;gap:18px}
+.fc-swipe-arrow{display:flex;align-items:center;gap:3px}
+
+/* ── ESSAY SPLIT ── */
+.essay-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;height:100%}
+@media(max-width:700px){.essay-split{grid-template-columns:1fr}}
+.essay-editor-col{display:flex;flex-direction:column;gap:10px}
+.essay-panel-col{display:flex;flex-direction:column;gap:10px;overflow-y:auto}
+.essay-meta-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.essay-wc{font-size:11px;font-weight:700;color:var(--t2);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:7px;padding:3px 10px}
+.essay-rt{font-size:11px;font-weight:600;color:var(--t3)}
+.essay-grade-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 13px;border-radius:18px;font-size:12px;font-weight:800;opacity:0;transform:scale(.8);transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.essay-grade-badge.show{opacity:1;transform:scale(1)}
+.essay-grade-badge.astar{background:linear-gradient(135deg,rgba(240,180,41,.2),rgba(255,140,0,.12));border:1px solid rgba(240,180,41,.4);color:var(--gold)}
+.essay-grade-badge.a{background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.3);color:var(--grn)}
+.essay-grade-badge.b{background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.28);color:var(--ac)}
+.ebtn-v2{background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.12);color:var(--t2);padding:9px 13px;border-radius:11px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .2s;display:flex;align-items:center;gap:7px}
+.ebtn-v2 svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.ebtn-v2:hover{border-color:rgba(79,142,247,.38);color:var(--ac);background:rgba(79,142,247,.07)}
+.ebtn-v2:disabled{opacity:.4;cursor:not-allowed}
+.essay-panel-empty{font-size:12px;color:var(--t3);text-align:center;padding:28px 16px;line-height:1.7}
+
+/* ── HOMEWORK STEP CARDS ── */
+.hw-step-card{background:rgba(255,255,255,.03);border:1px solid rgba(79,142,247,.1);border-radius:14px;padding:16px;display:flex;gap:13px;align-items:flex-start;transition:border-color .2s}
+.hw-step-card:hover{border-color:rgba(79,142,247,.22)}
+.hw-step-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,rgba(79,142,247,.2),rgba(157,92,255,.15));border:1px solid rgba(79,142,247,.3);color:var(--ac);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hw-step-body{flex:1}
+.hw-step-text{font-size:13px;line-height:1.68;color:var(--txt)}
+.hw-why-btn{display:flex;align-items:center;gap:5px;margin-top:9px;font-size:10px;font-weight:700;color:var(--t3);cursor:pointer;border:none;background:none;font-family:var(--font);padding:0;transition:color .18s}
+.hw-why-btn:hover{color:var(--ac)}
+.hw-why-btn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.hw-why-btn.open svg{transform:rotate(90deg)}
+.hw-why-content{max-height:0;overflow:hidden;transition:max-height .3s cubic-bezier(.4,0,.2,1);font-size:12px;color:var(--t2);line-height:1.68;margin-top:0}
+.hw-why-content.open{max-height:200px;margin-top:8px}
+.hw-answer-box{background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(79,142,247,.06));border:1px solid rgba(0,212,170,.25);border-left:3px solid var(--grn);border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:4px}
+.hw-answer-text{font-size:14px;font-weight:700;color:var(--txt);flex:1}
+.hw-copy-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:7px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;color:var(--t2);flex-shrink:0}
+.hw-copy-btn:hover{background:rgba(79,142,247,.12);border-color:rgba(79,142,247,.3);color:var(--ac)}
+.hw-copy-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hw-similar{background:rgba(255,255,255,.03);border:1px solid rgba(79,142,247,.1);border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;transition:all .2s;display:none}
+.hw-similar:hover{border-color:rgba(79,142,247,.28);background:rgba(79,142,247,.05)}
+.hw-similar-label{font-size:11px;font-weight:700;color:var(--ac3)}
+.hw-similar-q{font-size:12px;color:var(--t2);margin-top:2px}
+.hwdrop{transition:all .25s}
+.hwdrop.drag-over{border-color:var(--ac)!important;background:rgba(79,142,247,.08)!important;transform:scale(1.01)}
+
+/* ── PAST PAPERS FILTER CHIPS ── */
+.pp-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.pp-chip{background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.12);color:var(--t2);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .18s}
+.pp-chip.active{background:rgba(79,142,247,.15);border-color:rgba(79,142,247,.45);color:var(--ac)}
+.pp-chip:hover:not(.active){border-color:rgba(79,142,247,.28);color:var(--txt)}
+.pp-v2{background:rgba(255,255,255,.03);border:1px solid rgba(79,142,247,.1);border-radius:16px;padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden}
+.pp-v2:hover{border-color:rgba(79,142,247,.3);background:rgba(79,142,247,.05);transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,142,247,.09)}
+.pp-v2 .pp-clr-bar{position:absolute;left:0;top:0;bottom:0;width:3px}
+.pp-v2-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pp-v2-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pp-v2-info{flex:1;min-width:0}
+.pp-v2-title{font-size:13px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pp-v2-meta{font-size:10px;color:var(--t3);margin-bottom:6px}
+.grade-bound-bar{display:flex;height:4px;border-radius:2px;overflow:hidden;gap:1px;width:100%;max-width:200px}
+.gb-seg{flex:1;border-radius:1px}
+.gb-u{background:rgba(255,68,85,.5)}.gb-d{background:rgba(255,120,48,.55)}.gb-c{background:rgba(255,176,48,.55)}.gb-b{background:rgba(79,142,247,.6)}.gb-a{background:rgba(0,200,150,.6)}.gb-astar{background:linear-gradient(90deg,#FFB800,#FF7700)}
+
+/* ── SMART NOTES UPGRADE ── */
+.nab-v2{background:rgba(255,255,255,.04);border:1px solid rgba(79,142,247,.12);color:var(--t2);padding:7px 12px;border-radius:10px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .2s;display:flex;align-items:center;gap:6px}
+.nab-v2 svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.nab-v2:hover{border-color:rgba(79,142,247,.38);color:var(--ac);background:rgba(79,142,247,.07)}
+
+/* ── VOICE NOTES WAVEFORM ── */
+.v-waveform{display:flex;align-items:center;gap:3px;height:40px;justify-content:center;margin:8px 0}
+.v-wbar{width:3px;border-radius:2px;background:rgba(79,142,247,.3);transition:height .15s ease}
+.vring.rec .v-wbar{background:var(--red)}
+.v-timer{font-size:18px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--txt);letter-spacing:.03em}
+.vicon-svg{width:48px;height:48px;stroke:var(--t2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.vring.rec .vicon-svg{stroke:var(--red)}
+
+/* ── YT SUMMARISER UPGRADE ── */
+.yt-demo-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,79,107,.15);color:var(--t2);padding:6px 12px;border-radius:9px;font-size:10px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .2s}
+.yt-demo-btn:hover{border-color:rgba(255,79,107,.35);color:var(--txt);background:rgba(255,79,107,.07)}
+.yt-info-card{background:rgba(255,79,107,.05);border:1px solid rgba(255,79,107,.15);border-radius:14px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.yt-info-card svg{width:20px;height:20px;stroke:var(--red);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:1px}
+
+/* ── ADMIN UPGRADE ── */
+.admb-v2{background:linear-gradient(135deg,rgba(240,180,41,.1),rgba(255,140,0,.05));border:1px solid rgba(240,180,41,.25);border-radius:18px;padding:18px 22px;display:flex;align-items:center;gap:16px}
+.admb-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,rgba(240,180,41,.2),rgba(255,140,0,.1));border:1px solid rgba(240,180,41,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.admb-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── GENERAL ── */
+@keyframes pop-in{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.pop-in{animation:pop-in .25s cubic-bezier(.34,1.56,.64,1)}
+code{background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.2);border-radius:5px;padding:2px 7px;font-family:monospace;font-size:12px;color:var(--ac3)}
+pre{background:rgba(255,255,255,.03);border:1px solid rgba(79,142,247,.12);border-radius:10px;padding:14px;font-size:12px;line-height:1.7;overflow-x:auto;color:var(--t2)}
+@media(prefers-reduced-motion:reduce){.quiz-prog-fill,.fcpb-know,.fcpb-review,.essay-grade-badge{transition:none!important}}
 </style>
 </head>
 <body>
@@ -1326,7 +1599,7 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 <div class="sidebar" id="sidebar"><div class="sbin">
   <div class="sbh">
     <div class="sbl">
-      <div class="sblm">⚡</div>
+      <div class="sblm"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="13.5" y2="1"/><line x1="14" y1="2" x2="15.5" y2="0.5"/></svg></div>
       <div>
         <div class="sblt">Ultra<span>Vision</span> AI</div>
         <div class="sblt-s">Study Platform</div>
@@ -1352,60 +1625,183 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     <div class="ni adni hidden" id="ni-a" onclick="goV('admin',this)"><svg class="nic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nlb">Admin Dashboard</span><span class="nbdg gold">ADMIN</span></div>
     <div class="ni" onclick="document.getElementById('pro-mol').classList.add('show')" style="background:linear-gradient(135deg,rgba(245,200,66,.12),rgba(255,185,64,.06));border:1px solid rgba(245,200,66,.25);margin-bottom:6px">
   <svg class="nic" style="color:var(--gold)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-  <span class="nlb" style="color:var(--gold);font-weight:700">Upgrade to Pro ⚡</span>
+  <span class="nlb" style="color:var(--gold);font-weight:700">Upgrade to Pro</span><svg width="11" height="11" viewBox="0 0 24 24" fill="var(--gold)" stroke="none" style="flex-shrink:0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
 </div>
     <div class="sbsec">Account</div>
     <div class="ni" onclick="doLogout()"><svg class="nic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="nlb">Sign out</span></div>
   </div>
-  <div class="sbfoot"><div class="stc"><div style="font-size:24px">🔥</div><div><div class="slbl3">Day streak</div><div class="snum" id="sb-streak">1</div></div><div style="font-size:11px;color:rgba(245,200,66,.4);margin-left:auto">days</div></div></div>
+  <div class="sbfoot"><div class="stc"><div class="streak-ring-wrap">
+    <svg class="wb-streak-ring" width="44" height="44" viewBox="0 0 44 44">
+      <defs><linearGradient id="streak-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FF7700"/></linearGradient></defs>
+      <circle class="streak-track" cx="22" cy="22" r="17"/>
+      <circle class="streak-fill" id="sb-streak-ring" cx="22" cy="22" r="17" stroke-dasharray="107" stroke-dashoffset="75"/>
+    </svg>
+  </div><div><div class="slbl3">Day streak</div><div class="snum" id="sb-streak">1</div></div><div style="font-size:11px;color:rgba(245,200,66,.4);margin-left:auto">days</div></div></div>
 </div></div>
 
 <div class="main">
 <!-- DASHBOARD -->
 <div id="v-dashboard" class="view active">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">Dashboard</div><div class="pgs" id="dash-date"></div></div></div><div class="tbr"><button class="tbtn pri" onclick="goV('tutor',document.getElementById('ni-t'))">+ Start studying</button></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">Dashboard</div><div class="pgs" id="dash-date"></div></div></div><div class="tbr tb-right-cluster"><button class="tb-search" onclick="document.getElementById('chat-ta')&&document.getElementById('chat-ta').focus()" title="Search / Go to AI Tutor"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span style="display:none" class="tb-srch-lbl">Quick ask</span><kbd>⌘K</kbd></button><button class="tb-icon-btn" title="Notifications"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button><button class="tb-icon-btn" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="tbtn pri" onclick="goV('tutor',document.getElementById('ni-t'))">+ Start studying</button></div></div>
   <div class="content">
-    <div class="wb"><div style="position:relative;z-index:1"><div class="wbg">Good to see you, <em id="dash-name">Student</em> 👋</div><div class="wbs">Your AI study suite is ready — 9 tools available.</div><div class="wbe" id="dash-info"></div></div><button class="wbbtn" onclick="goV('tutor',document.getElementById('ni-t'))">Open AI Tutor →</button></div>
-    <div class="srow">
-      <div class="sc"><div class="scl">Sessions</div><div class="scv" style="color:var(--ac)" id="st-s">0</div><div class="scs">Today</div></div>
-      <div class="sc"><div class="scl">Quiz avg</div><div class="scv" style="color:var(--grn)" id="st-a">—</div><div class="scs">All time</div></div>
-      <div class="sc"><div class="scl">Cards done</div><div class="scv" style="color:var(--gold)" id="st-c">0</div><div class="scs">Flashcards</div></div>
-      <div class="sc"><div class="scl">Day streak</div><div class="scv" style="color:var(--warn)" id="st-r">🔥 1</div><div class="scs">Keep going!</div></div>
+    <!-- Welcome Card -->
+    <div class="wb-v2">
+      <div class="wb-left">
+        <svg class="wb-streak-ring" width="58" height="58" viewBox="0 0 58 58">
+          <defs><linearGradient id="wsr-g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FF7700"/></linearGradient></defs>
+          <circle cx="29" cy="29" r="23" fill="none" stroke="rgba(240,180,41,.1)" stroke-width="4"/>
+          <circle id="wb-ring-fill" cx="29" cy="29" r="23" fill="none" stroke="url(#wsr-g)" stroke-width="4" stroke-linecap="round" stroke-dasharray="145" stroke-dashoffset="100" transform="rotate(-90 29 29)"/>
+          <text x="29" y="34" text-anchor="middle" font-size="13" font-weight="800" fill="#F0B429" font-family="Inter,sans-serif" id="wb-streak-lbl">1</text>
+        </svg>
+        <div class="wb-text">
+          <div class="wbg">Good to see you, <em id="dash-name">Student</em></div>
+          <div class="wbs">Your AI study suite is ready — 9 tools available.</div>
+          <div class="wbe" id="dash-info"></div>
+        </div>
+      </div>
+      <div class="wb-actions">
+        <button class="wb-resume" onclick="goV('tutor',document.getElementById('ni-t'))">Resume session →</button>
+        <button class="wbbtn" onclick="goV('tutor',document.getElementById('ni-t'))">Open AI Tutor →</button>
+      </div>
     </div>
-    <div class="upc" style="background:linear-gradient(135deg,rgba(245,200,66,.12),rgba(79,142,247,.08));border:1px solid rgba(245,200,66,.3);border-radius:18px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-  <div>
-    <div style="font-size:15px;font-weight:800;color:var(--gold);margin-bottom:4px">⚡ UltraVision Pro</div>
-    <div style="font-size:12px;color:var(--t2);line-height:1.55">Unlimited AI · Photo solver · Mock exams · Grade predictor · PDF downloads · and much more</div>
-  </div>
-  <button class="upb" onclick="document.getElementById('pro-mol').classList.add('show')" style="background:linear-gradient(135deg,var(--gold),var(--gwarm));color:#040610;padding:11px 22px;border-radius:11px;font-size:12px;font-weight:800;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0">View Pro Plan ⚡</button>
-</div>
-    <div><div class="sect">All 9 Study Tools</div><div class="tgrid">
-      <div class="tc c1" onclick="goV('tutor',document.getElementById('ni-t'))"><div class="tcic" style="background:rgba(85,133,255,.16);border:1px solid rgba(85,133,255,.3)">🎓</div><div class="tcnm">AI Tutor</div><div class="tcds">Expert teaching, any subject, any language</div></div>
-      <div class="tc c2" onclick="goV('quiz',document.getElementById('ni-q'))"><div class="tcic" style="background:rgba(160,123,255,.16);border:1px solid rgba(160,123,255,.3)">📝</div><div class="tcnm">Quiz Generator</div><div class="tcds">Instant AI questions and marking</div></div>
-      <div class="tc c3" onclick="goV('flashcards',document.getElementById('ni-f'))"><div class="tcic" style="background:rgba(245,200,66,.16);border:1px solid rgba(245,200,66,.3)">🃏</div><div class="tcnm">Flashcards</div><div class="tcds">Smart AI revision cards</div></div>
-      <div class="tc c4" onclick="goV('essay',document.getElementById('ni-e'))"><div class="tcic" style="background:rgba(0,232,168,.16);border:1px solid rgba(0,232,168,.3)">✍️</div><div class="tcnm">Essay Helper</div><div class="tcds">Feedback, plans and grade prediction</div></div>
-      <div class="tc c5" onclick="goV('homework',document.getElementById('ni-h'))"><div class="tcic" style="background:rgba(255,176,48,.16);border:1px solid rgba(255,176,48,.3)">✅</div><div class="tcnm">Homework Solver</div><div class="tcds">Full step-by-step solutions</div></div>
-      <div class="tc c6" onclick="goV('papers',document.getElementById('ni-p'))"><div class="tcic" style="background:rgba(255,79,107,.16);border:1px solid rgba(255,79,107,.3)">📚</div><div class="tcnm">Past Papers</div><div class="tcds">GCSE and A-Level papers</div></div>
-      <div class="tc c7" onclick="goV('youtube',document.getElementById('ni-yt'))"><div class="tcic" style="background:rgba(0,212,240,.16);border:1px solid rgba(0,212,240,.3)">▶️</div><div class="tcnm">YT Summariser</div><div class="tcds">Summarise any YouTube video</div></div>
-      <div class="tc c8" onclick="goV('notes',document.getElementById('ni-n'))"><div class="tcic" style="background:rgba(255,107,170,.16);border:1px solid rgba(255,107,170,.3)">📓</div><div class="tcnm">Smart Notes</div><div class="tcds">AI-powered note taking</div></div>
-      <div class="tc c4" onclick="goV('voice',document.getElementById('ni-v'))"><div class="tcic" style="background:rgba(0,232,168,.16);border:1px solid rgba(0,232,168,.3)">🎙️</div><div class="tcnm">Voice Notes</div><div class="tcds">Record and transcribe in any language</div></div>
-    </div></div>
-    <div><div class="sect">Recent Activity</div><div class="rlist" id="rec-list"><div class="ri"><div class="rid" style="background:var(--t3)"></div><div class="rit" style="color:var(--t2)">No activity yet — choose a tool and start studying!</div></div></div></div>
+
+    <!-- Stats Row -->
+    <div class="srow">
+      <div class="sc-v2">
+        <div class="sc-v2-top"><span class="sc-v2-lbl">Sessions today</span><span class="sc-v2-trend up" id="st-s-trend">+0%</span></div>
+        <div class="sc-v2-val" style="color:var(--ac)" id="st-s">0</div>
+        <svg class="sc-v2-spark" id="spark-s" viewBox="0 0 80 28" preserveAspectRatio="none"></svg>
+        <div class="sc-v2-sub">This week</div>
+      </div>
+      <div class="sc-v2">
+        <div class="sc-v2-top"><span class="sc-v2-lbl">Quiz average</span><span class="sc-v2-trend neu">All time</span></div>
+        <div class="sc-v2-val" style="color:var(--grn)" id="st-a">—</div>
+        <svg class="sc-v2-spark" id="spark-a" viewBox="0 0 80 28" preserveAspectRatio="none"></svg>
+        <div class="sc-v2-sub">Across all quizzes</div>
+      </div>
+      <div class="sc-v2">
+        <div class="sc-v2-top"><span class="sc-v2-lbl">Cards mastered</span><span class="sc-v2-trend up" id="st-c-trend">Total</span></div>
+        <div class="sc-v2-val" style="color:var(--gold)" id="st-c">0</div>
+        <svg class="sc-v2-spark" id="spark-c" viewBox="0 0 80 28" preserveAspectRatio="none"></svg>
+        <div class="sc-v2-sub">Flashcards</div>
+      </div>
+      <div class="sc-v2">
+        <div class="sc-v2-top"><span class="sc-v2-lbl">Day streak</span><span class="sc-v2-trend up">Active</span></div>
+        <div class="sc-v2-val" style="color:var(--warn);display:flex;align-items:center;gap:6px" id="st-r"><svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,176,48,.5)" stroke="var(--warn)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 0-5 5-5 10a5 5 0 0 0 10 0c0-5-5-10-5-10z"/></svg>1</div>
+        <svg class="sc-v2-spark" id="spark-r" viewBox="0 0 80 28" preserveAspectRatio="none"></svg>
+        <div class="sc-v2-sub">Keep going!</div>
+      </div>
+    </div>
+
+    <!-- Pro Banner -->
+    <div class="pro-banner-v2">
+      <div class="pro-banner-inner">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex:1">
+          <div class="pro-banner-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--gold)" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="pro-banner-text-grp">
+            <div class="pro-banner-title">UltraVision Pro — Unlock everything</div>
+            <div class="pro-banner-features">
+              <div class="pro-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited AI</div>
+              <div class="pro-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Photo solver</div>
+              <div class="pro-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Mock exams</div>
+              <div class="pro-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Grade predictor</div>
+              <div class="pro-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>PDF downloads</div>
+            </div>
+          </div>
+        </div>
+        <button class="upb" onclick="document.getElementById('pro-mol').classList.add('show')" style="background:linear-gradient(135deg,var(--gold),var(--gwarm));color:#040610;padding:11px 22px;border-radius:11px;font-size:12px;font-weight:800;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;box-shadow:0 6px 22px rgba(240,180,41,.4)">View Pro Plan →</button>
+      </div>
+    </div>
+
+    <!-- Tools Grid -->
+    <div>
+      <div class="sect">All 9 Study Tools</div>
+      <div class="tgrid">
+        <div class="tc c1 tc-anim" onclick="goV('tutor',document.getElementById('ni-t'))">
+          <div class="tcic-svg" style="background:rgba(85,133,255,.16);border:1px solid rgba(85,133,255,.3);color:#5585FF">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="tcnm">AI Tutor</div><div class="tcds">Expert teaching, any subject, any language</div>
+        </div>
+        <div class="tc c2 tc-anim" onclick="goV('quiz',document.getElementById('ni-q'))">
+          <div class="tcic-svg" style="background:rgba(160,123,255,.16);border:1px solid rgba(160,123,255,.3);color:#A07BFF">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="tcnm">Quiz Generator</div><div class="tcds">Instant AI questions with instant marking</div>
+        </div>
+        <div class="tc c3 tc-anim" onclick="goV('flashcards',document.getElementById('ni-f'))">
+          <div class="tcic-svg" style="background:rgba(245,200,66,.16);border:1px solid rgba(245,200,66,.3);color:#F5C842">
+            <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          </div>
+          <div class="tcnm">Flashcards</div><div class="tcds">3D flip cards — swipe to master topics</div>
+        </div>
+        <div class="tc c4 tc-anim" onclick="goV('essay',document.getElementById('ni-e'))">
+          <div class="tcic-svg" style="background:rgba(0,232,168,.16);border:1px solid rgba(0,232,168,.3);color:#00E8A8">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="tcnm">Essay Helper</div><div class="tcds">Live feedback, plans and grade prediction</div>
+        </div>
+        <div class="tc c5 tc-anim" onclick="goV('homework',document.getElementById('ni-h'))">
+          <div class="tcic-svg" style="background:rgba(255,176,48,.16);border:1px solid rgba(255,176,48,.3);color:#FFB030">
+            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div class="tcnm">Homework Solver</div><div class="tcds">Full step-by-step solutions, any question</div>
+        </div>
+        <div class="tc c6 tc-anim" onclick="goV('papers',document.getElementById('ni-p'))">
+          <div class="tcic-svg" style="background:rgba(255,79,107,.16);border:1px solid rgba(255,79,107,.3);color:#FF4F6B">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <div class="tcnm">Past Papers</div><div class="tcds">GCSE and A-Level papers with AI help</div>
+        </div>
+        <div class="tc c7 tc-anim" onclick="goV('youtube',document.getElementById('ni-yt'))">
+          <div class="tcic-svg" style="background:rgba(0,212,240,.16);border:1px solid rgba(0,212,240,.3);color:#00C4F0">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="tcnm">YT Summariser</div><div class="tcds">Paste any YouTube URL, get revision notes</div>
+        </div>
+        <div class="tc c8 tc-anim" onclick="goV('notes',document.getElementById('ni-n'))">
+          <div class="tcic-svg" style="background:rgba(255,107,170,.16);border:1px solid rgba(255,107,170,.3);color:#FF6BAA">
+            <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <div class="tcnm">Smart Notes</div><div class="tcds">Write notes, let AI enhance and quiz you</div>
+        </div>
+        <div class="tc c4 tc-anim" onclick="goV('voice',document.getElementById('ni-v'))">
+          <div class="tcic-svg" style="background:rgba(0,232,168,.16);border:1px solid rgba(0,232,168,.3);color:#00E8A8">
+            <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <div class="tcnm">Voice Notes</div><div class="tcds">Record and transcribe in any language</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div>
+      <div class="sect">Recent Activity</div>
+      <div class="act-timeline" id="rec-list">
+        <div class="act-empty">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <div class="act-empty-t">No activity yet</div>
+          <div class="act-empty-s">Open any tool to start your study session</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- TUTOR -->
 <div id="v-tutor" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">AI Tutor</div><div class="pgs" id="tutor-sub">Expert teaching — any subject, any level, any language</div></div></div><div class="tbr"><button class="tbtn" onclick="clearChat()">Clear</button></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">AI Tutor</div><div class="pgs" id="tutor-sub">Expert teaching — any subject, any level, any language</div></div></div><div class="tbr"><button class="tbtn" onclick="clearChat()">Clear</button></div></div>
   <div class="content" style="gap:9px">
     <div class="mbar">
-      <button class="mchip active" onclick="setMode(this,'tutor')">🎓 Tutor</button>
-      <button class="mchip" onclick="setMode(this,'explain')">💡 Explain</button>
-      <button class="mchip" onclick="setMode(this,'simplify')">🧩 Simplify</button>
-      <button class="mchip" onclick="setMode(this,'exam')">📋 Exam tips</button>
-      <button class="mchip" onclick="setMode(this,'check')">✅ Check answer</button>
-      <button class="mchip" onclick="setMode(this,'concise')">⚡ Concise</button>
-      <button class="mchip" onclick="setMode(this,'translate')">🌍 Translate</button>
+      <button class="mchip-v2 active" onclick="setMode(this,'tutor')"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Tutor</button>
+      <button class="mchip-v2" onclick="setMode(this,'explain')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Explain</button>
+      <button class="mchip-v2" onclick="setMode(this,'simplify')"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Simplify</button>
+      <button class="mchip-v2" onclick="setMode(this,'exam')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Exam tips</button>
+      <button class="mchip-v2" onclick="setMode(this,'check')"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Check answer</button>
+      <button class="mchip-v2" onclick="setMode(this,'concise')"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Concise</button>
+      <button class="mchip-v2" onclick="setMode(this,'translate')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Translate</button>
     </div>
     <div class="qchips">
       <button class="qc" onclick="qs('Explain the causes of World War 1 for GCSE History')">WW1 causes</button>
@@ -1419,14 +1815,14 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     </div>
     <div class="cwrap">
       <div class="msgs" id="chat-msgs"><div class="mr"><div class="mav ai">UV</div><div class="bub ai">Hi! I'm your <strong>UltraVision AI Tutor</strong> 👋<br><br>I give <strong>focused, precise answers</strong> — no fluff, just what you need to know and why. Ask me anything in any language! 📚</div></div></div>
-      <div class="ibar"><textarea class="cta2" id="chat-ta" placeholder="Ask anything in any language — any subject, any topic, any level..." rows="1" onkeydown="chatKey(event)" oninput="grow(this)"></textarea><button class="sbtn2" id="sbtn2" onclick="sendMsg()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div>
+      <div class="ibar"><textarea class="cta2" id="chat-ta" placeholder="Ask anything — any subject, any language, any level..." rows="1" onkeydown="chatKey(event)" oninput="grow(this)"></textarea><button class="voice-btn" id="voice-input-btn" onclick="startVoiceInput()" title="Voice input" aria-label="Voice input"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button><button class="sbtn2" id="sbtn2" onclick="sendMsg()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div>
     </div>
   </div>
 </div>
 
 <!-- QUIZ -->
 <div id="v-quiz" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">Quiz Generator</div><div class="pgs">AI exam questions with instant marking and detailed explanations</div></div></div><div class="tbr"><button class="tbtn" onclick="resetQuiz()">New quiz</button></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">Quiz Generator</div><div class="pgs">AI exam questions with instant marking and detailed explanations</div></div></div><div class="tbr"><button class="tbtn" onclick="resetQuiz()">New quiz</button></div></div>
   <div class="content">
     <div class="sp" id="quiz-setup">
       <div class="sg3">
@@ -1440,97 +1836,252 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       </div>
       <div style="margin-bottom:15px"><label class="flbl2">Difficulty</label><div style="display:flex;gap:8px"><button class="dbtn tbtn" onclick="setDiff(this,'easy')" style="padding:8px 16px">🟢 Easy</button><button class="dbtn tbtn" style="background:rgba(85,133,255,.15);border-color:rgba(85,133,255,.4);color:var(--ac)" onclick="setDiff(this,'medium')" style="padding:8px 16px">🟡 Medium</button><button class="dbtn tbtn" onclick="setDiff(this,'hard')" style="padding:8px 16px">🔴 Hard</button></div></div> <button class="abt" id="q-btn" onclick="genQuiz()">Generate Quiz →</button>
     </div>
+    <div id="quiz-prog" class="quiz-prog-wrap" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px">
+        <div class="quiz-prog-text" style="flex:1"><span id="q-prog-txt">Question 1 of 10</span></div>
+        <div class="quiz-streak quiz-streak hidden-v" id="q-streak-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,176,48,.5)" stroke="var(--warn)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 0-5 5-5 10a5 5 0 0 0 10 0c0-5-5-10-5-10z"/></svg><span id="q-streak-txt">3 in a row!</span></div>
+        <div class="quiz-timer" id="q-timer" style="display:none"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="q-timer-val">30</span>s</div>
+      </div>
+      <div class="quiz-prog-bar"><div class="quiz-prog-fill" id="q-prog-fill" style="width:10%"></div></div>
+    </div>
     <div id="quiz-area" style="display:none;flex-direction:column;gap:13px"></div>
+    <div class="quiz-results" id="quiz-results">
+      <div style="font-size:13px;font-weight:700;color:var(--t2)">Quiz complete!</div>
+      <div class="qr-score-ring">
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="6"/>
+          <circle id="qr-ring" cx="55" cy="55" r="46" fill="none" stroke="url(#qr-grad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" transform="rotate(-90 55 55)" style="transition:stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)"/>
+          <defs><linearGradient id="qr-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#4F8EF7"/><stop offset="100%" stop-color="#9D5CFF"/></linearGradient></defs>
+        </svg>
+        <div class="qr-score-num"><span class="qr-score-pct" id="qr-pct">0%</span><span style="font-size:10px;color:var(--t3);font-weight:600">score</span></div>
+      </div>
+      <div class="qr-grade b" id="qr-grade">Grade B</div>
+      <div style="font-size:12px;color:var(--t2);text-align:center;max-width:280px;line-height:1.65" id="qr-msg">Good effort! Review the questions you missed to improve your grade.</div>
+      <div class="qr-actions">
+        <button class="abt" onclick="resetQuiz()">New quiz →</button>
+        <button class="qr-retry-wrong" id="qr-retry-btn" onclick="retryWrong()">Retry wrong answers</button>
+        <button class="tbtn" onclick="goV('flashcards',document.getElementById('ni-f'))">Make flashcards</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- FLASHCARDS -->
 <div id="v-flashcards" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">Flashcards</div><div class="pgs">AI revision cards — tap to flip, track your progress</div></div></div><div class="tbr"><button class="abt" onclick="genCards()">Generate cards</button></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">Flashcards</div><div class="pgs">AI revision cards — tap to flip, track your progress</div></div></div><div class="tbr"><button class="abt" onclick="genCards()">Generate cards</button></div></div>
   <div class="content">
     <div class="fcbar">
       <select class="fsel" id="fc-s" style="width:145px"><option>Biology</option><option>Chemistry</option><option>Physics</option><option>Mathematics</option><option>History</option><option>English Literature</option><option>Geography</option><option>Psychology</option><option>Computer Science</option><option>Economics</option><option>French</option><option>Spanish</option><option>Sociology</option></select>
       <input class="finp" id="fc-t" placeholder="Topic e.g. Cell division, WW2, Quadratics..." style="flex:1;min-width:0">
       <select class="fsel" id="fc-l" style="width:108px"><option>KS3</option><option>GCSE</option><option>A-Level</option><option>University</option></select>
     </div>
-    <div class="fczone" onclick="flipCard()"><div class="fccard" id="fc-card"><div class="fcface front"><div class="fclbl">Question</div><div class="fctxt" id="fc-front">Generate cards to begin your revision</div><div class="fchint" id="fc-hint">Choose a subject and topic, then click Generate</div></div><div class="fcface back"><div class="fclbl">Answer</div><div class="fctxt" id="fc-back">—</div></div></div></div>
-    <div class="fcpb"><div class="fcpf" id="fc-pf" style="width:0%"></div></div>
-    <div class="fcctrl"><button class="fcbtn un" onclick="rateCard('unsure')">🤔 Not sure</button><button class="fcbtn" onclick="prevCard()">← Prev</button><div class="fcctr" id="fc-ctr">0 / 0</div><button class="fcbtn" onclick="nextCard()">Next →</button><button class="fcbtn kn" onclick="rateCard('know')">✓ Got it!</button></div>
+    <div class="fc-streak-bar">
+      <div class="fc-streak" id="fc-streak"><svg viewBox="0 0 24 24"><path d="M12 2c0 0-5 5-5 10a5 5 0 0 0 10 0c0-5-5-10-5-10z"/></svg><span id="fc-streak-num">0</span> in a row</div>
+      <button class="fc-tts-btn" id="fc-tts-btn" onclick="fcSpeak()" title="Read aloud">
+        <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+    </div>
+    <div class="fczone" id="fc-zone" onclick="flipCard()"><div class="fccard" id="fc-card"><div class="fcface front"><div class="fclbl">Question</div><div class="fctxt" id="fc-front">Generate cards to begin your revision</div><div class="fchint" id="fc-hint">Choose a subject and topic, then click Generate</div></div><div class="fcface back"><div class="fclbl">Answer</div><div class="fctxt" id="fc-back">—</div></div></div></div>
+    <div class="fc-swipe-hint">
+      <span class="fc-swipe-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Review</span>
+      <span>Swipe to rate · Space to flip</span>
+      <span class="fc-swipe-arrow">Know <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </div>
+    <div class="fcpb-dual"><div class="fcpb-know" id="fc-pf-know" style="width:0%"></div><div class="fcpb-review" id="fc-pf-review" style="width:0%"></div></div>
+    <div class="fcctrl">
+      <button class="fcbtn un" onclick="rateCard('unsure')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Not sure</button>
+      <button class="fcbtn" onclick="prevCard()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="fcctr" id="fc-ctr">0 / 0</div>
+      <button class="fcbtn" onclick="nextCard()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+      <button class="fcbtn kn" onclick="rateCard('know')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Got it!</button>
+    </div>
     <div id="fc-stat" style="font-size:11px;color:var(--t3);text-align:center;padding:4px;font-weight:500"></div>
+    <!-- Completion overlay -->
+    <div class="fc-completion" id="fc-completion">
+      <div class="fc-comp-card">
+        <div class="confetti-burst"></div>
+        <div style="font-size:36px;margin-bottom:12px">🎉</div>
+        <div class="fc-comp-score" id="fc-comp-score">100%</div>
+        <div style="font-size:16px;font-weight:800;margin-bottom:6px">Deck complete!</div>
+        <div style="font-size:12px;color:var(--t2);line-height:1.65;margin-bottom:20px" id="fc-comp-summary">You mastered 10 / 10 cards</div>
+        <div style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap">
+          <button class="abt" onclick="document.getElementById('fc-completion').classList.remove('show');genCards()">New deck →</button>
+          <button class="tbtn" onclick="document.getElementById('fc-completion').classList.remove('show')">Review again</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- ESSAY -->
 <div id="v-essay" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">Essay Helper</div><div class="pgs">Senior examiner feedback, planning and grade prediction</div></div></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">Essay Helper</div><div class="pgs">Senior examiner feedback, planning and grade prediction</div></div></div></div>
   <div class="content">
     <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:end">
       <div><label class="flbl2">Essay title or question</label><input class="finp" id="es-q" placeholder="e.g. How does Shakespeare present ambition in Macbeth?" style="width:100%"></div>
       <div><label class="flbl2">Level</label><select class="fsel" id="es-l" style="width:108px"><option>GCSE</option><option>A-Level</option><option>University</option></select></div>
       <div><label class="flbl2">Board</label><select class="fsel" id="es-b" style="width:108px"><option>Any</option><option>AQA</option><option>Edexcel</option><option>OCR</option><option>WJEC</option></select></div>
     </div>
-    <div class="ebox">
-      <textarea class="eta" id="es-txt" placeholder="Paste your essay here for feedback and grade prediction.&#10;&#10;Or leave blank and use the buttons below for essay planning and key content help."></textarea>
-      <div class="eacts">
-        <button class="ebtn" id="eb1" onclick="essayDo('feedback')">📊 Full feedback</button>
-        <button class="ebtn" id="eb2" onclick="essayDo('plan')">📋 Essay plan</button>
-        <button class="ebtn" id="eb3" onclick="essayDo('improve')">✨ Improve intro</button>
-        <button class="ebtn" id="eb4" onclick="essayDo('grade')">🎯 Predict grade</button>
-        <button class="ebtn" id="eb5" onclick="essayDo('points')">💡 Key points</button>
+    <div class="essay-split">
+      <div class="essay-editor-col">
+        <div class="essay-meta-bar">
+          <span class="essay-wc" id="es-wc">0 words</span>
+          <span class="essay-rt" id="es-rt">~0 min read</span>
+          <span class="essay-grade-badge" id="es-grade-badge"></span>
+        </div>
+        <textarea class="eta" id="es-txt" placeholder="Paste your essay here for feedback and grade prediction.&#10;&#10;Or leave blank and use the buttons below for essay planning and key content help." oninput="updateEssayMeta(this)" style="flex:1;min-height:220px"></textarea>
+        <div class="eacts">
+          <button class="ebtn-v2" id="eb1" onclick="essayDo('feedback')"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Full feedback</button>
+          <button class="ebtn-v2" id="eb2" onclick="essayDo('plan')"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Essay plan</button>
+          <button class="ebtn-v2" id="eb3" onclick="essayDo('improve')"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Improve intro</button>
+          <button class="ebtn-v2" id="eb4" onclick="essayDo('grade')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>Predict grade</button>
+          <button class="ebtn-v2" id="eb5" onclick="essayDo('points')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Key points</button>
+        </div>
       </div>
-      <div class="eres" id="es-res"></div>
+      <div class="essay-panel-col">
+        <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.09em;padding:4px 0">AI Feedback Panel</div>
+        <div class="eres" id="es-res" style="display:block;flex:1;min-height:200px"><div class="essay-panel-empty"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--t4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px;display:block"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Paste your essay and click an action to receive AI feedback here.</div></div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- HOMEWORK -->
 <div id="v-homework" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">Homework Solver</div><div class="pgs">Complete step-by-step solutions — learn how to solve it yourself</div></div></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">Homework Solver</div><div class="pgs">Complete step-by-step solutions — learn how to solve it yourself</div></div></div></div>
   <div class="content">
-    <div class="hwdrop" onclick="toast('📸 Photo upload coming in v2!','info')"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><div style="font-size:12px;color:var(--t2);line-height:1.6;margin-top:9px"><strong style="color:var(--ac3)">Upload a photo</strong> of your homework — <span style="font-size:10px;color:var(--t3)">coming in v2</span></div></div>
+    <div class="hwdrop" id="hw-drop" onclick="toast('Photo upload coming soon — type your question below!','info')" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="event.preventDefault();this.classList.remove('drag-over');toast('Photo upload coming soon!','info')">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <div style="margin-top:10px">
+        <div style="font-size:13px;font-weight:700;color:var(--ac3)">Drop a photo here</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:3px">or click to upload · Coming soon in v2</div>
+      </div>
+    </div>
     <div class="hwsep">— or type your question —</div>
     <div class="hwrow"><input class="hwinp" id="hw-q" placeholder="Any question — Maths, Science, English, History, Languages, Computing..." onkeydown="if(event.key==='Enter')solveHW()"><button class="abt" onclick="solveHW()">Solve it →</button></div>
-    <div class="hwres" id="hw-res"><div class="hwrt" id="hw-title">Solution</div><div class="hwsteps" id="hw-steps"></div></div>
+    <div class="hwres" id="hw-res">
+      <div class="hwrt" id="hw-title">Solution</div>
+      <div class="hwsteps" id="hw-steps"></div>
+      <div class="hw-answer-box" id="hw-answer-box" style="display:none">
+        <div>
+          <div style="font-size:9px;font-weight:700;color:var(--grn);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Final Answer</div>
+          <div class="hw-answer-text" id="hw-answer-text"></div>
+        </div>
+        <button class="hw-copy-btn" onclick="copyHWAnswer()" title="Copy answer"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+      </div>
+      <div class="hw-similar" id="hw-similar" onclick="qs(document.getElementById('hw-similar-q-text').textContent)">
+        <div>
+          <div class="hw-similar-label">Try a similar question</div>
+          <div class="hw-similar-q" id="hw-similar-q-text"></div>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ac)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- PAST PAPERS -->
 <div id="v-papers" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">Past Papers</div><div class="pgs">GCSE and A-Level papers — click any for instant AI help</div></div></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">Past Papers</div><div class="pgs">GCSE and A-Level papers — click any for instant AI help</div></div></div></div>
   <div class="content">
-    <div class="ppf">
-      <select class="fsel" style="width:112px"><option>All levels</option><option>GCSE</option><option>A-Level</option></select>
-      <select class="fsel" style="width:144px"><option>All subjects</option><option>Mathematics</option><option>English</option><option>Biology</option><option>Chemistry</option><option>Physics</option><option>History</option></select>
-      <select class="fsel" style="width:112px"><option>All boards</option><option>AQA</option><option>Edexcel</option><option>OCR</option><option>WJEC</option></select>
+    <div class="pp-chips" id="pp-level-chips">
+      <span style="font-size:10px;color:var(--t3);font-weight:700;align-self:center;white-space:nowrap">Level:</span>
+      <button class="pp-chip active" onclick="ppFilter(this,'level','all')">All</button>
+      <button class="pp-chip" onclick="ppFilter(this,'level','gcse')">GCSE</button>
+      <button class="pp-chip" onclick="ppFilter(this,'level','alevel')">A-Level</button>
     </div>
-    <div class="papers">
-      <div class="pp" onclick="openPaper('GCSE Mathematics Paper 1 2024','Mathematics','AQA')"><div class="ppic" style="background:rgba(85,133,255,.12);border:1px solid rgba(85,133,255,.22)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5585FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="ppinfo"><div class="ppti">Mathematics — Paper 1 (Non-Calculator)</div><div class="ppme">GCSE · 2024 · AQA · 80 marks · 1h 30m</div></div><span class="ppbd ppbg">GCSE</span></div>
-      <div class="pp" onclick="openPaper('GCSE Mathematics Paper 2 2024','Mathematics','Edexcel')"><div class="ppic" style="background:rgba(85,133,255,.12);border:1px solid rgba(85,133,255,.22)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5585FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="ppinfo"><div class="ppti">Mathematics — Paper 2 (Calculator)</div><div class="ppme">GCSE · 2024 · Edexcel · 80 marks · 1h 30m</div></div><span class="ppbd ppbg">GCSE</span></div>
-      <div class="pp" onclick="openPaper('A-Level Biology Paper 2 2024','Biology','OCR')"><div class="ppic" style="background:rgba(0,232,168,.1);border:1px solid rgba(0,232,168,.22)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00E8A8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg></div><div class="ppinfo"><div class="ppti">Biology — Paper 2 (Organisms and Evolution)</div><div class="ppme">A-Level · 2024 · OCR · 100 marks · 2h 15m</div></div><span class="ppbd ppba">A-Level</span></div>
-      <div class="pp" onclick="openPaper('GCSE History Germany 2023','History','Edexcel')"><div class="ppic" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.22)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5C842" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="ppinfo"><div class="ppti">History — Germany 1890–1945</div><div class="ppme">GCSE · 2023 · Edexcel · 52 marks · 1h 15m</div></div><span class="ppbd ppbg">GCSE</span></div>
-      <div class="pp" onclick="openPaper('GCSE English Literature 2023','English Literature','AQA')"><div class="ppic" style="background:rgba(160,123,255,.1);border:1px solid rgba(160,123,255,.22)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A07BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="ppinfo"><div class="ppti">English Literature — Shakespeare and Poetry</div><div class="ppme">GCSE · 2023 · AQA · 64 marks · 1h 45m</div></div><span class="ppbd ppbg">GCSE</span></div>
-      <div class="pp" onclick="openPaper('A-Level Chemistry 2022','Chemistry','AQA')"><div class="ppic" style="background:rgba(255,79,107,.1);border:1px solid rgba(255,79,107,.22)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF4F6B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11"/></svg></div><div class="ppinfo"><div class="ppti">Chemistry — Organic Chemistry and Analysis</div><div class="ppme">A-Level · 2022 · AQA · 105 marks · 2h 30m</div></div><span class="ppbd ppba">A-Level</span></div>
-      <div class="pp" onclick="openPaper('A-Level Physics 2023','Physics','OCR')"><div class="ppic" style="background:rgba(255,176,48,.1);border:1px solid rgba(255,176,48,.22)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFB030" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="ppinfo"><div class="ppti">Physics — Mechanics, Waves and Electricity</div><div class="ppme">A-Level · 2023 · OCR · 100 marks · 2h</div></div><span class="ppbd ppba">A-Level</span></div>
+    <div class="pp-chips" id="pp-subj-chips">
+      <span style="font-size:10px;color:var(--t3);font-weight:700;align-self:center;white-space:nowrap">Subject:</span>
+      <button class="pp-chip active" onclick="ppFilter(this,'subj','all')">All</button>
+      <button class="pp-chip" onclick="ppFilter(this,'subj','maths')">Maths</button>
+      <button class="pp-chip" onclick="ppFilter(this,'subj','science')">Science</button>
+      <button class="pp-chip" onclick="ppFilter(this,'subj','english')">English</button>
+      <button class="pp-chip" onclick="ppFilter(this,'subj','humanities')">Humanities</button>
+    </div>
+    <div class="papers" id="pp-list">
+      <div class="pp-v2" data-level="gcse" data-subj="maths" onclick="openPaper('GCSE Mathematics Paper 1 2024','Mathematics','AQA')">
+        <div class="pp-clr-bar" style="background:#5585FF"></div>
+        <div class="pp-v2-icon" style="background:rgba(85,133,255,.12);color:#5585FF"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="pp-v2-info">
+          <div class="pp-v2-title">Mathematics — Paper 1 (Non-Calculator)</div>
+          <div class="pp-v2-meta">GCSE · 2024 · AQA · 80 marks · 1h 30m</div>
+          <div class="grade-bound-bar"><div class="gb-seg gb-u"></div><div class="gb-seg gb-d"></div><div class="gb-seg gb-c"></div><div class="gb-seg gb-b"></div><div class="gb-seg gb-a"></div><div class="gb-seg gb-astar"></div></div>
+        </div><span class="ppbd ppbg">GCSE</span>
+      </div>
+      <div class="pp-v2" data-level="gcse" data-subj="maths" onclick="openPaper('GCSE Mathematics Paper 2 2024','Mathematics','Edexcel')">
+        <div class="pp-clr-bar" style="background:#5585FF"></div>
+        <div class="pp-v2-icon" style="background:rgba(85,133,255,.12);color:#5585FF"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="pp-v2-info">
+          <div class="pp-v2-title">Mathematics — Paper 2 (Calculator)</div>
+          <div class="pp-v2-meta">GCSE · 2024 · Edexcel · 80 marks · 1h 30m</div>
+          <div class="grade-bound-bar"><div class="gb-seg gb-u"></div><div class="gb-seg gb-d"></div><div class="gb-seg gb-c"></div><div class="gb-seg gb-b"></div><div class="gb-seg gb-a"></div><div class="gb-seg gb-astar"></div></div>
+        </div><span class="ppbd ppbg">GCSE</span>
+      </div>
+      <div class="pp-v2" data-level="alevel" data-subj="science" onclick="openPaper('A-Level Biology Paper 2 2024','Biology','OCR')">
+        <div class="pp-clr-bar" style="background:#00E8A8"></div>
+        <div class="pp-v2-icon" style="background:rgba(0,232,168,.1);color:#00E8A8"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg></div>
+        <div class="pp-v2-info">
+          <div class="pp-v2-title">Biology — Paper 2 (Organisms and Evolution)</div>
+          <div class="pp-v2-meta">A-Level · 2024 · OCR · 100 marks · 2h 15m</div>
+          <div class="grade-bound-bar"><div class="gb-seg gb-u"></div><div class="gb-seg gb-d"></div><div class="gb-seg gb-c"></div><div class="gb-seg gb-b"></div><div class="gb-seg gb-a"></div><div class="gb-seg gb-astar"></div></div>
+        </div><span class="ppbd ppba">A-Level</span>
+      </div>
+      <div class="pp-v2" data-level="gcse" data-subj="humanities" onclick="openPaper('GCSE History Germany 2023','History','Edexcel')">
+        <div class="pp-clr-bar" style="background:#F5C842"></div>
+        <div class="pp-v2-icon" style="background:rgba(245,200,66,.1);color:#F5C842"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="pp-v2-info">
+          <div class="pp-v2-title">History — Germany 1890–1945</div>
+          <div class="pp-v2-meta">GCSE · 2023 · Edexcel · 52 marks · 1h 15m</div>
+          <div class="grade-bound-bar"><div class="gb-seg gb-u"></div><div class="gb-seg gb-d"></div><div class="gb-seg gb-c"></div><div class="gb-seg gb-b"></div><div class="gb-seg gb-a"></div><div class="gb-seg gb-astar"></div></div>
+        </div><span class="ppbd ppbg">GCSE</span>
+      </div>
+      <div class="pp-v2" data-level="gcse" data-subj="english" onclick="openPaper('GCSE English Literature 2023','English Literature','AQA')">
+        <div class="pp-clr-bar" style="background:#A07BFF"></div>
+        <div class="pp-v2-icon" style="background:rgba(160,123,255,.1);color:#A07BFF"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="pp-v2-info">
+          <div class="pp-v2-title">English Literature — Shakespeare and Poetry</div>
+          <div class="pp-v2-meta">GCSE · 2023 · AQA · 64 marks · 1h 45m</div>
+          <div class="grade-bound-bar"><div class="gb-seg gb-u"></div><div class="gb-seg gb-d"></div><div class="gb-seg gb-c"></div><div class="gb-seg gb-b"></div><div class="gb-seg gb-a"></div><div class="gb-seg gb-astar"></div></div>
+        </div><span class="ppbd ppbg">GCSE</span>
+      </div>
+      <div class="pp-v2" data-level="alevel" data-subj="science" onclick="openPaper('A-Level Chemistry 2022','Chemistry','AQA')">
+        <div class="pp-clr-bar" style="background:#FF4F6B"></div>
+        <div class="pp-v2-icon" style="background:rgba(255,79,107,.1);color:#FF4F6B"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11"/></svg></div>
+        <div class="pp-v2-info">
+          <div class="pp-v2-title">Chemistry — Organic Chemistry and Analysis</div>
+          <div class="pp-v2-meta">A-Level · 2022 · AQA · 105 marks · 2h 30m</div>
+          <div class="grade-bound-bar"><div class="gb-seg gb-u"></div><div class="gb-seg gb-d"></div><div class="gb-seg gb-c"></div><div class="gb-seg gb-b"></div><div class="gb-seg gb-a"></div><div class="gb-seg gb-astar"></div></div>
+        </div><span class="ppbd ppba">A-Level</span>
+      </div>
+      <div class="pp-v2" data-level="alevel" data-subj="science" onclick="openPaper('A-Level Physics 2023','Physics','OCR')">
+        <div class="pp-clr-bar" style="background:#FFB030"></div>
+        <div class="pp-v2-icon" style="background:rgba(255,176,48,.1);color:#FFB030"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="pp-v2-info">
+          <div class="pp-v2-title">Physics — Mechanics, Waves and Electricity</div>
+          <div class="pp-v2-meta">A-Level · 2023 · OCR · 100 marks · 2h</div>
+          <div class="grade-bound-bar"><div class="gb-seg gb-u"></div><div class="gb-seg gb-d"></div><div class="gb-seg gb-c"></div><div class="gb-seg gb-b"></div><div class="gb-seg gb-a"></div><div class="gb-seg gb-astar"></div></div>
+        </div><span class="ppbd ppba">A-Level</span>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- YOUTUBE -->
 <div id="v-youtube" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">YouTube Summariser</div><div class="pgs">Paste any YouTube URL — get comprehensive structured revision notes</div></div></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">YouTube Summariser</div><div class="pgs">Paste any YouTube URL — get comprehensive structured revision notes</div></div></div></div>
   <div class="content">
-    <div style="background:rgba(255,79,107,.06);border:1px solid rgba(255,79,107,.18);border-radius:14px;padding:15px;display:flex;gap:12px;align-items:flex-start">
-      <div style="font-size:22px;flex-shrink:0">▶️</div>
-      <div><div style="font-size:13px;font-weight:700;margin-bottom:3px">How YouTube Summariser works</div><div style="font-size:12px;color:var(--t2);line-height:1.58">Paste any YouTube URL. UltraVision AI generates full revision notes — learning objectives, detailed topic sections, key terminology, important facts, exam tips and practice questions. Works in any language.</div></div>
+    <div class="yt-info-card">
+      <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" stroke="none"/></svg>
+      <div><div style="font-size:13px;font-weight:700;margin-bottom:3px">How YouTube Summariser works</div><div style="font-size:12px;color:var(--t2);line-height:1.58">Paste any YouTube URL. UltraVision AI generates full revision notes — learning objectives, topic sections, key terminology, exam tips and practice questions. Works in any language.</div></div>
     </div>
     <div class="ytwrap">
       <div class="ytrow"><input class="ytinp" id="yt-url" placeholder="Paste YouTube URL — e.g. https://youtube.com/watch?v=..."><button class="abt" onclick="summariseYT()">Summarise →</button></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         <div style="font-size:11px;color:var(--t3);font-weight:500">Quick demos:</div>
-        <button style="background:rgba(255,255,255,.04);border:1px solid var(--b1);color:var(--t2);padding:5px 11px;border-radius:8px;font-size:10px;cursor:pointer;font-family:var(--font);transition:all .2s" onmouseover="this.style.borderColor='rgba(85,133,255,.4)'" onmouseout="this.style.borderColor='var(--b1)'" onclick="ytDemo('A-Level Biology Photosynthesis complete explanation')">Photosynthesis</button>
-        <button style="background:rgba(255,255,255,.04);border:1px solid var(--b1);color:var(--t2);padding:5px 11px;border-radius:8px;font-size:10px;cursor:pointer;font-family:var(--font);transition:all .2s" onmouseover="this.style.borderColor='rgba(85,133,255,.4)'" onmouseout="this.style.borderColor='var(--b1)'" onclick="ytDemo('GCSE Maths Quadratic Equations full tutorial')">Quadratic equations</button>
-        <button style="background:rgba(255,255,255,.04);border:1px solid var(--b1);color:var(--t2);padding:5px 11px;border-radius:8px;font-size:10px;cursor:pointer;font-family:var(--font);transition:all .2s" onmouseover="this.style.borderColor='rgba(85,133,255,.4)'" onmouseout="this.style.borderColor='var(--b1)'" onclick="ytDemo('World War 1 causes explained for GCSE History')">WW1 causes</button>
-        <button style="background:rgba(255,255,255,.04);border:1px solid var(--b1);color:var(--t2);padding:5px 11px;border-radius:8px;font-size:10px;cursor:pointer;font-family:var(--font);transition:all .2s" onmouseover="this.style.borderColor='rgba(85,133,255,.4)'" onmouseout="this.style.borderColor='var(--b1)'" onclick="ytDemo('Macbeth themes ambition Shakespeare A-Level analysis')">Macbeth themes</button>
+        <button class="yt-demo-btn" onclick="ytDemo('A-Level Biology Photosynthesis complete explanation')">Photosynthesis</button>
+        <button class="yt-demo-btn" onclick="ytDemo('GCSE Maths Quadratic Equations full tutorial')">Quadratic equations</button>
+        <button class="yt-demo-btn" onclick="ytDemo('World War 1 causes explained for GCSE History')">WW1 causes</button>
+        <button class="yt-demo-btn" onclick="ytDemo('Macbeth themes ambition Shakespeare A-Level analysis')">Macbeth themes</button>
       </div>
       <div class="ytres" id="yt-res"></div>
     </div>
@@ -1539,16 +2090,16 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 
 <!-- SMART NOTES -->
 <div id="v-notes" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">Smart Notes</div><div class="pgs">Write notes — let AI enhance, summarise and organise them</div></div></div><div class="tbr"><button class="tbtn" onclick="clearNotes()">Clear</button><button class="tbtn pri" onclick="saveNote()">Save</button></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">Smart Notes</div><div class="pgs">Write notes — let AI enhance, summarise and organise them</div></div></div><div class="tbr"><button class="tbtn" onclick="clearNotes()">Clear</button><button class="tbtn pri" onclick="saveNote()">Save</button></div></div>
   <div class="content" style="gap:10px">
     <div class="ntb">
-      <div style="font-size:11px;color:var(--t2);font-weight:600;margin-right:5px">AI Actions:</div>
-      <button class="nab" onclick="notesAI('summarise')">📋 Summarise</button>
-      <button class="nab" onclick="notesAI('flashcards')">🃏 Flashcards</button>
-      <button class="nab" onclick="notesAI('gaps')">🔍 Find gaps</button>
-      <button class="nab" onclick="notesAI('improve')">✨ Improve</button>
-      <button class="nab" onclick="notesAI('quiz')">📝 Quiz me</button>
-      <button class="nab" onclick="notesAI('mindmap')">🗺️ Mind map</button>
+      <div style="font-size:10px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.09em;margin-right:4px;align-self:center">AI:</div>
+      <button class="nab-v2" onclick="notesAI('summarise')"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Summarise</button>
+      <button class="nab-v2" onclick="notesAI('flashcards')"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Flashcards</button>
+      <button class="nab-v2" onclick="notesAI('gaps')"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Find gaps</button>
+      <button class="nab-v2" onclick="notesAI('improve')"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Improve</button>
+      <button class="nab-v2" onclick="notesAI('quiz')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Quiz me</button>
+      <button class="nab-v2" onclick="notesAI('mindmap')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><line x1="6" y1="7" x2="10" y2="11"/><line x1="18" y1="7" x2="14" y2="11"/><line x1="6" y1="17" x2="10" y2="13"/><line x1="18" y1="17" x2="14" y2="13"/></svg>Mind map</button>
     </div>
     <div class="neditor">
       <textarea class="nta" id="notes-ta" placeholder="Start typing your notes here...&#10;&#10;Write anything — topic summaries, key definitions, class notes, teacher explanations.&#10;&#10;Then use the AI buttons above to enhance them."></textarea>
@@ -1563,14 +2114,25 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 
 <!-- VOICE NOTES -->
 <div id="v-voice" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">Voice Notes</div><div class="pgs">Record your voice — transcribe and convert to revision material</div></div></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">Voice Notes</div><div class="pgs">Record your voice — transcribe and convert to revision material</div></div></div></div>
   <div class="content">
     <div style="background:rgba(0,232,168,.06);border:1px solid rgba(0,232,168,.18);border-radius:14px;padding:15px;display:flex;gap:12px;align-items:flex-start">
       <div style="font-size:22px;flex-shrink:0">🎙️</div>
       <div><div style="font-size:13px;font-weight:700;margin-bottom:3px">How Voice Notes works</div><div style="font-size:12px;color:var(--t2);line-height:1.58">Tap the microphone and speak in any language. Summarise what you've learned, explain a concept, think out loud. AI transcribes your voice and converts it into structured revision notes, flashcards or a quiz.</div></div>
     </div>
     <div class="vwrap">
-      <div class="vring" id="v-ring" onclick="toggleRec()"><div class="vicon">🎙️</div></div>
+      <div class="vring" id="v-ring" onclick="toggleRec()">
+        <svg class="vicon-svg" viewBox="0 0 24 24">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+      </div>
+      <div class="v-waveform" id="v-waveform">
+        <div class="v-wbar" style="height:6px"></div><div class="v-wbar" style="height:14px"></div><div class="v-wbar" style="height:9px"></div><div class="v-wbar" style="height:22px"></div><div class="v-wbar" style="height:12px"></div><div class="v-wbar" style="height:30px"></div><div class="v-wbar" style="height:18px"></div><div class="v-wbar" style="height:25px"></div><div class="v-wbar" style="height:10px"></div><div class="v-wbar" style="height:20px"></div><div class="v-wbar" style="height:15px"></div><div class="v-wbar" style="height:28px"></div><div class="v-wbar" style="height:8px"></div><div class="v-wbar" style="height:18px"></div><div class="v-wbar" style="height:12px"></div><div class="v-wbar" style="height:24px"></div><div class="v-wbar" style="height:10px"></div><div class="v-wbar" style="height:16px"></div><div class="v-wbar" style="height:7px"></div><div class="v-wbar" style="height:12px"></div>
+      </div>
+      <div class="v-timer" id="v-timer" style="display:none">00:00</div>
       <div class="vstatus" id="v-status">Tap to start recording</div>
       <div class="vtrans" id="v-trans"></div>
       <div class="vacts" id="v-acts" style="display:none">
@@ -1586,9 +2148,12 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 
 <!-- ADMIN -->
 <div id="v-admin" class="view">
-  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()">☰</button><div><div class="pgt">⚡ Admin Dashboard</div><div class="pgs">Full platform control — exclusive to you</div></div></div><div class="tbr"><button class="expbtn" onclick="exportCSV()">Export CSV</button><button class="tbtn" onclick="refreshAdmin()">↻ Refresh</button></div></div>
+  <div class="topbar"><div style="display:flex;align-items:center;gap:13px"><button class="mbtn" onclick="toggleSB()" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div><div class="pgt">⚡ Admin Dashboard</div><div class="pgs">Full platform control — exclusive to you</div></div></div><div class="tbr"><button class="expbtn" onclick="exportCSV()">Export CSV</button><button class="tbtn" onclick="refreshAdmin()">↻ Refresh</button></div></div>
   <div class="content">
-    <div class="admb"><div class="admbi">🛡️</div><div><div class="admbt2">UltraVision AI — Super Admin Panel</div><div class="admbst">admin-ultravisionai@proton.me · Full access · Ban, unban, delete, export all users</div></div></div>
+    <div class="admb-v2">
+      <div class="admb-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><div class="admbt2">UltraVision AI — Super Admin Panel</div><div class="admbst">admin-ultravisionai@proton.me · Full access · Ban, unban, delete, export all users</div></div>
+    </div>
     <div class="ag">
       <div class="as"><div class="asv" style="color:var(--ac)" id="adm-tot">0</div><div class="asl">Total users</div></div>
       <div class="as"><div class="asv" style="color:var(--grn)" id="adm-td">0</div><div class="asl">Joined today</div></div>
@@ -1610,6 +2175,31 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 
 </div><!-- /main -->
 </div><!-- /shell -->
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="bnav" id="bottom-nav" aria-label="Mobile navigation">
+  <button class="bni active" id="bni-d" onclick="goV('dashboard',document.getElementById('ni-d'));updateBNav('d')" aria-label="Dashboard">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    <span class="bni-lbl">Home</span><div class="bni-dot"></div>
+  </button>
+  <button class="bni" id="bni-t" onclick="goV('tutor',document.getElementById('ni-t'));updateBNav('t')" aria-label="AI Tutor">
+    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="bni-lbl">Tutor</span><div class="bni-dot"></div>
+  </button>
+  <button class="bni" id="bni-q" onclick="goV('quiz',document.getElementById('ni-q'));updateBNav('q')" aria-label="Quiz">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span class="bni-lbl">Quiz</span><div class="bni-dot"></div>
+  </button>
+  <button class="bni" id="bni-f" onclick="goV('flashcards',document.getElementById('ni-f'));updateBNav('f')" aria-label="Flashcards">
+    <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+    <span class="bni-lbl">Cards</span><div class="bni-dot"></div>
+  </button>
+  <button class="bni" id="bni-h" onclick="goV('homework',document.getElementById('ni-h'));updateBNav('h')" aria-label="Homework">
+    <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    <span class="bni-lbl">Homework</span><div class="bni-dot"></div>
+  </button>
+</nav>
+
 </div><!-- /app -->
 
 <!-- USER MODAL -->
@@ -1693,7 +2283,7 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
   <div class="fg"><label class="flbl">Confirm password</label><input class="fi" id="new-cpw-input" type="password" placeholder="Repeat new password" autocomplete="new-password"></div>
   <button class="asbtn" onclick="doReset()">Set new password →</button>
 </div></div>
-<div id="toast"></div>
+<div id="toast"><div id="toast-bar"></div></div>
 <div id="aiol"><div class="spin"></div><div class="aimt" id="ai-msg">UltraVision AI is thinking...</div></div>
 
 <script>
@@ -2695,6 +3285,508 @@ function clearVoice(){voiceTxt='';var t=document.getElementById('v-trans'),rw=do
       }
     };
   }
+})();
+</script>
+
+<script>
+/* ═══ DASHBOARD INTERACTIONS v4 ═══ */
+(function(){
+var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ─── TOAST UPGRADE (right-side, glass, progress bar) ─── */
+var _origToast=window.toast;
+window.toast=function(msg,type,dur){
+  dur=dur||3200;
+  var el=document.getElementById('toast');
+  var bar=document.getElementById('toast-bar');
+  if(!el)return _origToast&&_origToast(msg,type,dur);
+  el.textContent=msg;
+  if(bar){el.appendChild(bar);bar.style.width='100%';bar.style.transition='none';}
+  el.className='show';
+  if(type==='error'){el.style.borderColor='rgba(255,68,85,.45)';}
+  else if(type==='success'){el.style.borderColor='rgba(0,200,150,.38)';}
+  else{el.style.borderColor='rgba(79,142,247,.28)';}
+  clearTimeout(el._t);
+  if(bar){requestAnimationFrame(function(){requestAnimationFrame(function(){bar.style.transition='width '+dur+'ms linear';bar.style.width='0%';});});}
+  el._t=setTimeout(function(){el.classList.remove('show');el.style.borderColor='';},dur);
+};
+
+/* ─── SPARKLINES ─── */
+function drawSparkline(svgId,data,color){
+  var svg=document.getElementById(svgId);
+  if(!svg||!data||data.length<2)return;
+  var w=80,h=28,pad=2;
+  var mn=Math.min.apply(null,data),mx=Math.max.apply(null,data);
+  if(mn===mx){mn=0;mx=mn+1;}
+  var pts=data.map(function(v,i){
+    var x=pad+(i/(data.length-1))*(w-pad*2);
+    var y=h-pad-(v-mn)/(mx-mn)*(h-pad*2);
+    return x.toFixed(1)+','+y.toFixed(1);
+  });
+  var fill=pts.map(function(p,i){return i===0?'M'+p:'L'+p;}).join(' ')+' L'+(w-pad)+','+h+' L'+pad+','+h+' Z';
+  var line=pts.map(function(p,i){return i===0?'M'+p:'L'+p;}).join(' ');
+  svg.innerHTML='<defs><linearGradient id="sg-'+svgId+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+color+'" stop-opacity=".25"/><stop offset="100%" stop-color="'+color+'" stop-opacity="0"/></linearGradient></defs>'
+    +'<path d="'+fill+'" fill="url(#sg-'+svgId+')" stroke="none"/>'
+    +'<path d="'+line+'" fill="none" stroke="'+color+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>';
+}
+setTimeout(function(){
+  drawSparkline('spark-s',[0,1,0,2,1,3,2],'#4F8EF7');
+  drawSparkline('spark-a',[0,0,0,0,0,0,0],'#00C896');
+  drawSparkline('spark-c',[0,0,0,0,0,0,0],'#F0B429');
+  drawSparkline('spark-r',[1,1,1,1,1,1,1],'#FFA020');
+},400);
+
+/* ─── DASHBOARD TOOL CARD STAGGER ─── */
+function animateToolCards(){
+  var cards=document.querySelectorAll('#v-dashboard .tc-anim');
+  cards.forEach(function(c,i){
+    c.style.opacity='0';c.style.transform='translateY(16px)';
+    setTimeout(function(){
+      c.style.transition='opacity .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1)';
+      c.style.opacity='1';c.style.transform='';
+    },(i*45)+80);
+  });
+}
+setTimeout(animateToolCards,300);
+
+/* ─── MOBILE BOTTOM NAV ─── */
+window.updateBNav=function(key){
+  document.querySelectorAll('.bni').forEach(function(b){b.classList.remove('active');});
+  var el=document.getElementById('bni-'+key);
+  if(el)el.classList.add('active');
+};
+var _origGoV=window.goV;
+if(typeof _origGoV==='function'){
+  window.goV=function(view,niEl){
+    _origGoV(view,niEl);
+    var keyMap={dashboard:'d',tutor:'t',quiz:'q',flashcards:'f',essay:'e',homework:'h',papers:'p',youtube:'yt',notes:'n',voice:'v',admin:'a'};
+    var k=keyMap[view];
+    if(k)updateBNav(k);
+  };
+}
+
+/* ─── STREAK RING UPDATE ─── */
+function updateStreakRing(days){
+  days=parseInt(days)||1;
+  var max=30;
+  var pct=Math.min(days/max,1);
+  var circ=145;
+  var offset=circ-(pct*circ);
+  var fill=document.getElementById('wb-ring-fill');
+  if(fill){fill.style.strokeDashoffset=offset;}
+  var lbl=document.getElementById('wb-streak-lbl');
+  if(lbl){lbl.textContent=days;}
+  /* sidebar ring */
+  var sbr=document.getElementById('sb-streak-ring');
+  if(sbr){var c2=107;sbr.style.strokeDashoffset=c2-(pct*c2);}
+}
+setTimeout(function(){
+  var sn=document.getElementById('sb-streak');
+  if(sn)updateStreakRing(sn.textContent);
+},600);
+
+/* ─── COPY BUTTON INJECTION into AI chat ─── */
+var chatMsgs=document.getElementById('chat-msgs');
+if(chatMsgs){
+  var _obs=new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      m.addedNodes.forEach(function(n){
+        if(n.nodeType!==1)return;
+        var bub=n.querySelector('.bub.ai');
+        if(!bub||n.querySelector('.msg-copy-btn'))return;
+        var btn=document.createElement('button');
+        btn.className='msg-copy-btn';btn.title='Copy';btn.setAttribute('aria-label','Copy response');
+        btn.innerHTML='<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+        btn.onclick=function(){
+          navigator.clipboard&&navigator.clipboard.writeText(bub.innerText).then(function(){
+            toast('Copied!','success',1600);
+          });
+        };
+        n.style.alignItems='flex-start';
+        n.appendChild(btn);
+      });
+    });
+  });
+  _obs.observe(chatMsgs,{childList:true});
+}
+
+/* ─── VOICE INPUT (Web Speech API) ─── */
+window.startVoiceInput=function(){
+  var SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SpeechRecognition){toast('Voice input not supported in this browser','error');return;}
+  var btn=document.getElementById('voice-input-btn');
+  var ta=document.getElementById('chat-ta');
+  var recog=new SpeechRecognition();
+  recog.lang='en-GB';recog.interimResults=true;recog.maxAlternatives=1;
+  recog.onstart=function(){if(btn)btn.classList.add('rec');};
+  recog.onresult=function(e){
+    var t=Array.from(e.results).map(function(r){return r[0].transcript;}).join('');
+    if(ta){ta.value=t;if(typeof grow==='function')grow(ta);}
+  };
+  recog.onerror=function(){if(btn)btn.classList.remove('rec');};
+  recog.onend=function(){if(btn)btn.classList.remove('rec');};
+  recog.start();
+};
+
+/* ─── FLASHCARD KEYBOARD SHORTCUTS ─── */
+document.addEventListener('keydown',function(e){
+  var fc=document.getElementById('v-flashcards');
+  if(!fc||!fc.classList.contains('active'))return;
+  if(document.activeElement&&['INPUT','TEXTAREA','SELECT'].indexOf(document.activeElement.tagName)>-1)return;
+  if(e.code==='Space'){e.preventDefault();if(typeof flipCard==='function')flipCard();}
+  else if(e.code==='ArrowRight'){if(typeof nextCard==='function')nextCard();}
+  else if(e.code==='ArrowLeft'){if(typeof prevCard==='function')prevCard();}
+  else if(e.key.toLowerCase()==='k'){if(typeof rateCard==='function')rateCard('know');}
+  else if(e.key.toLowerCase()==='r'){if(typeof rateCard==='function')rateCard('unsure');}
+});
+
+/* ─── FLASHCARD SWIPE GESTURES ─── */
+var fcZone=document.getElementById('fc-zone');
+if(fcZone){
+  var _sx=null,_sy=null;
+  fcZone.addEventListener('touchstart',function(e){
+    _sx=e.touches[0].clientX;_sy=e.touches[0].clientY;
+  },{passive:true});
+  fcZone.addEventListener('touchend',function(e){
+    if(_sx===null)return;
+    var dx=e.changedTouches[0].clientX-_sx;
+    var dy=e.changedTouches[0].clientY-_sy;
+    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>55){
+      if(dx>0){if(typeof rateCard==='function')rateCard('know');}
+      else{if(typeof rateCard==='function')rateCard('unsure');}
+    } else if(Math.abs(dy)<40&&Math.abs(dx)<20){
+      if(typeof flipCard==='function')flipCard();
+    }
+    _sx=null;
+  },{passive:true});
+}
+
+/* ─── FLASHCARD TTS ─── */
+window.fcSpeak=function(){
+  var card=document.getElementById('fc-card');
+  var isFlipped=card&&card.classList.contains('flipped');
+  var txt=isFlipped?document.getElementById('fc-back').textContent:document.getElementById('fc-front').textContent;
+  if(!txt||txt==='—')return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(txt);
+  u.lang='en-GB';u.rate=0.92;
+  window.speechSynthesis.speak(u);
+  var btn=document.getElementById('fc-tts-btn');
+  if(btn){btn.classList.add('active');u.onend=function(){btn.classList.remove('active');};}
+};
+
+/* ─── FLASHCARD STREAK & DUAL PROGRESS ─── */
+var _fcStreak=0;
+var _origRateCard=window.rateCard;
+if(typeof _origRateCard==='function'){
+  window.rateCard=function(r){
+    if(r==='know'){_fcStreak++;} else{_fcStreak=0;}
+    var sn=document.getElementById('fc-streak-num');
+    if(sn)sn.textContent=_fcStreak;
+    _origRateCard(r);
+    /* update dual progress bar */
+    setTimeout(function(){
+      var stat=document.getElementById('fc-stat');
+      if(!stat)return;
+      var txt=stat.textContent||'';
+      var know=parseInt((txt.match(/✓\s*(\d+)/)||[0,0])[1])||0;
+      var unsure=parseInt((txt.match(/🤔\s*(\d+)/)||[0,0])[1])||0;
+      var total=know+unsure;
+      if(!total)return;
+      var pk=document.getElementById('fc-pf-know');
+      var pr=document.getElementById('fc-pf-review');
+      if(pk)pk.style.width=(know/total*100)+'%';
+      if(pr)pr.style.width=(unsure/total*100)+'%';
+    },50);
+  };
+}
+
+/* ─── FLASHCARD COMPLETION DETECTION ─── */
+var _origNextCard=window.nextCard;
+if(typeof _origNextCard==='function'){
+  window.nextCard=function(){
+    _origNextCard();
+    var ctr=document.getElementById('fc-ctr');
+    if(!ctr)return;
+    var txt=ctr.textContent.trim();
+    var parts=txt.split('/');
+    if(parts.length===2){
+      var cur=parseInt(parts[0]);var total=parseInt(parts[1]);
+      if(cur>=total&&total>0){showFcCompletion();}
+    }
+  };
+}
+function showFcCompletion(){
+  var stat=document.getElementById('fc-stat');
+  var know=0;var total=1;
+  if(stat){var m=stat.textContent.match(/(\d+)\s*\/\s*(\d+)/);if(m){know=parseInt(m[1]);total=parseInt(m[2]);}}
+  var pct=total>0?Math.round((know/total)*100):0;
+  var sc=document.getElementById('fc-comp-score');if(sc)sc.textContent=pct+'%';
+  var su=document.getElementById('fc-comp-summary');if(su)su.textContent='You mastered '+know+' / '+total+' cards';
+  var comp=document.getElementById('fc-completion');
+  if(comp){comp.classList.add('show');setTimeout(function(){var b=comp.querySelector('.confetti-burst');if(b){b.style.animation='none';void b.offsetWidth;b.style.animation='';}},50);}
+}
+
+/* ─── QUIZ PROGRESS + STREAK + RESULTS ─── */
+var _qStreak=0,_qWrong=[],_qTotal=0,_qCorrect=0;
+var _origGenQuiz=window.genQuiz;
+if(typeof _origGenQuiz==='function'){
+  window.genQuiz=function(){
+    _qStreak=0;_qWrong=[];_qTotal=0;_qCorrect=0;
+    updateQStreak(0);
+    var prog=document.getElementById('quiz-prog');
+    var res=document.getElementById('quiz-results');
+    if(prog){prog.style.display='none';}
+    if(res){res.style.display='none';}
+    _origGenQuiz();
+  };
+}
+var _origResetQuiz=window.resetQuiz;
+if(typeof _origResetQuiz==='function'){
+  window.resetQuiz=function(){
+    _qStreak=0;_qWrong=[];_qTotal=0;_qCorrect=0;
+    var prog=document.getElementById('quiz-prog');var res=document.getElementById('quiz-results');
+    if(prog)prog.style.display='none';if(res)res.style.display='none';
+    _origResetQuiz();
+  };
+}
+function updateQStreak(n){
+  var b=document.getElementById('q-streak-badge');
+  var t=document.getElementById('q-streak-txt');
+  if(!b)return;
+  if(n>=3){b.classList.remove('hidden-v');if(t)t.textContent=n+' in a row!';}
+  else{b.classList.add('hidden-v');}
+}
+function updateQProgress(cur,total){
+  var prog=document.getElementById('quiz-prog');
+  var fill=document.getElementById('q-prog-fill');
+  var txt=document.getElementById('q-prog-txt');
+  if(prog)prog.style.display='block';
+  if(fill)fill.style.width=((cur/total)*100)+'%';
+  if(txt)txt.textContent='Question '+cur+' of '+total;
+}
+/* Intercept quiz option clicks for feedback + tracking */
+document.addEventListener('click',function(e){
+  var opt=e.target.closest('.qopt');
+  if(!opt)return;
+  var isOk=opt.classList.contains('ok');
+  var isNo=opt.classList.contains('no');
+  if(isOk){_qStreak++;_qCorrect++;updateQStreak(_qStreak);}
+  else if(isNo){_qStreak=0;updateQStreak(0);_qWrong.push(opt);}
+  /* auto-show results when last question answered */
+  setTimeout(function(){
+    var area=document.getElementById('quiz-area');
+    if(!area)return;
+    var cards=area.querySelectorAll('.qqc');
+    var answered=area.querySelectorAll('.qopt.ok,.qopt.no');
+    _qTotal=cards.length;
+    if(answered.length>0&&cards.length>0){
+      var qs=area.querySelectorAll('.qqc');
+      var done=0;
+      qs.forEach(function(q){if(q.querySelector('.qopt.ok')||q.querySelector('.qopt.no'))done++;});
+      if(done>=qs.length&&qs.length>0){setTimeout(showQuizResults,800);}
+    }
+  },150);
+});
+function showQuizResults(){
+  var res=document.getElementById('quiz-results');
+  if(!res||res.style.display==='flex')return;
+  var pct=_qTotal>0?Math.round((_qCorrect/_qTotal)*100):0;
+  var ring=document.getElementById('qr-ring');
+  var pctEl=document.getElementById('qr-pct');
+  var grade=document.getElementById('qr-grade');
+  var msg=document.getElementById('qr-msg');
+  if(pctEl)pctEl.textContent='0%';
+  res.style.display='flex';
+  if(ring){setTimeout(function(){ring.style.strokeDashoffset=289-(pct/100*289);},50);}
+  if(pctEl){var cnt=0;var iv=setInterval(function(){cnt+=2;pctEl.textContent=Math.min(cnt,pct)+'%';if(cnt>=pct)clearInterval(iv);},20);}
+  var g='D',gc='d',gm='Keep practising — you can improve!';
+  if(pct>=90){g='A*';gc='a-star';gm='Outstanding! Exam-ready performance.';}
+  else if(pct>=80){g='A';gc='a';gm='Excellent work! Nearly there.';}
+  else if(pct>=70){g='B';gc='b';gm='Good effort! Review the missed questions.';}
+  else if(pct>=60){g='C';gc='c';gm='Decent start — focus on the gaps.';}
+  if(grade){grade.textContent='Grade '+g;grade.className='qr-grade '+gc;}
+  if(msg)msg.textContent=gm;
+  var prog=document.getElementById('quiz-prog');if(prog)prog.style.display='none';
+}
+window.retryWrong=function(){
+  var res=document.getElementById('quiz-results');if(res)res.style.display='none';
+  _qStreak=0;_qCorrect=0;
+  toast('Retry wrong answers — coming with quiz v2!','info');
+};
+
+/* ─── ESSAY WORD COUNT + READING TIME ─── */
+window.updateEssayMeta=function(ta){
+  var words=ta.value.trim().split(/\s+/).filter(Boolean).length;
+  var wc=document.getElementById('es-wc');var rt=document.getElementById('es-rt');
+  if(wc)wc.textContent=words.toLocaleString()+' words';
+  if(rt)rt.textContent='~'+Math.max(1,Math.ceil(words/200))+' min read';
+};
+
+/* ─── ESSAY GRADE BADGE ─── */
+var _origEssayDo=window.essayDo;
+if(typeof _origEssayDo==='function'){
+  window.essayDo=function(action){
+    _origEssayDo(action);
+    if(action==='grade'){
+      setTimeout(function(){
+        var res=document.getElementById('es-res');
+        if(!res)return;
+        var txt=(res.textContent||'').toLowerCase();
+        var badge=document.getElementById('es-grade-badge');
+        if(!badge)return;
+        var g='B',gc='b';
+        if(txt.indexOf('a*')>-1||txt.indexOf('a star')>-1){g='A*';gc='astar';}
+        else if(txt.match(/\bgrade a\b|\bpredicted a\b/)){g='A';gc='a';}
+        else if(txt.match(/\bgrade b\b|\bpredicted b\b/)){g='B';gc='b';}
+        badge.textContent='Predicted: '+g;
+        badge.className='essay-grade-badge '+gc;
+        setTimeout(function(){badge.classList.add('show');},50);
+      },1200);
+    }
+  };
+}
+
+/* ─── HOMEWORK COPY ANSWER ─── */
+window.copyHWAnswer=function(){
+  var el=document.getElementById('hw-answer-text');
+  if(!el)return;
+  navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){toast('Answer copied!','success',1600);});
+};
+
+/* ─── HOMEWORK STEP CARDS RENDERER ─── */
+var _origSolveHW=window.solveHW;
+/* We hook the AI output rendering to wrap steps in hw-step-card */
+var _hwObs=new MutationObserver(function(muts){
+  muts.forEach(function(m){
+    m.addedNodes.forEach(function(n){
+      if(n.nodeType!==1)return;
+      /* transform .hwstep divs into new step card design */
+      var steps=n.querySelectorAll&&n.querySelectorAll('.hwstep');
+      if(!steps||!steps.length)return;
+      steps.forEach(function(step,i){
+        step.className='hw-step-card';
+        var numEl=step.querySelector('.sn2');
+        var textEl=step.querySelector('.st');
+        if(numEl)numEl.className='hw-step-num';
+        if(textEl){
+          textEl.className='hw-step-text';
+          /* add Why? toggle */
+          var why=document.createElement('button');
+          why.className='hw-why-btn';
+          why.innerHTML='<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg> Why?';
+          var content=document.createElement('div');
+          content.className='hw-why-content';
+          content.textContent='This step applies the standard method for this type of problem. Understanding why helps you apply it independently in exams.';
+          why.onclick=function(){why.classList.toggle('open');content.classList.toggle('open');};
+          var body=step.querySelector('.hw-step-body')||textEl.parentElement;
+          if(body){body.appendChild(why);body.appendChild(content);}
+        }
+      });
+    });
+  });
+});
+var hwRes=document.getElementById('hw-res');
+if(hwRes)_hwObs.observe(hwRes,{childList:true,subtree:true});
+
+/* ─── PAST PAPERS FILTER CHIPS ─── */
+var _ppLevelFilter='all',_ppSubjFilter='all';
+window.ppFilter=function(btn,type,val){
+  var group=btn.parentElement;
+  group.querySelectorAll('.pp-chip').forEach(function(c){c.classList.remove('active');});
+  btn.classList.add('active');
+  if(type==='level')_ppLevelFilter=val;
+  else _ppSubjFilter=val;
+  document.querySelectorAll('#pp-list .pp-v2').forEach(function(card){
+    var lvl=card.dataset.level;var subj=card.dataset.subj;
+    var showL=_ppLevelFilter==='all'||(lvl===_ppLevelFilter);
+    var showS=_ppSubjFilter==='all'||(subj===_ppSubjFilter);
+    card.style.display=(showL&&showS)?'':'none';
+  });
+};
+
+/* ─── VOICE NOTES WAVEFORM ANIMATION ─── */
+var _vWaveAnim=null;
+var _origToggleRec=window.toggleRec;
+if(typeof _origToggleRec==='function'){
+  window.toggleRec=function(){
+    _origToggleRec();
+    var ring=document.getElementById('v-ring');
+    var timer=document.getElementById('v-timer');
+    var isRec=ring&&ring.classList.contains('rec');
+    if(isRec){
+      /* animate waveform */
+      var bars=document.querySelectorAll('.v-wbar');
+      var _t=0;
+      _vWaveAnim=setInterval(function(){
+        bars.forEach(function(b){b.style.height=(6+Math.random()*28).toFixed(0)+'px';});
+        _t++;
+      },120);
+      /* timer */
+      var secs=0;
+      if(timer){timer.style.display='block';}
+      _vTimerIv=setInterval(function(){
+        secs++;
+        var m=String(Math.floor(secs/60)).padStart(2,'0');
+        var s=String(secs%60).padStart(2,'0');
+        if(timer)timer.textContent=m+':'+s;
+      },1000);
+    } else {
+      clearInterval(_vWaveAnim);clearInterval(_vTimerIv);
+      if(timer){timer.style.display='none';timer.textContent='00:00';}
+      var bars2=document.querySelectorAll('.v-wbar');
+      bars2.forEach(function(b,i){b.style.height=[6,14,9,22,12,30,18,25,10,20,15,28,8,18,12,24,10,16,7,12][i]+'px';});
+    }
+  };
+}
+var _vTimerIv=null;
+
+/* ─── FOLLOW-UP CHIPS after AI response ─── */
+var _followSets={
+  tutor:['Can you explain that differently?','Give me a practice question','What are the key exam points?'],
+  explain:['Can you break it down further?','Show me an example','Why is this important?'],
+  simplify:['Explain it like I\'m 10','What\'s the one thing I must remember?','Quiz me on this'],
+  exam:['What are the mark scheme key words?','Show me a model answer','What mistakes do students make?'],
+  check:['What did I get wrong?','How can I improve my answer?','Show me the correct method'],
+  concise:['Bullet point version','Key facts only','One sentence summary'],
+  translate:['Translate to French','Translate to Spanish','Translate to Arabic']
+};
+var _chatMode='tutor';
+var _origSetMode=window.setMode;
+if(typeof _origSetMode==='function'){
+  window.setMode=function(el,mode){_chatMode=mode;_origSetMode(el,mode);};
+}
+var chatMsgsEl=document.getElementById('chat-msgs');
+if(chatMsgsEl){
+  var _fcObs=new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      m.addedNodes.forEach(function(n){
+        if(n.nodeType!==1)return;
+        var bub=n.querySelector&&n.querySelector('.bub.ai');
+        if(!bub||n.querySelector('.follow-chips'))return;
+        var chips=document.createElement('div');
+        chips.className='follow-chips';
+        var set=_followSets[_chatMode]||_followSets.tutor;
+        set.forEach(function(txt){
+          var c=document.createElement('button');
+          c.className='follow-chip';c.textContent=txt;
+          c.onclick=function(){if(typeof qs==='function')qs(txt);};
+          chips.appendChild(c);
+        });
+        n.appendChild(chips);
+      });
+    });
+  });
+  _fcObs.observe(chatMsgsEl,{childList:true});
+}
+
+/* ─── STAGGER TOOL CARDS when view activated ─── */
+document.addEventListener('click',function(e){
+  var ni=e.target.closest('.ni');
+  if(!ni||!ni.id)return;
+  if(ni.id==='ni-d'){setTimeout(animateToolCards,120);}
+});
+
 })();
 </script>
 </body>
